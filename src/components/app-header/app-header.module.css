@@ -1,0 +1,11 @@
+.wrapper {
+  max-height: 88px;
+  max-width: 1920px;
+}
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
