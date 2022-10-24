@@ -17,16 +17,18 @@ function AppHeader() {
             icon={<BurgerIcon type="primary" />}
             text={"Конструктор"}
           />
-          <ElementHeader
-            icon={<ListIcon type="secondary" />}
-            text={"Лента заказов"}
-          />
+          <div className={stylesHeader.darkGrayText}>
+            <ElementHeader
+              icon={<ListIcon type="secondary" />}
+              text={"Лента заказов"}
+            />
+          </div>
         </div>
 
         <div className={stylesHeader.logo}>
           <Logo />
         </div>
-        <div>
+        <div className={stylesHeader.darkGrayText}>
           <ElementHeader
             icon={<ProfileIcon type="secondary" />}
             text={"Личный кабинет"}
