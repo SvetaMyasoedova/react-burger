@@ -12,21 +12,26 @@ function AppHeader() {
       <header
         className={`${stylesHeader.header} p-5 text text_type_main-default `}
       >
-        <ElementHeader
-          className={stylesHeader.item}
-          icon={<BurgerIcon type="primary" />}
-          text={"Конструктор"}
-        />
-        <ElementHeader
-          icon={<ListIcon type="secondary" />}
-          text={"Лента заказов"}
-        />
+        <div className={stylesHeader.leftSideElements}>
+          <ElementHeader
+            icon={<BurgerIcon type="primary" />}
+            text={"Конструктор"}
+          />
+          <ElementHeader
+            icon={<ListIcon type="secondary" />}
+            text={"Лента заказов"}
+          />
+        </div>
 
-        <Logo />
-        <ElementHeader
-          icon={<ProfileIcon type="secondary" />}
-          text={"Личный кабинет"}
-        />
+        <div className={stylesHeader.logo}>
+          <Logo />
+        </div>
+        <div>
+          <ElementHeader
+            icon={<ProfileIcon type="secondary" />}
+            text={"Личный кабинет"}
+          />
+        </div>
       </header>
     </div>
   );
