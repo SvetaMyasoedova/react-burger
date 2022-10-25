@@ -8,7 +8,7 @@ import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 
 function AppHeader() {
   return (
-    <div className={stylesHeader.wrapper}>
+    <div className={`${stylesHeader.wrapper} mb-10`}>
       <header
         className={`${stylesHeader.header} p-5 text text_type_main-default `}
       >

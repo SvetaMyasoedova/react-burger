@@ -1,0 +1,14 @@
+
+
+.counter {
+	position: relative;
+	bottom: 150px;
+	right: 0;
+}
+
+.price {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 9px;
+}

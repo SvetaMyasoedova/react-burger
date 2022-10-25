@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <AppHeader />
+      <p className="text text_type_main-large mb-5">Соберите бургер</p>
       <BurgerIngredients />
     </div>
   );
