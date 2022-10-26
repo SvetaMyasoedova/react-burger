@@ -1,10 +1,11 @@
 .buns {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .scroll {
   width: 600px;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 
 .scroll::-webkit-scrollbar {

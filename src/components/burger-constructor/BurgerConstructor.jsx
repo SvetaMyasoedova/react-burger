@@ -12,6 +12,7 @@ function BurgerConstructor() {
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       {data.map((ingredient) => (
         <ConstructorElement
+          key={ingredient._id}
           type="top"
           isLocked={true}
           text={ingredient.name}
