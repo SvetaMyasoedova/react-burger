@@ -10,6 +10,14 @@
 .scroll::-webkit-scrollbar {
   width: 8px;
   border: 3px solid #8585ad;
-  background-color: #8585ad;
+  background-color: #8585ad; 
 }
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgb(104, 16, 16);
+}
+
+/* .scroll::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+} */
 

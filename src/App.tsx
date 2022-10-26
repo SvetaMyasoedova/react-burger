@@ -3,14 +3,17 @@ import React from "react";
 import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
+import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
 
 function App() {
   return (
     <div className="App">
       <AppHeader />
       <p className="text text_type_main-large mb-5">Соберите бургер</p>
-      <BurgerIngredients />
-      
+      <main className="main">
+        <BurgerIngredients />
+        <BurgerConstructor />
+      </main>
     </div>
   );
 }

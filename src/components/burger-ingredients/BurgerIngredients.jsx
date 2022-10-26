@@ -55,6 +55,8 @@ function BurgerIngredients() {
           <IngredientBuns image={Sauce3} count={1} />
           <IngredientBuns image={Sauce1} />
         </div>
+
+        
       </div>
     </>
   );
