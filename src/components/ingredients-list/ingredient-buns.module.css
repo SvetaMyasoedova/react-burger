@@ -1,3 +1,7 @@
+
+.wrapper {
+  width: 272px;
+}
 .counter {
   position: relative;
   bottom: 150px;

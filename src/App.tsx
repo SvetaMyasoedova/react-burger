@@ -9,10 +9,13 @@ function App() {
   return (
     <div className="App">
       <AppHeader />
-      <p className="text text_type_main-large mb-5">Соберите бургер</p>
+
       <main className="main">
-        <BurgerIngredients />
-        <BurgerConstructor />
+        <p className="text text_type_main-large mb-5">Соберите бургер</p>
+        <section className="burgerSection">
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </section>
       </main>
     </div>
   );

@@ -3,15 +3,15 @@ import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function IngredientBuns({ title, image, price, icon, name, count }) {
   return (
-    <div className="mb-10">
+    <div  className={`${stylesBuns.wrapper} mb-10`}>
       
-        <img src={image} alt="" />
+        <img src={image} alt="" className="mb-1"/>
         {count > 0 && (
 			<div className={stylesBuns.counter}>
 				<Counter count={count} size="default" />
 			</div>
         )}
-        <div className={stylesBuns.price}>
+        <div className={`${stylesBuns.price} mb-1`}>
         <p className="text text_type_digits-default">{price}</p>
         <div>{icon}</div>
       </div>

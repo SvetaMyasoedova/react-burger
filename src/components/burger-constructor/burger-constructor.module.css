@@ -4,3 +4,8 @@
 	justify-content: end;
 	
 }
+
+.scroll {
+	width: 600px;
+	overflow-y: scroll;
+ }

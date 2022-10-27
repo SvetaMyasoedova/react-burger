@@ -9,7 +9,10 @@ import { data } from "../../utils/data";
 
 function BurgerConstructor() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div
+      className={`${stylesCunstructor.scroll} mt-2`}
+      style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+    >
       {data.map((ingredient) => (
         <ConstructorElement
           key={ingredient._id}
@@ -21,7 +24,7 @@ function BurgerConstructor() {
         />
       ))}
 
-      <div className={stylesCunstructor.order}>
+      <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
         <p className="mr-2 text text_type_digits-medium">610</p>
         <div className="mr-10">
           <CurrencyIcon type="primary" />
