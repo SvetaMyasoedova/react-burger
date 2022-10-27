@@ -23,11 +23,10 @@
   background-color: #8585ad;
 }
 
-/* .scroll::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
-} */
+
 
 .burgerIngredients {
   display: flex;
   flex-direction: column;
+  max-height: 75vh;
 }
