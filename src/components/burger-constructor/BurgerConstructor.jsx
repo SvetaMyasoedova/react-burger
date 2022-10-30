@@ -35,13 +35,14 @@ function BurgerConstructor() {
       </div>
 
       <ConstructorElement
-        key={ingredients[ingredients.length - 1]._id}
-        type="top"
+        key={ingredients[0]._id}
+        type="bottom"
         isLocked={true}
-        text={ingredients[ingredients.length - 1].name}
-        price={ingredients[ingredients.length - 1].price}
-        thumbnail={ingredients[ingredients.length - 1].image}
+        text={ingredients[0].name}
+        price={ingredients[0].price}
+        thumbnail={ingredients[0].image}
       />
+      
 
       <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
         <p className="mr-2 text text_type_digits-medium">610</p>
