@@ -5,24 +5,24 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import stylesCunstructor from "./burger-constructor.module.css";
-import { data } from "../../utils/data";
+import { ingredients } from "../../utils/ingredients";
 
 function BurgerConstructor() {
   return (
     <section
       className={`${stylesCunstructor.burgerConstructor} mt-2`}
-      style={{ display: "flex", flexDirection: "column", gap: "10px"}}
+      style={{ display: "flex", flexDirection: "column", gap: "10px" }}
     >
       <ConstructorElement
-        key={data[0]._id}
+        key={ingredients[0]._id}
         type="top"
         isLocked={true}
-        text={data[0].name}
-        price={data[0].price}
-        thumbnail={data[0].image}
+        text={ingredients[0].name}
+        price={ingredients[0].price}
+        thumbnail={ingredients[0].image}
       />
       <div className={`${stylesCunstructor.scroll} mb-2`}>
-        {data.map((ingredient) => (
+        {ingredients.map((ingredient) => (
           <ConstructorElement
             key={ingredient._id}
             type="top"
@@ -35,12 +35,12 @@ function BurgerConstructor() {
       </div>
 
       <ConstructorElement
-        key={data[data.length - 1]._id}
+        key={ingredients[ingredients.length - 1]._id}
         type="top"
         isLocked={true}
-        text={data[data.length - 1].name}
-        price={data[data.length - 1].price}
-        thumbnail={data[data.length - 1].image}
+        text={ingredients[ingredients.length - 1].name}
+        price={ingredients[ingredients.length - 1].price}
+        thumbnail={ingredients[ingredients.length - 1].image}
       />
 
       <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
