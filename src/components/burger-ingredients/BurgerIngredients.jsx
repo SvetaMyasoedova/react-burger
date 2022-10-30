@@ -5,7 +5,7 @@ import { ingredients } from "../../utils/ingredients";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
-import IngredientBuns from "../ingredients-list/IngredientBuns";
+import IngredientList from "../ingredients-list/IngredientList";
 
 function BurgerIngredients() {
   return (
@@ -19,7 +19,7 @@ function BurgerIngredients() {
             .filter((bun) => bun.type === "bun")
             .map((bun) => {
               return (
-                <IngredientBuns
+                <IngredientList
                   key={bun._id}
                   image={bun.image}
                   price={bun.price}
@@ -37,7 +37,7 @@ function BurgerIngredients() {
             .filter((sauce) => sauce.type === "sauce")
             .map((sauce) => {
               return (
-                <IngredientBuns
+                <IngredientList
                   key={sauce._id}
                   image={sauce.image}
                   price={sauce.price}
@@ -55,7 +55,7 @@ function BurgerIngredients() {
             .filter((main) => main.type === "main")
             .map((main) => {
               return (
-                <IngredientBuns
+                <IngredientList
                   key={main._id}
                   image={main.image}
                   price={main.price}
