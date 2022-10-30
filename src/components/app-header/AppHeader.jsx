@@ -13,27 +13,30 @@ function AppHeader() {
         className={`${stylesHeader.header} p-5 text text_type_main-default `}
       >
         <div className={stylesHeader.leftSideElements}>
-          <ElementHeader
-            icon={<BurgerIcon type="primary" />}
-            text={"Конструктор"}
-          />
-          <div className={stylesHeader.darkGrayText}>
+          <a href="#" className={stylesHeader.white}>
+            <ElementHeader
+              icon={<BurgerIcon type="primary" />}
+              text={"Конструктор"}
+            />
+          </a>
+
+          <a href="#" className={stylesHeader.darkGrayText}>
             <ElementHeader
               icon={<ListIcon type="secondary" />}
               text={"Лента заказов"}
             />
-          </div>
+          </a>
         </div>
 
         <div className={stylesHeader.logo}>
           <Logo />
         </div>
-        <div className={stylesHeader.darkGrayText}>
+        <a href="#" className={stylesHeader.darkGrayText}>
           <ElementHeader
             icon={<ProfileIcon type="secondary" />}
             text={"Личный кабинет"}
           />
-        </div>
+        </a>
       </header>
     </div>
   );
