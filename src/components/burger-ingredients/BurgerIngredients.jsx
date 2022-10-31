@@ -1,13 +1,13 @@
 import React from "react";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ingredients } from "../../utils/ingredients";
+
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
 
-function BurgerIngredients() {
+function BurgerIngredients({ingredients}) {
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
       <Tabs></Tabs>
@@ -20,7 +20,7 @@ function BurgerIngredients() {
             .map((bun) => {
               return (
                 <IngredientList
-                  key={bun._id}
+                  key={bun._id+'_IngredientList'}
                   image={bun.image}
                   price={bun.price}
                   count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
@@ -38,7 +38,7 @@ function BurgerIngredients() {
             .map((sauce) => {
               return (
                 <IngredientList
-                  key={sauce._id}
+                  key={sauce._id+'_IngredientList'}
                   image={sauce.image}
                   price={sauce.price}
                   count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
@@ -56,7 +56,7 @@ function BurgerIngredients() {
             .map((main) => {
               return (
                 <IngredientList
-                  key={main._id}
+                  key={main._id+'_IngredientList'}
                   image={main.image}
                   price={main.price}
                   icon={<CurrencyIcon type="primary" />}
