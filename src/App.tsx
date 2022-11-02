@@ -32,6 +32,8 @@ function App() {
           <BurgerConstructor ingredients={state.ingredients} />
         </section>
       </main>
+
+      
     </div>
   );
 }

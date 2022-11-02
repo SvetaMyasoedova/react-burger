@@ -1,9 +1,9 @@
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function IngredientList({ title, image, price, icon, name, count }) {
+function IngredientList({ title, image, price, icon, name, count, onClick }) {
   return (
-    <div className={`${stylesList.wrapper} mb-10`}>
+    <div onClick={onClick} className={`${stylesList.wrapper} mb-10`}>
       <img src={image} alt="" className="mb-1" />
       {count > 0 && (
         <div className={stylesList.counter}>

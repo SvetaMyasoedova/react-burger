@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
+import Modal from "../modal/Modal";
 
-function BurgerIngredients({ingredients}) {
+function BurgerIngredients({ ingredients }) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+    // console.log("Modal is opened");
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+   
+  };
+
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
       <Tabs></Tabs>
@@ -20,7 +32,8 @@ function BurgerIngredients({ingredients}) {
             .map((bun) => {
               return (
                 <IngredientList
-                  key={bun._id+'_IngredientList'}
+                  onClick={handleOpenModal}
+                  key={bun._id + "_IngredientList"}
                   image={bun.image}
                   price={bun.price}
                   count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
@@ -38,7 +51,8 @@ function BurgerIngredients({ingredients}) {
             .map((sauce) => {
               return (
                 <IngredientList
-                  key={sauce._id+'_IngredientList'}
+                onClick={handleOpenModal}
+                  key={sauce._id + "_IngredientList"}
                   image={sauce.image}
                   price={sauce.price}
                   count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
@@ -56,7 +70,8 @@ function BurgerIngredients({ingredients}) {
             .map((main) => {
               return (
                 <IngredientList
-                  key={main._id+'_IngredientList'}
+                onClick={handleOpenModal}
+                  key={main._id + "_IngredientList"}
                   image={main.image}
                   price={main.price}
                   icon={<CurrencyIcon type="primary" />}
@@ -66,6 +81,8 @@ function BurgerIngredients({ingredients}) {
             })}
         </div>
       </div>
+
+      {isModalVisible && <Modal header={'Детали ингредиента'} onClose={handleCloseModal}></Modal>}
     </section>
   );
 }
