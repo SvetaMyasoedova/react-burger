@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -6,7 +8,23 @@ import {
 
 import stylesCunstructor from "./burger-constructor.module.css";
 
+//components
+import OrderDetails from "../order-details/OrderDetails";
+import Modal from "../modal/Modal";
+
 function BurgerConstructor({ ingredients }) {
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+    // console.log("Modal is opened");
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+   
+  };
   if (ingredients.length === 0) {
     
     return <></>;
@@ -53,10 +71,12 @@ function BurgerConstructor({ ingredients }) {
           <CurrencyIcon type="primary" />
         </div>
 
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" onClick={handleOpenModal}>
           Оформить заказ
         </Button>
+        
       </div>
+      {isModalVisible && <Modal  onClose={handleCloseModal}><OrderDetails orderId = {'034536'}/></Modal>}
     </section>
   );
 }
