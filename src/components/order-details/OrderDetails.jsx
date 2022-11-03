@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
 
@@ -15,5 +16,10 @@ function OrderDetails({ orderId }) {
     </div>
   );
 }
+
+OrderDetails.propTypes = {
+  orderId: PropTypes.string,
+  
+};
 
 export default OrderDetails;

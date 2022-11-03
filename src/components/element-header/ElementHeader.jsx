@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import stylesElement from "./element-header.module.css";
+
 
 function ElementHeader({ icon, text }) {
   return (
@@ -8,5 +10,10 @@ function ElementHeader({ icon, text }) {
     </div>
   );
 }
+
+ElementHeader.propTypes = {
+  icon: PropTypes.element,
+  text: PropTypes.string,
+}; 
 
 export default ElementHeader;

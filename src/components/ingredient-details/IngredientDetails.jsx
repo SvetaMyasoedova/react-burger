@@ -1,4 +1,5 @@
 import styleIngredientDetails from "./ingredient-details.module.css";
+import PropTypes from "prop-types";
 
 function IngredientDetails({ currentSelectedElem }) {
   return (
@@ -45,5 +46,16 @@ function IngredientDetails({ currentSelectedElem }) {
     </div>
   );
 }
+
+IngredientDetails.propTypes = {
+  currentSelectedElem: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    calories: PropTypes.number,
+    proteins: PropTypes.number,
+    fat: PropTypes.number,
+    carbohydrates: PropTypes.number,
+  }),
+};
 
 export default IngredientDetails;

@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import styleModalHeader from './modal-header.module.css'
+import styleModalHeader from "./modal-header.module.css";
 
 function ModalHeader({ onClose, header }) {
   return (
@@ -9,5 +10,10 @@ function ModalHeader({ onClose, header }) {
     </div>
   );
 }
+
+ModalHeader.propTypes = {
+  header: PropTypes.string,
+  onClose: PropTypes.func,
+};
 
 export default ModalHeader;

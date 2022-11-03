@@ -20,7 +20,7 @@ function AppHeader() {
             />
           </a>
 
-          <a href="#" className={stylesHeader.darkGrayText}>
+          <a href="#" className="text_color_inactive">
             <ElementHeader
               icon={<ListIcon type="secondary" />}
               text={"Лента заказов"}
@@ -31,7 +31,7 @@ function AppHeader() {
         <div className={stylesHeader.logo}>
           <Logo />
         </div>
-        <a href="#" className={stylesHeader.darkGrayText}>
+        <a href="#" className="text_color_inactive">
           <ElementHeader
             icon={<ProfileIcon type="secondary" />}
             text={"Личный кабинет"}

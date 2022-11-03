@@ -31,7 +31,5 @@ a:visited {
  color: #F2F2F3;
 }
 
-.darkGrayText:not(:first-child) {
-  color: #8585ad;
-}
+
 

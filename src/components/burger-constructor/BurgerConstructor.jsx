@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -12,9 +14,7 @@ import stylesCunstructor from "./burger-constructor.module.css";
 import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
 
-
 function BurgerConstructor({ ingredients }) {
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = () => {
@@ -24,20 +24,18 @@ function BurgerConstructor({ ingredients }) {
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
-   
   };
   if (ingredients.length === 0) {
-    
     return <></>;
   }
-  
+
   return (
     <section
       className={`${stylesCunstructor.burgerConstructor} mt-2`}
       style={{ display: "flex", flexDirection: "column", gap: "10px" }}
     >
       <ConstructorElement
-        key={ingredients[0]._id+'_ConstructorElementTop'}
+        key={ingredients[0]._id + "_ConstructorElementTop"}
         type="top"
         isLocked={true}
         text={ingredients[0].name}
@@ -47,7 +45,7 @@ function BurgerConstructor({ ingredients }) {
       <div className={`${stylesCunstructor.scroll} mb-2`}>
         {ingredients.map((ingredient) => (
           <ConstructorElement
-            key={ingredient._id+'_ConstructorElement'}
+            key={ingredient._id + "_ConstructorElement"}
             type="top"
             isLocked={false}
             text={ingredient.name}
@@ -58,7 +56,7 @@ function BurgerConstructor({ ingredients }) {
       </div>
 
       <ConstructorElement
-        key={ingredients[0]._id+'_ConstructorElementBottom'}
+        key={ingredients[0]._id + "_ConstructorElementBottom"}
         type="bottom"
         isLocked={true}
         text={ingredients[0].name}
@@ -75,11 +73,16 @@ function BurgerConstructor({ ingredients }) {
         <Button type="primary" size="medium" onClick={handleOpenModal}>
           Оформить заказ
         </Button>
-        
       </div>
-      {isModalVisible && <Modal  onClose={handleCloseModal}><OrderDetails orderId = {'034536'}/></Modal>}
+      {isModalVisible && (
+        <Modal onClose={handleCloseModal}>
+          <OrderDetails orderId={"034536"} />
+        </Modal>
+      )}
     </section>
   );
 }
+
+BurgerConstructor.propTypes = ingredientsPropTypes;
 
 export default BurgerConstructor;

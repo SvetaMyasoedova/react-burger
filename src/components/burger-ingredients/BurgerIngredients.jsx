@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
+import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
@@ -19,7 +21,7 @@ function BurgerIngredients({ ingredients }) {
     carbohydrates: 0,
   });
 
-  const handleOpenModal = (ingredient ) => {
+  const handleOpenModal = (ingredient) => {
     setCurrentSelectedElem({
       image: ingredient.image,
       name: ingredient.name,
@@ -27,9 +29,8 @@ function BurgerIngredients({ ingredients }) {
       proteins: ingredient.proteins,
       fat: ingredient.fat,
       carbohydrates: ingredient.carbohydrates,
-    })
+    });
     setIsModalVisible(true);
-    
 
     // console.log("Modal is opened");
   };
@@ -102,11 +103,13 @@ function BurgerIngredients({ ingredients }) {
 
       {isModalVisible && (
         <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
-          <IngredientDetails currentSelectedElem = {currentSelectedElem}/>
+          <IngredientDetails currentSelectedElem={currentSelectedElem} />
         </Modal>
       )}
     </section>
   );
 }
+
+BurgerIngredients.propTypes = ingredientsPropTypes;
 
 export default BurgerIngredients;

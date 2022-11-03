@@ -1,11 +1,17 @@
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
+import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 
-function IngredientList({ ingredient,  icon,  onClick, id,  setCurrentSelectedElem }) {
-
-
+function IngredientList({ ingredient, icon, onClick, id }) {
   return (
-    <div id={id} onClick={() => {onClick(ingredient)}} className={`${stylesList.wrapper} mb-10`}>
+    <div
+      id={id}
+      onClick={() => {
+        onClick(ingredient);
+      }}
+      className={`${stylesList.wrapper} mb-10`}
+    >
       <img src={ingredient.image} alt="" className="mb-1" />
       {ingredient.count > 0 && (
         <div className={stylesList.counter}>
@@ -21,5 +27,12 @@ function IngredientList({ ingredient,  icon,  onClick, id,  setCurrentSelectedEl
     </div>
   );
 }
+
+IngredientList.propTypes = {
+  ingredient: ingredientPropTypes,
+  icon: PropTypes.element,
+  onClick: PropTypes.func,
+  id: PropTypes.string,
+};
 
 export default IngredientList;
