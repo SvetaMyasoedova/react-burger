@@ -12,6 +12,7 @@ import stylesCunstructor from "./burger-constructor.module.css";
 import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
 
+
 function BurgerConstructor({ ingredients }) {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -29,7 +30,7 @@ function BurgerConstructor({ ingredients }) {
     
     return <></>;
   }
-  console.log(ingredients)
+  
   return (
     <section
       className={`${stylesCunstructor.burgerConstructor} mt-2`}

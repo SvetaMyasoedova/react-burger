@@ -1,21 +1,23 @@
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function IngredientList({ title, image, price, icon, name, count, onClick }) {
+function IngredientList({ ingredient,  icon,  onClick, id,  setCurrentSelectedElem }) {
+
+
   return (
-    <div onClick={onClick} className={`${stylesList.wrapper} mb-10`}>
-      <img src={image} alt="" className="mb-1" />
-      {count > 0 && (
+    <div id={id} onClick={() => {onClick(ingredient)}} className={`${stylesList.wrapper} mb-10`}>
+      <img src={ingredient.image} alt="" className="mb-1" />
+      {ingredient.count > 0 && (
         <div className={stylesList.counter}>
-          <Counter count={count} size="default" />
+          <Counter count={ingredient.count} size="default" />
         </div>
       )}
       <div className={`${stylesList.price} mb-1`}>
-        <p className="text text_type_digits-default">{price}</p>
+        <p className="text text_type_digits-default">{ingredient.price}</p>
         <div>{icon}</div>
       </div>
 
-      <p className="text text_type_main-default ">{name}</p>
+      <p className="text text_type_main-default ">{ingredient.name}</p>
     </div>
   );
 }

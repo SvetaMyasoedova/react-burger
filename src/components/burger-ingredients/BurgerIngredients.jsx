@@ -6,18 +6,36 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
 import Modal from "../modal/Modal";
+import IngredientDetails from "../ingredient-details/IngredientDetails";
 
 function BurgerIngredients({ ingredients }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [currentSelectedElem, setCurrentSelectedElem] = useState({
+    image: "",
+    name: "",
+    calories: 0,
+    proteins: 0,
+    fat: 0,
+    carbohydrates: 0,
+  });
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (ingredient ) => {
+    setCurrentSelectedElem({
+      image: ingredient.image,
+      name: ingredient.name,
+      calories: ingredient.calories,
+      proteins: ingredient.proteins,
+      fat: ingredient.fat,
+      carbohydrates: ingredient.carbohydrates,
+    })
     setIsModalVisible(true);
+    
+
     // console.log("Modal is opened");
   };
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
-   
   };
 
   return (
@@ -32,13 +50,13 @@ function BurgerIngredients({ ingredients }) {
             .map((bun) => {
               return (
                 <IngredientList
+                  id={bun._id}
                   onClick={handleOpenModal}
+                  ingredient={bun}
+                  setCurrentSelectedElem={setCurrentSelectedElem}
                   key={bun._id + "_IngredientList"}
-                  image={bun.image}
-                  price={bun.price}
                   count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
-                  name={bun.name}
                 />
               );
             })}
@@ -51,13 +69,13 @@ function BurgerIngredients({ ingredients }) {
             .map((sauce) => {
               return (
                 <IngredientList
-                onClick={handleOpenModal}
+                  id={sauce._id}
+                  onClick={handleOpenModal}
+                  setCurrentSelectedElem={setCurrentSelectedElem}
+                  ingredient={sauce}
                   key={sauce._id + "_IngredientList"}
-                  image={sauce.image}
-                  price={sauce.price}
                   count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
-                  name={sauce.name}
                 />
               );
             })}
@@ -70,19 +88,23 @@ function BurgerIngredients({ ingredients }) {
             .map((main) => {
               return (
                 <IngredientList
-                onClick={handleOpenModal}
+                  id={main._id}
+                  onClick={handleOpenModal}
+                  setCurrentSelectedElem={setCurrentSelectedElem}
+                  ingredient={main}
                   key={main._id + "_IngredientList"}
-                  image={main.image}
-                  price={main.price}
                   icon={<CurrencyIcon type="primary" />}
-                  name={main.name}
                 />
               );
             })}
         </div>
       </div>
 
-      {isModalVisible && <Modal header={'Детали ингредиента'} onClose={handleCloseModal}></Modal>}
+      {isModalVisible && (
+        <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
+          <IngredientDetails currentSelectedElem = {currentSelectedElem}/>
+        </Modal>
+      )}
     </section>
   );
 }
