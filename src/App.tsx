@@ -13,9 +13,14 @@ function App() {
 
   useEffect(() => {
     const getIngredientsData = async () => {
-      const res = await fetch(ingredienstsUrl);
-      const data = await res.json();
-      setState({ ingredients: data.data });
+      try {
+        const res = await fetch(ingredienstsUrl);
+        if (!res.ok) throw new Error(res.statusText);
+        const data = await res.json();
+        setState({ ingredients: data.data });
+      } catch (err) {
+        console.error("getIngredientsData failed");
+      }
     };
 
     getIngredientsData();
@@ -32,8 +37,6 @@ function App() {
           <BurgerConstructor ingredients={state.ingredients} />
         </section>
       </main>
-
-      
     </div>
   );
 }
