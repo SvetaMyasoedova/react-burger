@@ -1,11 +1,35 @@
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
 .wrapper {
-  max-height: 88px;
-  max-width: 1920px;
+  background-color: #1c1c21;
+  display: flex;
+  justify-content: center;
 }
 .header {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  width: 1280px;
+  justify-content: space-between;
 }
+
+.leftSideElements {
+  display: flex;
+}
+
+.logo {
+  /* делаем лого по центру */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.white {
+ color: #F2F2F3;
+}
+
+
 
