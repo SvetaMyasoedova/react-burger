@@ -25,8 +25,9 @@ function BurgerConstructor({ ingredients }) {
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
+
   if (ingredients.length === 0) {
-    return <></>;
+    return null;
   }
 
   return (
