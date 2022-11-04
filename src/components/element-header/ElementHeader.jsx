@@ -12,8 +12,8 @@ function ElementHeader({ icon, text }) {
 }
 
 ElementHeader.propTypes = {
-  icon: PropTypes.element,
-  text: PropTypes.string,
+  icon: PropTypes.element.isRequired,
+  text: PropTypes.string.isRequired,
 }; 
 
 export default ElementHeader;

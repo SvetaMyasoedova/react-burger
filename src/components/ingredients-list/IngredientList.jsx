@@ -30,9 +30,9 @@ function IngredientList({ ingredient, icon, onClick, id }) {
 
 IngredientList.propTypes = {
   ingredient: ingredientPropTypes,
-  icon: PropTypes.element,
-  onClick: PropTypes.func,
-  id: PropTypes.string,
+  icon: PropTypes.element.isRequired,
+  onClick: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default IngredientList;

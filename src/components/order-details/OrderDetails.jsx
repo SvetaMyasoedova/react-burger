@@ -18,7 +18,7 @@ function OrderDetails({ orderId }) {
 }
 
 OrderDetails.propTypes = {
-  orderId: PropTypes.string,
+  orderId: PropTypes.string.isRequired,
   
 };
 
