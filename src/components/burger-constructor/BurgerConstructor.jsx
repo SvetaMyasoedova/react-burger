@@ -94,7 +94,7 @@ function BurgerConstructor() {
 
       {isModalVisible && (
         <Modal onClose={handleCloseModal}>
-          <OrderDetails orderId={"034536"} />
+          <OrderDetails />
         </Modal>
       )}
     </section>
