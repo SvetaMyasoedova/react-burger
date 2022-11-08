@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
 import { orderUrl } from "../../utils/urls";
@@ -59,8 +59,5 @@ function OrderDetails() {
   );
 }
 
-// OrderDetails.propTypes = {
-//   orderId: PropTypes.string.isRequired,
-// };
 
 export default OrderDetails;
