@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -10,7 +10,10 @@ import IngredientList from "../ingredients-list/IngredientList";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 
-function BurgerIngredients({ ingredients }) {
+import { IngredientsContext } from "../../services/appContext";
+
+function BurgerIngredients() {
+  const { ingredients} = useContext(IngredientsContext);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentSelectedElem, setCurrentSelectedElem] = useState({
     image: "",
@@ -54,7 +57,6 @@ function BurgerIngredients({ ingredients }) {
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
                   key={bun._id + "_IngredientList"}
                   count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
@@ -72,7 +74,6 @@ function BurgerIngredients({ ingredients }) {
                 <IngredientList
                   id={sauce._id}
                   onClick={handleOpenModal}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
                   ingredient={sauce}
                   key={sauce._id + "_IngredientList"}
                   count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
@@ -91,7 +92,6 @@ function BurgerIngredients({ ingredients }) {
                 <IngredientList
                   id={main._id}
                   onClick={handleOpenModal}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
                   ingredient={main}
                   key={main._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}

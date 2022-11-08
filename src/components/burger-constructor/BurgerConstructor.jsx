@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useMemo } from "react";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
@@ -14,17 +14,30 @@ import stylesCunstructor from "./burger-constructor.module.css";
 import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
 
-function BurgerConstructor({ ingredients }) {
+import { IngredientsContext } from "../../services/appContext";
+
+function BurgerConstructor() {
+  const { ingredients } = useContext(IngredientsContext);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
-    // console.log("Modal is opened");
   };
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
+
+  const buns = useMemo(
+    () => ingredients.filter((value) => value.type === "bun"),
+    [ingredients]
+  );
+
+  const main = useMemo(
+    () => ingredients.filter((value) => value.type !== "bun"),
+    [ingredients]
+  );
 
   if (ingredients.length === 0) {
     return null;
@@ -35,19 +48,21 @@ function BurgerConstructor({ ingredients }) {
       className={`${stylesCunstructor.burgerConstructor} mt-2`}
       style={{ display: "flex", flexDirection: "column", gap: "10px" }}
     >
-      <ConstructorElement
-        key={ingredients[0]._id + "_ConstructorElementTop"}
-        type="top"
-        isLocked={true}
-        text={ingredients[0].name}
-        price={ingredients[0].price}
-        thumbnail={ingredients[0].image}
-      />
+      {buns.length === 0 ? null : (
+        <ConstructorElement
+          key={buns[0]._id + "_ConstructorElementTop"}
+          type="top"
+          isLocked={true}
+          text={`${buns[0].name} верх`}
+          price={buns[0].price}
+          thumbnail={buns[0].image}
+        />
+      )}
+
       <div className={`${stylesCunstructor.scroll} mb-2`}>
-        {ingredients.map((ingredient) => (
+        {main.map((ingredient) => (
           <ConstructorElement
             key={ingredient._id + "_ConstructorElement"}
-            type="top"
             isLocked={false}
             text={ingredient.name}
             price={ingredient.price}
@@ -55,15 +70,16 @@ function BurgerConstructor({ ingredients }) {
           />
         ))}
       </div>
-
-      <ConstructorElement
-        key={ingredients[0]._id + "_ConstructorElementBottom"}
-        type="bottom"
-        isLocked={true}
-        text={ingredients[0].name}
-        price={ingredients[0].price}
-        thumbnail={ingredients[0].image}
-      />
+      {buns.length === 0 ? null : (
+        <ConstructorElement
+          key={ingredients[0]._id + "_ConstructorElementBottom"}
+          type="bottom"
+          isLocked={true}
+          text={`${buns[0].name} низ`}
+          price={ingredients[0].price}
+          thumbnail={ingredients[0].image}
+        />
+      )}
 
       <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
         <p className="mr-2 text text_type_digits-medium">610</p>
@@ -75,6 +91,7 @@ function BurgerConstructor({ ingredients }) {
           Оформить заказ
         </Button>
       </div>
+
       {isModalVisible && (
         <Modal onClose={handleCloseModal}>
           <OrderDetails orderId={"034536"} />

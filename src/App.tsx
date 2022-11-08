@@ -5,11 +5,10 @@ import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
 import { ingredienstsUrl } from "./utils/urls";
+import { IngredientsContext } from "./services/appContext";
 
 function App() {
-  const [state, setState] = useState({
-    ingredients: [],
-  });
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     const getIngredientsData = async () => {
@@ -17,7 +16,7 @@ function App() {
         const res = await fetch(ingredienstsUrl);
         if (!res.ok) throw new Error(res.statusText);
         const data = await res.json();
-        setState({ ingredients: data.data });
+        setIngredients(data.data);
       } catch (err) {
         console.error("getIngredientsData failed");
       }
@@ -33,8 +32,10 @@ function App() {
       <main className="main">
         <p className="text text_type_main-large mb-5">Соберите бургер</p>
         <section className="burgerSection">
-          <BurgerIngredients ingredients={state.ingredients} />
-          <BurgerConstructor ingredients={state.ingredients} />
+          <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
+            <BurgerIngredients />
+            <BurgerConstructor  />
+          </IngredientsContext.Provider>
         </section>
       </main>
     </div>
