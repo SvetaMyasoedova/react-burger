@@ -8,22 +8,22 @@ import { ingredienstsUrl } from "./utils/urls";
 import { IngredientsContext } from "./services/appContext";
 
 function App() {
-  const [ingredients, setIngredients] = useState([]);
+  // const [ingredients, setIngredients] = useState([]);
 
-  useEffect(() => {
-    const getIngredientsData = async () => {
-      try {
-        const res = await fetch(ingredienstsUrl);
-        if (!res.ok) throw new Error(res.statusText);
-        const data = await res.json();
-        setIngredients(data.data);
-      } catch (err) {
-        console.error("getIngredientsData failed");
-      }
-    };
+  // useEffect(() => {
+  //   const getIngredientsData = async () => {
+  //     try {
+  //       const res = await fetch(ingredienstsUrl);
+  //       if (!res.ok) throw new Error(res.statusText);
+  //       const data = await res.json();
+  //       setIngredients(data.data);
+  //     } catch (err) {
+  //       console.error("getIngredientsData failed");
+  //     }
+  //   };
 
-    getIngredientsData();
-  }, []);
+  //   getIngredientsData();
+  // }, []);
 
   return (
     <div className="App">
@@ -32,10 +32,10 @@ function App() {
       <main className="main">
         <p className="text text_type_main-large mb-5">Соберите бургер</p>
         <section className="burgerSection">
-          <IngredientsContext.Provider value={{ ingredients, setIngredients }}>
+          
             <BurgerIngredients />
             <BurgerConstructor  />
-          </IngredientsContext.Provider>
+         
         </section>
       </main>
     </div>

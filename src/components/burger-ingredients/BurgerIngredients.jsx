@@ -1,8 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+import { getIngredients } from "../../services/reducers";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -10,10 +12,18 @@ import IngredientList from "../ingredients-list/IngredientList";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 
-import { IngredientsContext } from "../../services/appContext";
-
 function BurgerIngredients() {
-  const { ingredients} = useContext(IngredientsContext);
+  const { data } = useSelector(
+    (state) => state.dataReducer
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentSelectedElem, setCurrentSelectedElem] = useState({
     image: "",
@@ -34,8 +44,6 @@ function BurgerIngredients() {
       carbohydrates: ingredient.carbohydrates,
     });
     setIsModalVisible(true);
-
-    // console.log("Modal is opened");
   };
 
   const handleCloseModal = () => {
@@ -49,7 +57,7 @@ function BurgerIngredients() {
         <h4 className="text text_type_main-medium mb-6">Булки</h4>
 
         <div className={`${stylesIngredients.buns} ml-4`}>
-          {ingredients
+          {data
             .filter((bun) => bun.type === "bun")
             .map((bun) => {
               return (
@@ -67,7 +75,7 @@ function BurgerIngredients() {
 
         <h4 className="text text_type_main-medium mb-6">Соусы</h4>
         <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
-          {ingredients
+          {data
             .filter((sauce) => sauce.type === "sauce")
             .map((sauce) => {
               return (
@@ -85,7 +93,7 @@ function BurgerIngredients() {
 
         <h4 className="text text_type_main-medium pt-10 mt-15 mb-6">Начинки</h4>
         <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
-          {ingredients
+          {data
             .filter((main) => main.type === "main")
             .map((main) => {
               return (

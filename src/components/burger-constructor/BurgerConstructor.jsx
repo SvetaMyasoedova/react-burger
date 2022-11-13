@@ -1,7 +1,7 @@
-import React, { useState, useContext, useMemo } from "react";
-
+import React, { useState, useMemo, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
-
+import { getIngredients } from "../../services/reducers";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -17,7 +17,17 @@ import Modal from "../modal/Modal";
 import { IngredientsContext } from "../../services/appContext";
 
 function BurgerConstructor() {
-  const { ingredients } = useContext(IngredientsContext);
+  //const { ingredients } = useContext(IngredientsContext);
+  //const ingredients = [];
+  const { data } = useSelector(
+    (state) => state.dataReducer
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -30,16 +40,16 @@ function BurgerConstructor() {
   };
 
   const buns = useMemo(
-    () => ingredients.filter((value) => value.type === "bun"),
-    [ingredients]
+    () => data.filter((value) => value.type === "bun"),
+    [data]
   );
 
   const main = useMemo(
-    () => ingredients.filter((value) => value.type !== "bun"),
-    [ingredients]
+    () => data.filter((value) => value.type !== "bun"),
+    [data]
   );
 
-  if (ingredients.length === 0) {
+  if (data.length === 0) {
     return null;
   }
 
@@ -72,12 +82,12 @@ function BurgerConstructor() {
       </div>
       {buns.length === 0 ? null : (
         <ConstructorElement
-          key={ingredients[0]._id + "_ConstructorElementBottom"}
+          key={data[0]._id + "_ConstructorElementBottom"}
           type="bottom"
           isLocked={true}
           text={`${buns[0].name} низ`}
-          price={ingredients[0].price}
-          thumbnail={ingredients[0].image}
+          price={data[0].price}
+          thumbnail={data[0].image}
         />
       )}
 
