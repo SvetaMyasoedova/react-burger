@@ -1,12 +1,17 @@
 import styleIngredientDetails from "./ingredient-details.module.css";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-function IngredientDetails({ currentSelectedElem }) {
+function IngredientDetails() {
+  const { currentIngredient } = useSelector(
+    (state) => state.сurrentIngredientReducer
+  );
+
   return (
     <div className={styleIngredientDetails.wrapper}>
-      <img src={currentSelectedElem.image} alt="" className="mb-4" />
+      <img src={currentIngredient.image} alt="" className="mb-4" />
       <div className="mb-8 text text_type_main-medium">
-        {currentSelectedElem.name}
+        {currentIngredient.name}
       </div>
 
       <div className={`${styleIngredientDetails.nutrients} pb-15`}>
@@ -15,7 +20,7 @@ function IngredientDetails({ currentSelectedElem }) {
             Калории, ккал
           </p>
           <div className="text text_type_digits-default text_color_inactive">
-            {currentSelectedElem.calories}
+            {currentIngredient.calories}
           </div>
         </div>
         <div className={styleIngredientDetails.aboutNutrients}>
@@ -23,7 +28,7 @@ function IngredientDetails({ currentSelectedElem }) {
             Белки, г
           </p>
           <div className="text text_type_digits-default text_color_inactive">
-            {currentSelectedElem.proteins}
+            {currentIngredient.proteins}
           </div>
         </div>
         <div className={styleIngredientDetails.aboutNutrients}>
@@ -31,7 +36,7 @@ function IngredientDetails({ currentSelectedElem }) {
             Жиры, г
           </p>
           <div className="text text_type_digits-default text_color_inactive">
-            {currentSelectedElem.fat}
+            {currentIngredient.fat}
           </div>
         </div>
         <div className={styleIngredientDetails.aboutNutrients}>
@@ -39,7 +44,7 @@ function IngredientDetails({ currentSelectedElem }) {
             Углеводы, г
           </p>
           <div className="text text_type_digits-default text_color_inactive">
-            {currentSelectedElem.carbohydrates}
+            {currentIngredient.carbohydrates}
           </div>
         </div>
       </div>

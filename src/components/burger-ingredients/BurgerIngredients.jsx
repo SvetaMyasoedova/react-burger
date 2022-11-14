@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { CURRENT_INGREDIENT } from "../../services/actions/constants";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { getIngredients } from "../../services/reducers";
@@ -13,9 +14,7 @@ import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 
 function BurgerIngredients() {
-  const { data } = useSelector(
-    (state) => state.dataReducer
-  );
+  const { data } = useSelector((state) => state.dataReducer);
 
   const dispatch = useDispatch();
 
@@ -23,26 +22,12 @@ function BurgerIngredients() {
     dispatch(getIngredients());
   }, [dispatch]);
 
-
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [currentSelectedElem, setCurrentSelectedElem] = useState({
-    image: "",
-    name: "",
-    calories: 0,
-    proteins: 0,
-    fat: 0,
-    carbohydrates: 0,
-  });
+  
 
   const handleOpenModal = (ingredient) => {
-    setCurrentSelectedElem({
-      image: ingredient.image,
-      name: ingredient.name,
-      calories: ingredient.calories,
-      proteins: ingredient.proteins,
-      fat: ingredient.fat,
-      carbohydrates: ingredient.carbohydrates,
-    });
+    console.log(ingredient)
+    dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
   };
 
@@ -111,7 +96,7 @@ function BurgerIngredients() {
 
       {isModalVisible && (
         <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
-          <IngredientDetails currentSelectedElem={currentSelectedElem} />
+          <IngredientDetails />
         </Modal>
       )}
     </section>

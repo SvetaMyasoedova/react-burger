@@ -76,4 +76,21 @@ export const dataReducer = (state = initialState, action) => {
   }
 };
 
-export const rootReducer = combineReducers({ dataReducer: dataReducer });
+export const сurrentIngredientReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CURRENT_INGREDIENT: {
+      return {
+        ...state,
+        currentIngredient: action.currentIngredient,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+export const rootReducer = combineReducers({
+  dataReducer: dataReducer,
+  сurrentIngredientReducer: сurrentIngredientReducer,
+});
