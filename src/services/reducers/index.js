@@ -5,9 +5,11 @@ import {
   GET_INGREDIENTS_SUCCESS,
   CURRENT_CONSTRUCTOR,
   CURRENT_INGREDIENT,
-  CREATED_ORDER,
+  GET_ORDER,
+  GET_ORDER_FAILED,
+  GET_ORDER_SUCCESS,
 } from "../actions/constants";
-import { ingredienstsUrl } from "../../utils/urls";
+import { ingredienstsUrl, orderUrl } from "../../utils/urls";
 
 const initialState = {
   dataRequest: false,
@@ -15,6 +17,8 @@ const initialState = {
   data: [],
   constructorIngredients: [],
   currentIngredient: {},
+  orderRequest: false,
+  orderFailed: false,
   createdOrder: {},
 };
 
@@ -33,7 +37,6 @@ export function getIngredients() {
             data: res.data,
           });
         } else {
-          console.log("!!! getIngredients failed !!!");
           dispatch({
             type: GET_INGREDIENTS_FAILED,
           });
@@ -90,7 +93,80 @@ export const сurrentIngredientReducer = (state = initialState, action) => {
   }
 };
 
+export function getOrder() {
+  return function (dispatch) {
+    dispatch({
+      type: GET_ORDER,
+    });
+
+    fetch(orderUrl, {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                ingredients: [
+                  "60d3b41abdacab0026a733c6",
+                  "60d3b41abdacab0026a733c7",
+                ],
+              }),
+            })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        if (res && res.success) {
+
+          dispatch({
+            type: GET_ORDER_SUCCESS,
+            createdOrder: res.order.number,
+          });
+        } else {
+          dispatch({
+            type: GET_ORDER_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_ORDER_FAILED,
+        });
+      });
+  };
+}
+
+
+export const orderReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ORDER: {
+      return {
+        ...state,
+        orderRequest: true,
+        orderFailed: false,
+      };
+    }
+    case GET_ORDER_SUCCESS: {
+      return {
+        ...state,
+        createdOrder: action.createdOrder,
+        orderRequest: false,
+      };
+    }
+    case GET_ORDER_FAILED: {
+      return {
+        ...state,
+        orderFailed: true,
+        orderRequest: false,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 export const rootReducer = combineReducers({
   dataReducer: dataReducer,
   сurrentIngredientReducer: сurrentIngredientReducer,
+  orderReducer: orderReducer,
 });

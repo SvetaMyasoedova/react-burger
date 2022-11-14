@@ -26,7 +26,7 @@ function BurgerIngredients() {
   
 
   const handleOpenModal = (ingredient) => {
-    console.log(ingredient)
+  
     dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
   };

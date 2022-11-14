@@ -14,16 +14,9 @@ import stylesCunstructor from "./burger-constructor.module.css";
 import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
 
-import { IngredientsContext } from "../../services/appContext";
-
 function BurgerConstructor() {
-  //const { ingredients } = useContext(IngredientsContext);
-  //const ingredients = [];
-  const { data } = useSelector(
-    (state) => state.dataReducer
-  );
-
   const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.dataReducer);
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -31,7 +24,7 @@ function BurgerConstructor() {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (order) => {
     setIsModalVisible(true);
   };
 

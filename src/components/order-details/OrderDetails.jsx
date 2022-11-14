@@ -1,46 +1,30 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
-import { orderUrl } from "../../utils/urls";
+import { getOrder } from "../../services/reducers";
+
 
 function OrderDetails() {
-  const [order, setOrder] = useState([]);
+
+  const { createdOrder } = useSelector((state) => state.orderReducer);
+  console.log(createdOrder)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getOrderData = async () => {
-      
-      try {
-        const res = await fetch(orderUrl, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ingredients: [
-              "60d3b41abdacab0026a733c6",
-              "60d3b41abdacab0026a733c7",
-            ],
-          }),
-        });
-        if (!res.ok) throw new Error(res.statusText);
-        const data = await res.json();
-        setOrder(data.order.number);
-      } catch (err) {
-        console.error("getOrderData failed");
-      }
-    };
+    dispatch(getOrder());
+    console.log("getOrder")
+  }, [dispatch]);
+ 
 
-    getOrderData();
-  }, []);
+  
 
   return (
     <div className={`${styleOrderDetails.wrapper} pt-10 pr-25 pl-25 mb-8`}>
       <div
         className={`${styleOrderDetails.shadow} text text_type_digits-large`}
       >
-        {order}
+        {createdOrder}
       </div>
       <div className="text text_type_main-medium mb-15">
         идентификатор заказа
