@@ -13,7 +13,7 @@ function OrderDetails() {
 
   useEffect(() => {
     dispatch(getOrder());
-    console.log("getOrder")
+    
   }, [dispatch]);
  
 

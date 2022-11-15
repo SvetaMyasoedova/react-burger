@@ -34,31 +34,24 @@ function BurgerIngredients() {
     setIsModalVisible(false);
   };
 
-  const {
-    ref: refBuns,
-    inView: inViewBuns,
-   
-  } = useInView({
+  const { ref: refBuns, inView: inViewBuns } = useInView({
     threshold: 0,
   });
-  const {
-    ref: refSauce,
-    inView: inViewSauce,
-    
-  } = useInView({
+  const { ref: refSauce, inView: inViewSauce } = useInView({
     threshold: 0,
   });
-  const {
-    ref: refMain,
-    inView: inViewMain,
-    
-  } = useInView({
+  const { ref: refMain, inView: inViewMain } = useInView({
     threshold: 0,
   });
 
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
-      <Tabs inViewBuns={inViewBuns} inViewSauce={inViewSauce} inViewMain={inViewMain}></Tabs>
+      <Tabs
+        inViewBuns={inViewBuns}
+        inViewSauce={inViewSauce}
+        inViewMain={inViewMain}
+      ></Tabs>
+
       <div className={stylesIngredients.scroll}>
         <h4 className="text text_type_main-medium mb-6">Булки</h4>
 
@@ -68,6 +61,7 @@ function BurgerIngredients() {
             .map((bun) => {
               return (
                 <IngredientList
+                  type={bun.type}
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
@@ -86,6 +80,7 @@ function BurgerIngredients() {
             .map((sauce) => {
               return (
                 <IngredientList
+                  type={sauce.type}
                   id={sauce._id}
                   onClick={handleOpenModal}
                   ingredient={sauce}
@@ -96,7 +91,7 @@ function BurgerIngredients() {
               );
             })}
         </div>
-            
+
         <h4 className="text text_type_main-medium pt-10 mt-15 mb-6">Начинки</h4>
         <div ref={refMain} className={`${stylesIngredients.buns} mb-8 ml-4`}>
           {data
@@ -104,6 +99,7 @@ function BurgerIngredients() {
             .map((main) => {
               return (
                 <IngredientList
+                  type={main.type}
                   id={main._id}
                   onClick={handleOpenModal}
                   ingredient={main}

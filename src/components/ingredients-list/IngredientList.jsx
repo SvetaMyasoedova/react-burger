@@ -1,11 +1,18 @@
+import { useDrag } from "react-dnd";
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 
-function IngredientList({ ingredient, icon, onClick, id }) {
+function IngredientList({ ingredient, icon, onClick, id, type }) {
+  const [, dragRef] = useDrag(() => ({
+    type: type,
+    item: ingredient,
+  }));
+
   return (
     <div
+      ref={dragRef}
       id={id}
       onClick={() => {
         onClick(ingredient);

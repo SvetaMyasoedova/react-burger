@@ -3,7 +3,8 @@ import {
   GET_INGREDIENTS,
   GET_INGREDIENTS_FAILED,
   GET_INGREDIENTS_SUCCESS,
-  CURRENT_CONSTRUCTOR,
+  CONSTRUCTOR_BUN,
+  CONSTRUCTOR_MAIN,
   CURRENT_INGREDIENT,
   GET_ORDER,
   GET_ORDER_FAILED,
@@ -15,6 +16,7 @@ const initialState = {
   dataRequest: false,
   dataFailed: false,
   data: [],
+  constructorBun: null,
   constructorIngredients: [],
   currentIngredient: {},
   orderRequest: false,
@@ -165,8 +167,42 @@ export const orderReducer = (state = initialState, action) => {
   }
 };
 
+export const cunstructorBunReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CONSTRUCTOR_BUN: {
+      return {
+        ...state,
+        constructorBun: action.constructorBun,
+      };
+    }
+    
+   
+    default: {
+      return state;
+    }
+  }
+};
+export const cunstructorMainReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CONSTRUCTOR_MAIN: {
+      return {
+        ...state,
+        constructorIngredients: [...state.constructorIngredients, action.constructorIngredients]
+        //constructorIngredients: action.constructorIngredients,
+      };
+    }
+    
+   
+    default: {
+      return state;
+    }
+  }
+};
+
 export const rootReducer = combineReducers({
   dataReducer: dataReducer,
   сurrentIngredientReducer: сurrentIngredientReducer,
   orderReducer: orderReducer,
+  cunstructorBunReducer: cunstructorBunReducer,
+  cunstructorMainReducer: cunstructorMainReducer,
 });

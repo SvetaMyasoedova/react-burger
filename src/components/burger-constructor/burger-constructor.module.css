@@ -1,6 +1,31 @@
 .burgerConstructor {
   max-height: 84vh;
 }
+.box{
+  max-height: 40vh;
+  /* max-width: 600px; */
+}
+
+
+.boxBun {
+  background-color: #1c1c21;
+  border-radius: 10px;
+  min-height: 80px;
+  width: 600px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+}
+.boxMain {
+  background-color: #1c1c21;
+  border-radius: 10px;
+  min-height: 300px;
+  max-width: 600px;
+ box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+}
+.textInBox {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  
+}
 
 .order {
   display: flex;
@@ -9,7 +34,7 @@
 }
 
 .scroll {
-  width: 600px;
+  height:  400px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
