@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CURRENT_INGREDIENT } from "../../services/actions/constants";
@@ -23,10 +24,8 @@ function BurgerIngredients() {
   }, [dispatch]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
 
   const handleOpenModal = (ingredient) => {
-  
     dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
   };
@@ -35,13 +34,35 @@ function BurgerIngredients() {
     setIsModalVisible(false);
   };
 
+  const {
+    ref: refBuns,
+    inView: inViewBuns,
+   
+  } = useInView({
+    threshold: 0,
+  });
+  const {
+    ref: refSauce,
+    inView: inViewSauce,
+    
+  } = useInView({
+    threshold: 0,
+  });
+  const {
+    ref: refMain,
+    inView: inViewMain,
+    
+  } = useInView({
+    threshold: 0,
+  });
+
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
-      <Tabs></Tabs>
+      <Tabs inViewBuns={inViewBuns} inViewSauce={inViewSauce} inViewMain={inViewMain}></Tabs>
       <div className={stylesIngredients.scroll}>
         <h4 className="text text_type_main-medium mb-6">Булки</h4>
 
-        <div className={`${stylesIngredients.buns} ml-4`}>
+        <div ref={refBuns} className={`${stylesIngredients.buns} ml-4`}>
           {data
             .filter((bun) => bun.type === "bun")
             .map((bun) => {
@@ -59,7 +80,7 @@ function BurgerIngredients() {
         </div>
 
         <h4 className="text text_type_main-medium mb-6">Соусы</h4>
-        <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
+        <div ref={refSauce} className={`${stylesIngredients.buns} mb-8 ml-4`}>
           {data
             .filter((sauce) => sauce.type === "sauce")
             .map((sauce) => {
@@ -75,9 +96,9 @@ function BurgerIngredients() {
               );
             })}
         </div>
-
+            
         <h4 className="text text_type_main-medium pt-10 mt-15 mb-6">Начинки</h4>
-        <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
+        <div ref={refMain} className={`${stylesIngredients.buns} mb-8 ml-4`}>
           {data
             .filter((main) => main.type === "main")
             .map((main) => {
