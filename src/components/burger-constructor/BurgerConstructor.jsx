@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
@@ -11,6 +12,7 @@ import {
 import {
   CONSTRUCTOR_BUN,
   CONSTRUCTOR_MAIN,
+  DELETE_CONSTRUCTOR_INGREDIENT,
 } from "../../services/actions/constants";
 import stylesCunstructor from "./burger-constructor.module.css";
 
@@ -27,7 +29,6 @@ function BurgerConstructor() {
   const { constructorIngredients } = useSelector(
     (state) => state.cunstructorMainReducer
   );
-  console.log(constructorIngredients)
 
   const [, dropBunTop] = useDrop({
     accept: "bun",
@@ -42,9 +43,11 @@ function BurgerConstructor() {
   const [, dropMain] = useDrop({
     accept: ["sauce", "main"],
     drop(ingredient) {
+      let newIngredient = JSON.parse(JSON.stringify(ingredient));
+      newIngredient.uuid = uuidv4();
       dispatch({
         type: CONSTRUCTOR_MAIN,
-        constructorIngredients: ingredient,
+        constructorIngredient: newIngredient,
       });
     },
   });
@@ -58,6 +61,13 @@ function BurgerConstructor() {
       });
     },
   });
+
+  const onDelete = (uuid) => {
+    dispatch({
+      type: DELETE_CONSTRUCTOR_INGREDIENT,
+      uuid: uuid,
+    });
+  };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -114,18 +124,19 @@ function BurgerConstructor() {
           </div>
         ) : (
           <div className={`${stylesCunstructor.box}  mb-2`}>
-            
             {constructorIngredients.map((ingredient) => (
-              <div className="mb-2 mr-2"> 
+              <div className="mb-2 mr-2">
                 <ConstructorElement
-                key={ingredient._id + "_ConstructorElement"}
-                isLocked={false}
-                text={ingredient.name}
-                price={ingredient.price}
-                thumbnail={ingredient.image}
-              />
+                  key={ingredient.uuid}
+                  isLocked={false}
+                  text={ingredient.name}
+                  price={ingredient.price}
+                  thumbnail={ingredient.image}
+                  handleClose={() => {
+                    onDelete(ingredient.uuid);
+                  }}
+                />
               </div>
-             
             ))}
           </div>
         )}
@@ -157,7 +168,7 @@ function BurgerConstructor() {
       </div>
 
       {isModalVisible && (
-        <Modal  onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal}>
           <OrderDetails />
         </Modal>
       )}

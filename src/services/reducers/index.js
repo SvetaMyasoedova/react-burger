@@ -5,6 +5,7 @@ import {
   GET_INGREDIENTS_SUCCESS,
   CONSTRUCTOR_BUN,
   CONSTRUCTOR_MAIN,
+  DELETE_CONSTRUCTOR_INGREDIENT,
   CURRENT_INGREDIENT,
   GET_ORDER,
   GET_ORDER_FAILED,
@@ -102,23 +103,18 @@ export function getOrder() {
     });
 
     fetch(orderUrl, {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json;charset=utf-8",
-              },
-              body: JSON.stringify({
-                ingredients: [
-                  "60d3b41abdacab0026a733c6",
-                  "60d3b41abdacab0026a733d2",
-                ],
-              }),
-            })
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        ingredients: ["60d3b41abdacab0026a733c6", "60d3b41abdacab0026a733d2"],
+      }),
+    })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res)
         if (res && res.success) {
-
           dispatch({
             type: GET_ORDER_SUCCESS,
             createdOrder: res.order,
@@ -136,7 +132,6 @@ export function getOrder() {
       });
   };
 }
-
 
 export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -175,8 +170,7 @@ export const cunstructorBunReducer = (state = initialState, action) => {
         constructorBun: action.constructorBun,
       };
     }
-    
-   
+
     default: {
       return state;
     }
@@ -187,12 +181,21 @@ export const cunstructorMainReducer = (state = initialState, action) => {
     case CONSTRUCTOR_MAIN: {
       return {
         ...state,
-        constructorIngredients: [...state.constructorIngredients, action.constructorIngredients]
-        
+        constructorIngredients: [
+          ...state.constructorIngredients,
+          action.constructorIngredient,
+        ],
       };
     }
-    
-   
+    case DELETE_CONSTRUCTOR_INGREDIENT: {
+      return {
+        ...state,
+        constructorIngredients: state.constructorIngredients.filter((item) => {
+          return item.uuid !== action.uuid;
+        }),
+      };
+    }
+
     default: {
       return state;
     }
