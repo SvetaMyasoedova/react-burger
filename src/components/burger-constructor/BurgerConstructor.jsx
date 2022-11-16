@@ -27,6 +27,7 @@ function BurgerConstructor() {
   const { constructorIngredients } = useSelector(
     (state) => state.cunstructorMainReducer
   );
+  console.log(constructorIngredients)
 
   const [, dropBunTop] = useDrop({
     accept: "bun",
@@ -156,7 +157,7 @@ function BurgerConstructor() {
       </div>
 
       {isModalVisible && (
-        <Modal onClose={handleCloseModal}>
+        <Modal  onClose={handleCloseModal}>
           <OrderDetails />
         </Modal>
       )}

@@ -105,12 +105,12 @@ export function getOrder() {
               method: "POST",
               headers: {
                 Accept: "application/json",
-                "Content-Type": "application/json",
+                "Content-Type": "application/json;charset=utf-8",
               },
               body: JSON.stringify({
                 ingredients: [
                   "60d3b41abdacab0026a733c6",
-                  "60d3b41abdacab0026a733c7",
+                  "60d3b41abdacab0026a733d2",
                 ],
               }),
             })
@@ -121,7 +121,7 @@ export function getOrder() {
 
           dispatch({
             type: GET_ORDER_SUCCESS,
-            createdOrder: res.order.number,
+            createdOrder: res.order,
           });
         } else {
           dispatch({
@@ -188,7 +188,7 @@ export const cunstructorMainReducer = (state = initialState, action) => {
       return {
         ...state,
         constructorIngredients: [...state.constructorIngredients, action.constructorIngredients]
-        //constructorIngredients: action.constructorIngredients,
+        
       };
     }
     
