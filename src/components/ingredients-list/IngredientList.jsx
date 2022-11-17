@@ -1,14 +1,30 @@
+import React, { useState, useEffect, useMemo } from "react";
 import { useDrag } from "react-dnd";
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+import { useSelector, useDispatch } from "react-redux";
 
 function IngredientList({ ingredient, icon, onClick, id, type }) {
   const [, dragRef] = useDrag(() => ({
     type: type,
     item: ingredient,
   }));
+
+  const { constructorIngredients } = useSelector(
+    (state) => state.cunstructorMainReducer
+  );
+
+  const count = useMemo(() => {
+    let counter = 0;
+    constructorIngredients.forEach((item) => {
+      if (item._id === id) {
+        counter++;
+      }
+    });
+    return counter;
+  }, [constructorIngredients]);
 
   return (
     <div
@@ -20,9 +36,9 @@ function IngredientList({ ingredient, icon, onClick, id, type }) {
       className={`${stylesList.wrapper} mb-10`}
     >
       <img src={ingredient.image} alt="" className="mb-1" />
-      {ingredient.count > 0 && (
+      {count > 0 && (
         <div className={stylesList.counter}>
-          <Counter count={ingredient.count} size="default" />
+          <Counter count={count} size="default" />
         </div>
       )}
       <div className={`${stylesList.price} mb-1`}>

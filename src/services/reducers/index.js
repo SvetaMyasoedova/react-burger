@@ -98,10 +98,16 @@ export const сurrentIngredientReducer = (state = initialState, action) => {
 };
 
 export function getOrder() {
-  return function (dispatch) {
+  return function (dispatch, getState) {
     dispatch({
       type: GET_ORDER,
     });
+    const orderIds =
+      getState().cunstructorMainReducer.constructorIngredients.map(
+        (item) => item._id
+      );
+
+    orderIds.push(getState().cunstructorBunReducer.constructorBun._id);
 
     fetch(orderUrl, {
       method: "POST",
@@ -110,7 +116,7 @@ export function getOrder() {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify({
-        ingredients: ["60d3b41abdacab0026a733c6", "60d3b41abdacab0026a733d2"],
+        ingredients: orderIds,
       }),
     })
       .then((res) => res.json())
@@ -201,13 +207,12 @@ export const cunstructorMainReducer = (state = initialState, action) => {
     case SORTABLE_INGREDIENT: {
       const ingredients = [...state.constructorIngredients];
 
-      console.dir(ingredients);
       ingredients.splice(
         action.hoverIndex,
         0,
         ingredients.splice(action.dragIndex, 1)[0]
       );
-      console.dir(ingredients);
+
       return {
         ...state,
         constructorIngredients: ingredients,

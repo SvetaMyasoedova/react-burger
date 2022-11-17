@@ -195,7 +195,12 @@ function BurgerConstructor() {
           <CurrencyIcon type="primary" />
         </div>
 
-        <Button type="primary" size="medium" onClick={handleOpenModal}>
+        <Button
+          disabled={constructorBun === null || constructorIngredients.length === 0}
+          type="primary"
+          size="medium"
+          onClick={handleOpenModal}
+        >
           Оформить заказ
         </Button>
       </div>

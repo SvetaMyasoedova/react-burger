@@ -8,8 +8,7 @@ import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
-//import { ingredienstsUrl } from "./utils/urls";
-//import { IngredientsContext } from "./services/appContext";
+
 
 function App() {
   return (

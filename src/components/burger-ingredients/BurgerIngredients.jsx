@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
@@ -66,7 +66,6 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={bun}
                   key={bun._id + "_IngredientList"}
-                  count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
                 />
               );
@@ -85,7 +84,6 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={sauce}
                   key={sauce._id + "_IngredientList"}
-                  count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
                 />
               );

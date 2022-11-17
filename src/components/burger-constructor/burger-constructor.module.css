@@ -3,6 +3,7 @@
 }
 .box{
   max-height: 40vh;
+  cursor: grab;
   /* max-width: 600px; */
 }
 
