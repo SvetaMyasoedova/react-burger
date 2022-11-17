@@ -140,7 +140,7 @@ function BurgerConstructor() {
             key={constructorBun._id + "_ConstructorElementTop"}
             type="top"
             isLocked={true}
-            text={`${constructorBun.name} верх`}
+            text={`${constructorBun.name} (верх)`}
             price={constructorBun.price}
             thumbnail={constructorBun.image}
           />
@@ -180,9 +180,9 @@ function BurgerConstructor() {
         ) : (
           <ConstructorElement
             key={constructorBun._id + "_ConstructorElementTop"}
-            type="top"
+            type="bottom"
             isLocked={true}
-            text={`${constructorBun.name} низ`}
+            text={`${constructorBun.name} (низ)`}
             price={constructorBun.price}
             thumbnail={constructorBun.image}
           />
