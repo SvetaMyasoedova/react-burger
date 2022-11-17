@@ -6,6 +6,7 @@ import {
   CONSTRUCTOR_BUN,
   CONSTRUCTOR_MAIN,
   DELETE_CONSTRUCTOR_INGREDIENT,
+  SORTABLE_INGREDIENT,
   CURRENT_INGREDIENT,
   GET_ORDER,
   GET_ORDER_FAILED,
@@ -187,12 +188,29 @@ export const cunstructorMainReducer = (state = initialState, action) => {
         ],
       };
     }
+
     case DELETE_CONSTRUCTOR_INGREDIENT: {
       return {
         ...state,
         constructorIngredients: state.constructorIngredients.filter((item) => {
           return item.uuid !== action.uuid;
         }),
+      };
+    }
+
+    case SORTABLE_INGREDIENT: {
+      const ingredients = [...state.constructorIngredients];
+
+      console.dir(ingredients);
+      ingredients.splice(
+        action.hoverIndex,
+        0,
+        ingredients.splice(action.dragIndex, 1)[0]
+      );
+      console.dir(ingredients);
+      return {
+        ...state,
+        constructorIngredients: ingredients,
       };
     }
 

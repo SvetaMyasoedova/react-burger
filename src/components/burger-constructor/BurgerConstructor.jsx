@@ -1,6 +1,12 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useDrop } from "react-dnd";
+import { useDrop, useDrag } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
@@ -13,12 +19,14 @@ import {
   CONSTRUCTOR_BUN,
   CONSTRUCTOR_MAIN,
   DELETE_CONSTRUCTOR_INGREDIENT,
+  SORTABLE_INGREDIENT,
 } from "../../services/actions/constants";
 import stylesCunstructor from "./burger-constructor.module.css";
 
 //components
 import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
+import ConstructorElementWrapper from "./ConstructorElementWrapper";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
@@ -43,6 +51,10 @@ function BurgerConstructor() {
   const [, dropMain] = useDrop({
     accept: ["sauce", "main"],
     drop(ingredient) {
+      if (ingredient.hasOwnProperty("uuid")) {
+        return;
+      }
+
       let newIngredient = JSON.parse(JSON.stringify(ingredient));
       newIngredient.uuid = uuidv4();
       dispatch({
@@ -68,6 +80,32 @@ function BurgerConstructor() {
       uuid: uuid,
     });
   };
+
+  const sortIngredients = (dragIndex, hoverIndex) => {
+    dispatch({
+      type: SORTABLE_INGREDIENT,
+      hoverIndex: hoverIndex,
+      dragIndex: dragIndex,
+    });
+  };
+
+  const totalPrice = useMemo(() => {
+    if (constructorBun || constructorIngredients.length !== 0) {
+      if (constructorBun && constructorIngredients.length === 0) {
+        return constructorBun.price * 2;
+      } else if (!constructorBun && constructorIngredients.length !== 0) {
+        return constructorIngredients
+          .map((item) => item.price)
+          .reduce((acc, item) => acc + item, 0);
+      } else if (constructorBun && constructorIngredients.length !== 0) {
+        let priseOfBuns = constructorBun.price * 2;
+        let priceOfIngredients = constructorIngredients
+          .map((item) => item.price)
+          .reduce((acc, item) => acc + item, 0);
+        return priseOfBuns + priceOfIngredients;
+      }
+    } else return 0;
+  }, [constructorBun, constructorIngredients]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -124,19 +162,14 @@ function BurgerConstructor() {
           </div>
         ) : (
           <div className={`${stylesCunstructor.box}  mb-2`}>
-            {constructorIngredients.map((ingredient) => (
-              <div className="mb-2 mr-2">
-                <ConstructorElement
-                  key={ingredient.uuid}
-                  isLocked={false}
-                  text={ingredient.name}
-                  price={ingredient.price}
-                  thumbnail={ingredient.image}
-                  handleClose={() => {
-                    onDelete(ingredient.uuid);
-                  }}
-                />
-              </div>
+            {constructorIngredients.map((ingredient, index) => (
+              <ConstructorElementWrapper
+                key={ingredient.uuid}
+                ingredient={ingredient}
+                index={index}
+                onDelete={onDelete}
+                sortIngredients={sortIngredients}
+              />
             ))}
           </div>
         )}
@@ -157,7 +190,7 @@ function BurgerConstructor() {
       </div>
 
       <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
-        <p className="mr-2 text text_type_digits-medium">610</p>
+        <p className="mr-2 text text_type_digits-medium">{totalPrice}</p>
         <div className="mr-10">
           <CurrencyIcon type="primary" />
         </div>
