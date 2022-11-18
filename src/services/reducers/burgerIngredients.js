@@ -3,6 +3,7 @@ import {
   GET_INGREDIENTS_FAILED,
   GET_INGREDIENTS_SUCCESS,
   CURRENT_INGREDIENT,
+  CLEAR_CURRENT_INGREDIENT
 } from "../actions/burgerIngredients";
 
 import { ingredienstsUrl } from "../../utils/urls";
@@ -79,6 +80,13 @@ export function getIngredients() {
 			currentIngredient: action.currentIngredient,
 		 };
 	  }
+	  case CLEAR_CURRENT_INGREDIENT: {
+		return {
+		  ...state,
+		  currentIngredient: {},
+		};
+	 }
+
 	  default: {
 		 return state;
 	  }

@@ -6,6 +6,7 @@ import {
   GET_ORDER,
   GET_ORDER_FAILED,
   GET_ORDER_SUCCESS,
+  CLEAR_CONSTRUCTOR,
 } from "../actions/burgerConstructor";
 
 import { orderUrl } from "../../utils/urls";
@@ -13,7 +14,6 @@ import { orderUrl } from "../../utils/urls";
 const initialState = {
   constructorBun: null,
   constructorIngredients: [],
-
   orderRequest: false,
   orderFailed: false,
   createdOrder: {},
@@ -24,13 +24,11 @@ export function getOrder() {
     dispatch({
       type: GET_ORDER,
     });
-    const orderIds =
-      getState().constructorMainReducer.constructorIngredients.map(
-        (item) => item._id
-      );
-    orderIds.unshift(getState().constructorBunReducer.constructorBun._id);
-    orderIds.push(getState().constructorBunReducer.constructorBun._id);
-    console.log(orderIds);
+    const orderIds = getState().constructorReducer.constructorIngredients.map(
+      (item) => item._id
+    );
+    orderIds.unshift(getState().constructorReducer.constructorBun._id);
+    orderIds.push(getState().constructorReducer.constructorBun._id);
 
     fetch(orderUrl, {
       method: "POST",
@@ -92,7 +90,7 @@ export const orderReducer = (state = initialState, action) => {
   }
 };
 
-export const constructorBunReducer = (state = initialState, action) => {
+export const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTRUCTOR_BUN: {
       return {
@@ -100,14 +98,6 @@ export const constructorBunReducer = (state = initialState, action) => {
         constructorBun: action.constructorBun,
       };
     }
-
-    default: {
-      return state;
-    }
-  }
-};
-export const constructorMainReducer = (state = initialState, action) => {
-  switch (action.type) {
     case CONSTRUCTOR_MAIN: {
       return {
         ...state,
@@ -142,6 +132,13 @@ export const constructorMainReducer = (state = initialState, action) => {
       };
     }
 
+    case CLEAR_CONSTRUCTOR: {
+      return {
+        ...state,
+        constructorBun: null,
+        constructorIngredients: [],
+      };
+    }
     default: {
       return state;
     }

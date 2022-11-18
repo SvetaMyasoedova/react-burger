@@ -15,6 +15,7 @@ import {
   CONSTRUCTOR_MAIN,
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
+  CLEAR_CONSTRUCTOR
 } from "../../services/actions/burgerConstructor";
 import stylesConstructor from "./burger-constructor.module.css";
 
@@ -27,10 +28,10 @@ function BurgerConstructor() {
   const dispatch = useDispatch();
 
   const { constructorBun } = useSelector(
-    (state) => state.constructorBunReducer
+    (state) => state.constructorReducer
   );
   const { constructorIngredients } = useSelector(
-    (state) => state.constructorMainReducer
+    (state) => state.constructorReducer
   );
 
   const [, dropBunTop] = useDrop({
@@ -99,6 +100,11 @@ function BurgerConstructor() {
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
+    dispatch({
+      type: CLEAR_CONSTRUCTOR,
+      
+    });
+
   };
 
   const noBun = (
@@ -182,6 +188,7 @@ function BurgerConstructor() {
 
         <Button
           disabled={constructorBun === null}
+          htmlType="submit"
           type="primary"
           size="medium"
           onClick={handleOpenModal}

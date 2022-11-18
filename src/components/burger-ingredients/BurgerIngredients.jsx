@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients"; 
+import { CURRENT_INGREDIENT, CLEAR_CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients"; 
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { getIngredients } from "../../services/reducers/burgerIngredients";
+
+
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -32,6 +34,7 @@ function BurgerIngredients() {
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
+    dispatch({type: CLEAR_CURRENT_INGREDIENT });
   };
 
   const { ref: refBuns, inView: inViewBuns } = useInView({
