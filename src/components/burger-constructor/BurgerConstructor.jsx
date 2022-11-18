@@ -196,7 +196,7 @@ function BurgerConstructor() {
         </div>
 
         <Button
-          disabled={constructorBun === null || constructorIngredients.length === 0}
+          disabled={constructorBun === null}
           type="primary"
           size="medium"
           onClick={handleOpenModal}
