@@ -90,21 +90,10 @@ function BurgerConstructor() {
   };
 
   const totalPrice = useMemo(() => {
-    if (constructorBun || constructorIngredients.length !== 0) {
-      if (constructorBun && constructorIngredients.length === 0) {
-        return constructorBun.price * 2;
-      } else if (!constructorBun && constructorIngredients.length !== 0) {
-        return constructorIngredients
-          .map((item) => item.price)
-          .reduce((acc, item) => acc + item, 0);
-      } else if (constructorBun && constructorIngredients.length !== 0) {
-        let priseOfBuns = constructorBun.price * 2;
-        let priceOfIngredients = constructorIngredients
-          .map((item) => item.price)
-          .reduce((acc, item) => acc + item, 0);
-        return priseOfBuns + priceOfIngredients;
-      }
-    } else return 0;
+    return constructorIngredients.reduce(
+      (acc, item) => acc + item.price,
+      constructorBun ? constructorBun.price * 2 : 0
+    );
   }, [constructorBun, constructorIngredients]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
