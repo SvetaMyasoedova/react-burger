@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 
 import stylesWrapper from "./wrapper.module.css";
 
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  ConstructorElement,
+  DragIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 
 function ConstructorElementWrapper({
   ingredient,
@@ -67,19 +70,18 @@ function ConstructorElementWrapper({
       <div className={`${stylesWrapper.drag} mr-2`}>
         <DragIcon type="primary" />
       </div>
-      
-         <div className={stylesWrapper.drag}>
-           <ConstructorElement
-        isLocked={false}
-        text={ingredient.name}
-        price={ingredient.price}
-        thumbnail={ingredient.image}
-        handleClose={() => {
-          onDelete(ingredient.uuid);
-        }}
-      />
-          </div>       
-     
+
+      <div className={stylesWrapper.drag}>
+        <ConstructorElement
+          isLocked={false}
+          text={ingredient.name}
+          price={ingredient.price}
+          thumbnail={ingredient.image}
+          handleClose={() => {
+            onDelete(ingredient.uuid, ingredient._id);
+          }}
+        />
+      </div>
     </div>
   );
 }

@@ -17,6 +17,7 @@ const initialState = {
   orderRequest: false,
   orderFailed: false,
   createdOrder: {},
+  ingredientsCount: {},
 };
 
 export function getOrder() {
@@ -98,22 +99,43 @@ export const constructorReducer = (state = initialState, action) => {
         constructorBun: action.constructorBun,
       };
     }
+    
     case CONSTRUCTOR_MAIN: {
+      const newIngredientsCount = { ...state.ingredientsCount };
+
+      if (
+        newIngredientsCount.hasOwnProperty(action.constructorIngredient._id)
+      ) {
+        newIngredientsCount[action.constructorIngredient._id] += 1;
+      } else {
+        newIngredientsCount[action.constructorIngredient._id] = 1;
+      }
+
       return {
         ...state,
         constructorIngredients: [
           ...state.constructorIngredients,
           action.constructorIngredient,
         ],
+        ingredientsCount: newIngredientsCount,
       };
     }
 
     case DELETE_CONSTRUCTOR_INGREDIENT: {
+      const newIngredientsCount = { ...state.ingredientsCount };
+
+      if (newIngredientsCount[action.id] === 1) {
+        delete newIngredientsCount[action.id];
+      } else {
+        newIngredientsCount[action.id] -= 1;
+      }
+
       return {
         ...state,
         constructorIngredients: state.constructorIngredients.filter((item) => {
           return item.uuid !== action.uuid;
         }),
+        ingredientsCount: newIngredientsCount,
       };
     }
 
@@ -137,6 +159,7 @@ export const constructorReducer = (state = initialState, action) => {
         ...state,
         constructorBun: null,
         constructorIngredients: [],
+        ingredientsCounter: {},
       };
     }
     default: {

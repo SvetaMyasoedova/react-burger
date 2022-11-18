@@ -6,25 +6,11 @@ import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { useSelector, useDispatch } from "react-redux";
 
-function IngredientList({ ingredient, icon, onClick, id, type }) {
+function IngredientList({ ingredient, icon, onClick, id, type, count }) {
   const [, dragRef] = useDrag(() => ({
     type: type,
     item: ingredient,
   }));
-
-  const { constructorIngredients } = useSelector(
-    (state) => state.constructorReducer
-  );
-
-  const count = useMemo(() => {
-    let counter = 0;
-    constructorIngredients.forEach((item) => {
-      if (item._id === id) {
-        counter++;
-      }
-    });
-    return counter;
-  }, [constructorIngredients]);
 
   return (
     <div

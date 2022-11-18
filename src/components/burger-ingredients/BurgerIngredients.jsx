@@ -1,14 +1,15 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { CURRENT_INGREDIENT, CLEAR_CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients"; 
+import {
+  CURRENT_INGREDIENT,
+  CLEAR_CURRENT_INGREDIENT,
+} from "../../services/actions/burgerIngredients";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { getIngredients } from "../../services/reducers/burgerIngredients";
-
-
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -18,6 +19,10 @@ import IngredientDetails from "../ingredient-details/IngredientDetails";
 
 function BurgerIngredients() {
   const { data } = useSelector((state) => state.dataReducer);
+
+  const { ingredientsCount, constructorBun } = useSelector(
+    (state) => state.constructorReducer
+  );
 
   const dispatch = useDispatch();
 
@@ -34,7 +39,7 @@ function BurgerIngredients() {
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
-    dispatch({type: CLEAR_CURRENT_INGREDIENT });
+    dispatch({ type: CLEAR_CURRENT_INGREDIENT });
   };
 
   const { ref: refBuns, inView: inViewBuns } = useInView({
@@ -68,6 +73,7 @@ function BurgerIngredients() {
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
+                  count={constructorBun && constructorBun._id === bun._id && 1}
                   key={bun._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />
@@ -86,6 +92,11 @@ function BurgerIngredients() {
                   id={sauce._id}
                   onClick={handleOpenModal}
                   ingredient={sauce}
+                  count={
+                    ingredientsCount.hasOwnProperty(sauce._id)
+                      ? ingredientsCount[sauce._id]
+                      : 0
+                  }
                   key={sauce._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />
@@ -104,6 +115,11 @@ function BurgerIngredients() {
                   id={main._id}
                   onClick={handleOpenModal}
                   ingredient={main}
+                  count={
+                    ingredientsCount.hasOwnProperty(main._id)
+                      ? ingredientsCount[main._id]
+                      : 0
+                  }
                   key={main._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />

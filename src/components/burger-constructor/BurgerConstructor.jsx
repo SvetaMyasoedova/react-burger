@@ -70,10 +70,11 @@ function BurgerConstructor() {
     },
   });
 
-  const onDelete = (uuid) => {
+  const onDelete = (uuid, id) => {
     dispatch({
       type: DELETE_CONSTRUCTOR_INGREDIENT,
       uuid: uuid,
+      id: id
     });
   };
 
