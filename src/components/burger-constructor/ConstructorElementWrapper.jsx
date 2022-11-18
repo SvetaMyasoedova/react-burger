@@ -2,7 +2,9 @@ import { useRef } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import PropTypes from "prop-types";
 
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import stylesWrapper from "./wrapper.module.css";
+
+import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function ConstructorElementWrapper({
   ingredient,
@@ -61,8 +63,13 @@ function ConstructorElementWrapper({
   drag(drop(ref));
 
   return (
-    <div ref={ref} className="mb-2 mr-2">
-      <ConstructorElement
+    <div ref={ref} className="mb-2">
+      <div className={`${stylesWrapper.drag} mr-2`}>
+        <DragIcon type="primary" />
+      </div>
+      
+         <div className={stylesWrapper.drag}>
+           <ConstructorElement
         isLocked={false}
         text={ingredient.name}
         price={ingredient.price}
@@ -71,6 +78,8 @@ function ConstructorElementWrapper({
           onDelete(ingredient.uuid);
         }}
       />
+          </div>       
+     
     </div>
   );
 }

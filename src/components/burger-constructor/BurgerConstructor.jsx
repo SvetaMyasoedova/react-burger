@@ -8,7 +8,6 @@ import {
   ConstructorElement,
   CurrencyIcon,
   Button,
-  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {
@@ -145,13 +144,15 @@ function BurgerConstructor() {
         ) : (
           <div className={`${stylesCunstructor.box}  mb-2`}>
             {constructorIngredients.map((ingredient, index) => (
-              <ConstructorElementWrapper
-                key={ingredient.uuid}
-                ingredient={ingredient}
-                index={index}
-                onDelete={onDelete}
-                sortIngredients={sortIngredients}
-              />
+              <div>
+                <ConstructorElementWrapper
+                  key={ingredient.uuid}
+                  ingredient={ingredient}
+                  index={index}
+                  onDelete={onDelete}
+                  sortIngredients={sortIngredients}
+                />
+              </div>
             ))}
           </div>
         )}
