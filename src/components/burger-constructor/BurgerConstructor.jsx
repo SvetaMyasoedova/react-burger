@@ -1,12 +1,6 @@
-import React, {
-  useState,
-  useMemo,
-  useEffect,
-  useCallback,
-  useRef,
-} from "react";
+import React, { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useDrop, useDrag } from "react-dnd";
+import { useDrop} from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
@@ -117,10 +111,7 @@ function BurgerConstructor() {
   );
 
   return (
-    <section
-      className={`${stylesCunstructor.burgerConstructor} mt-2`}
-      style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-    >
+    <section className={`${stylesCunstructor.burgerConstructor} mt-2`}>
       <div ref={dropBunTop}>
         {constructorBun === null ? (
           noBun
