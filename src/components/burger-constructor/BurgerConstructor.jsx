@@ -104,7 +104,7 @@ function BurgerConstructor() {
   const noBun = (
     <div className={stylesCunstructor.boxBun}>
       <p
-        className={` ${stylesCunstructor.textInBox}  text text_type_main-small mt-5`}
+        className={` ${stylesCunstructor.textInBox}  text text_type_main-small pt-7`}
       >
         Место для булки
       </p>
@@ -113,18 +113,20 @@ function BurgerConstructor() {
 
   return (
     <section className={`${stylesCunstructor.burgerConstructor} mt-2`}>
-      <div ref={dropBunTop}>
+      <div className="mb-2" ref={dropBunTop}>
         {constructorBun === null ? (
           noBun
         ) : (
-          <ConstructorElement
-            key={constructorBun._id + "_ConstructorElementTop"}
-            type="top"
-            isLocked={true}
-            text={`${constructorBun.name} (верх)`}
-            price={constructorBun.price}
-            thumbnail={constructorBun.image}
-          />
+          <div className="pr-5 pl-6">
+            <ConstructorElement
+              key={constructorBun._id + "_ConstructorElementTop"}
+              type="top"
+              isLocked={true}
+              text={`${constructorBun.name} (верх)`}
+              price={constructorBun.price}
+              thumbnail={constructorBun.image}
+            />
+          </div>
         )}
       </div>
       <div
@@ -134,9 +136,9 @@ function BurgerConstructor() {
         ref={dropMain}
       >
         {constructorIngredients.length === 0 ? (
-          <div className={stylesCunstructor.boxMain}>
+          <div className={`${stylesCunstructor.boxMain} mb-2`}>
             <p
-              className={` ${stylesCunstructor.textInBox}  text text_type_main-small mt-5`}
+              className={` ${stylesCunstructor.textInBox}  text text_type_main-small pt-30`}
             >
               Место для соуса и начинки
             </p>
@@ -144,15 +146,13 @@ function BurgerConstructor() {
         ) : (
           <div className={`${stylesCunstructor.box}  mb-2`}>
             {constructorIngredients.map((ingredient, index) => (
-              <div>
-                <ConstructorElementWrapper
-                  key={ingredient.uuid}
-                  ingredient={ingredient}
-                  index={index}
-                  onDelete={onDelete}
-                  sortIngredients={sortIngredients}
-                />
-              </div>
+              <ConstructorElementWrapper
+                key={ingredient.uuid}
+                ingredient={ingredient}
+                index={index}
+                onDelete={onDelete}
+                sortIngredients={sortIngredients}
+              />
             ))}
           </div>
         )}
@@ -161,14 +161,16 @@ function BurgerConstructor() {
         {constructorBun === null ? (
           noBun
         ) : (
-          <ConstructorElement
-            key={constructorBun._id + "_ConstructorElementTop"}
-            type="bottom"
-            isLocked={true}
-            text={`${constructorBun.name} (низ)`}
-            price={constructorBun.price}
-            thumbnail={constructorBun.image}
-          />
+          <div className="pr-5 pl-6">
+            <ConstructorElement
+              key={constructorBun._id + "_ConstructorElementTop"}
+              type="bottom"
+              isLocked={true}
+              text={`${constructorBun.name} (низ)`}
+              price={constructorBun.price}
+              thumbnail={constructorBun.image}
+            />
+          </div>
         )}
       </div>
 

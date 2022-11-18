@@ -1,5 +1,6 @@
 .burgerConstructor {
   max-height: 84vh;
+  width: 700px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -8,6 +9,7 @@
 .box {
   max-height: 40vh;
   cursor: grab;
+
 }
 
 .boxBun {
