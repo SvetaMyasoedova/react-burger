@@ -67,11 +67,10 @@ function ConstructorElementWrapper({
 
   return (
     <div ref={ref} className="mb-2">
-      <div className={`${stylesWrapper.drag} mr-2`}>
-        <DragIcon type="primary" />
-      </div>
+      
 
       <div className={stylesWrapper.drag}>
+        <DragIcon type="primary" />
         <ConstructorElement
           isLocked={false}
           text={ingredient.name}
