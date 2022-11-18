@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import stylesTab from "./tab.module.css";
 
 function Tabs({ inViewBuns, inViewSauce, inViewMain }) {
   const [current, setCurrent] = useState("");
@@ -23,7 +24,7 @@ function Tabs({ inViewBuns, inViewSauce, inViewMain }) {
   }, [inViewBuns, inViewSauce, inViewMain]);
   
   return (
-    <div style={{ display: "flex" }} className="mb-10">
+    <div  className={`${stylesTab.main} mb-10`}>
       <Tab value="buns" active={current === "buns"} onClick={setCurrent}>
         Булки
       </Tab>
