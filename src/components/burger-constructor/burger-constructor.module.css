@@ -4,10 +4,11 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .box{
   max-height: 40vh;
   cursor: grab;
-  /* max-width: 600px; */
+  display: inline;
 }
 
 

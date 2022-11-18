@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
-import { getOrder } from "../../services/reducers";
+import { getOrder } from "../../services/reducers/burgerConstructor";
 
 function OrderDetails() {
   const { createdOrder } = useSelector((state) => state.orderReducer);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     dispatch(getOrder());

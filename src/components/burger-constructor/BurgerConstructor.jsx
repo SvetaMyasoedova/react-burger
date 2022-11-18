@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useDrop} from "react-dnd";
+import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
@@ -8,13 +8,15 @@ import {
   ConstructorElement,
   CurrencyIcon,
   Button,
+  DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import {
   CONSTRUCTOR_BUN,
   CONSTRUCTOR_MAIN,
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
-} from "../../services/actions/constants";
+} from "../../services/actions/burgerConstructor";
 import stylesCunstructor from "./burger-constructor.module.css";
 
 //components

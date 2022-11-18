@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { CURRENT_INGREDIENT } from "../../services/actions/constants";
+import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients"; 
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
-import { getIngredients } from "../../services/reducers";
+import { getIngredients } from "../../services/reducers/burgerIngredients";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
