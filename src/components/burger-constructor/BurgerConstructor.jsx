@@ -16,7 +16,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
 } from "../../services/actions/burgerConstructor";
-import stylesCunstructor from "./burger-constructor.module.css";
+import stylesConstructor from "./burger-constructor.module.css";
 
 //components
 import OrderDetails from "../order-details/OrderDetails";
@@ -27,10 +27,10 @@ function BurgerConstructor() {
   const dispatch = useDispatch();
 
   const { constructorBun } = useSelector(
-    (state) => state.cunstructorBunReducer
+    (state) => state.constructorBunReducer
   );
   const { constructorIngredients } = useSelector(
-    (state) => state.cunstructorMainReducer
+    (state) => state.constructorMainReducer
   );
 
   const [, dropBunTop] = useDrop({
@@ -102,9 +102,9 @@ function BurgerConstructor() {
   };
 
   const noBun = (
-    <div className={stylesCunstructor.boxBun}>
+    <div className={stylesConstructor.boxBun}>
       <p
-        className={` ${stylesCunstructor.textInBox}  text text_type_main-small pt-7`}
+        className={` ${stylesConstructor.textInBox}  text text_type_main-small pt-7`}
       >
         Место для булки
       </p>
@@ -112,7 +112,7 @@ function BurgerConstructor() {
   );
 
   return (
-    <section className={`${stylesCunstructor.burgerConstructor} mt-2`}>
+    <section className={`${stylesConstructor.burgerConstructor} mt-2`}>
       <div className="mb-2" ref={dropBunTop}>
         {constructorBun === null ? (
           noBun
@@ -131,20 +131,20 @@ function BurgerConstructor() {
       </div>
       <div
         className={
-          constructorIngredients.length === 0 ? "" : stylesCunstructor.scroll
+          constructorIngredients.length === 0 ? "" : stylesConstructor.scroll
         }
         ref={dropMain}
       >
         {constructorIngredients.length === 0 ? (
-          <div className={`${stylesCunstructor.boxMain} mb-2`}>
+          <div className={`${stylesConstructor.boxMain} mb-2`}>
             <p
-              className={` ${stylesCunstructor.textInBox}  text text_type_main-small pt-30`}
+              className={` ${stylesConstructor.textInBox}  text text_type_main-small pt-30`}
             >
               Место для соуса и начинки
             </p>
           </div>
         ) : (
-          <div className={`${stylesCunstructor.box}  mb-2`}>
+          <div className={`${stylesConstructor.box}  mb-2`}>
             {constructorIngredients.map((ingredient, index) => (
               <ConstructorElementWrapper
                 key={ingredient.uuid}
@@ -174,7 +174,7 @@ function BurgerConstructor() {
         )}
       </div>
 
-      <div className={`${stylesCunstructor.order} mt-10 mb-20`}>
+      <div className={`${stylesConstructor.order} mt-10 mb-20`}>
         <p className="mr-2 text text_type_digits-medium">{totalPrice}</p>
         <div className="mr-10">
           <CurrencyIcon type="primary" />

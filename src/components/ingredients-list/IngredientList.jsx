@@ -13,7 +13,7 @@ function IngredientList({ ingredient, icon, onClick, id, type }) {
   }));
 
   const { constructorIngredients } = useSelector(
-    (state) => state.cunstructorMainReducer
+    (state) => state.constructorMainReducer
   );
 
   const count = useMemo(() => {

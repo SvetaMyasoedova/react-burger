@@ -25,12 +25,12 @@ export function getOrder() {
       type: GET_ORDER,
     });
     const orderIds =
-      getState().cunstructorMainReducer.constructorIngredients.map(
+      getState().constructorMainReducer.constructorIngredients.map(
         (item) => item._id
       );
-    orderIds.unshift(getState().cunstructorBunReducer.constructorBun._id);
-    orderIds.push(getState().cunstructorBunReducer.constructorBun._id);
-	 console.log(orderIds)
+    orderIds.unshift(getState().constructorBunReducer.constructorBun._id);
+    orderIds.push(getState().constructorBunReducer.constructorBun._id);
+    console.log(orderIds);
 
     fetch(orderUrl, {
       method: "POST",
@@ -92,7 +92,7 @@ export const orderReducer = (state = initialState, action) => {
   }
 };
 
-export const cunstructorBunReducer = (state = initialState, action) => {
+export const constructorBunReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTRUCTOR_BUN: {
       return {
@@ -106,7 +106,7 @@ export const cunstructorBunReducer = (state = initialState, action) => {
     }
   }
 };
-export const cunstructorMainReducer = (state = initialState, action) => {
+export const constructorMainReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTRUCTOR_MAIN: {
       return {
