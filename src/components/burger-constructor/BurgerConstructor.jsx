@@ -50,7 +50,7 @@ function BurgerConstructor() {
         return;
       }
 
-      let newIngredient = JSON.parse(JSON.stringify(ingredient));
+      const newIngredient = { ...ingredient };
       newIngredient.uuid = uuidv4();
       dispatch({
         type: CONSTRUCTOR_MAIN,
