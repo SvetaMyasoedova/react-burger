@@ -51,9 +51,8 @@ function ConstructorElementWrapper({
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
-     
+
       sortIngredients(dragIndex, hoverIndex);
-      
 
       item.index = hoverIndex;
     },
@@ -68,8 +67,6 @@ function ConstructorElementWrapper({
 
   return (
     <div ref={ref} className="mb-2">
-      
-
       <div className={stylesWrapper.drag}>
         <DragIcon type="primary" />
         <ConstructorElement
@@ -87,11 +84,10 @@ function ConstructorElementWrapper({
 }
 
 ConstructorElementWrapper.propTypes = {
-  ingredient: ingredientPropTypes,
+  ingredient: ingredientPropTypes.isRequired,
   index: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
   sortIngredients: PropTypes.func.isRequired,
-  
 };
 
 export default ConstructorElementWrapper;

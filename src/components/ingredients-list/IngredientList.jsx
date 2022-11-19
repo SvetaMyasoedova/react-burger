@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
 import { useDrag } from "react-dnd";
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
-import { useSelector, useDispatch } from "react-redux";
 
 function IngredientList({ ingredient, icon, onClick, id, type, count }) {
   const [, dragRef] = useDrag(() => ({
@@ -38,7 +36,7 @@ function IngredientList({ ingredient, icon, onClick, id, type, count }) {
 }
 
 IngredientList.propTypes = {
-  ingredient: ingredientPropTypes,
+  ingredient: ingredientPropTypes.isRequired,
   icon: PropTypes.element.isRequired,
   onClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
