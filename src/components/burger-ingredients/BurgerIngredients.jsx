@@ -73,7 +73,7 @@ function BurgerIngredients() {
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
-                  count={constructorBun && constructorBun._id === bun._id && 1}
+                  count={ (constructorBun && constructorBun._id === bun._id) ? 2 : 0}
                   key={bun._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />

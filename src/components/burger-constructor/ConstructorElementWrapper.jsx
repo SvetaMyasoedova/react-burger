@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useDrop, useDrag } from "react-dnd";
 import PropTypes from "prop-types";
+import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 
 import stylesWrapper from "./wrapper.module.css";
 
@@ -50,9 +51,9 @@ function ConstructorElementWrapper({
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
-      // Time to actually perform the action
+     
       sortIngredients(dragIndex, hoverIndex);
-      //moveCard(dragIndex, hoverIndex);
+      
 
       item.index = hoverIndex;
     },
@@ -85,11 +86,12 @@ function ConstructorElementWrapper({
   );
 }
 
-// IngredientList.propTypes = {
-//   ingredient: ingredientPropTypes,
-//   icon: PropTypes.element.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   id: PropTypes.string.isRequired,
-// };
+ConstructorElementWrapper.propTypes = {
+  ingredient: ingredientPropTypes,
+  index: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  sortIngredients: PropTypes.func.isRequired,
+  
+};
 
 export default ConstructorElementWrapper;

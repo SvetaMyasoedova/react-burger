@@ -42,6 +42,8 @@ IngredientList.propTypes = {
   icon: PropTypes.element.isRequired,
   onClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  type:  PropTypes.string.isRequired,
+  count:  PropTypes.number.isRequired,
 };
 
 export default IngredientList;
