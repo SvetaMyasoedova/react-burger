@@ -1,4 +1,4 @@
-import  { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-  CLEAR_ORDER
+  CLEAR_ORDER,
 } from "../../services/actions/burgerConstructor";
 import stylesConstructor from "./burger-constructor.module.css";
 
@@ -28,9 +28,7 @@ import ConstructorElementWrapper from "./ConstructorElementWrapper";
 function BurgerConstructor() {
   const dispatch = useDispatch();
 
-  const { constructorBun } = useSelector(
-    (state) => state.constructorReducer
-  );
+  const { constructorBun } = useSelector((state) => state.constructorReducer);
   const { constructorIngredients } = useSelector(
     (state) => state.constructorReducer
   );
@@ -71,11 +69,11 @@ function BurgerConstructor() {
     },
   });
 
-  const onDelete = (uuid, id) => {
+  const onDelete = (ingredient) => {
     dispatch({
       type: DELETE_CONSTRUCTOR_INGREDIENT,
-      uuid: uuid,
-      id: id
+      uuid: ingredient.uuid,
+      id: ingredient._id,
     });
   };
 

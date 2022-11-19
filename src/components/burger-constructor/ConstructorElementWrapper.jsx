@@ -75,7 +75,7 @@ function ConstructorElementWrapper({
           price={ingredient.price}
           thumbnail={ingredient.image}
           handleClose={() => {
-            onDelete(ingredient.uuid, ingredient._id);
+            onDelete(ingredient);
           }}
         />
       </div>
