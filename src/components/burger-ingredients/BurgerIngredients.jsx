@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
@@ -9,7 +9,7 @@ import {
 } from "../../services/actions/burgerIngredients";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
-import { getIngredients } from "../../services/reducers/burgerIngredients";
+import { getIngredients } from "../../services/actions/burgerIngredients";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -73,7 +73,9 @@ function BurgerIngredients() {
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
-                  count={ (constructorBun && constructorBun._id === bun._id) ? 2 : 0}
+                  count={
+                    constructorBun && constructorBun._id === bun._id ? 2 : 0
+                  }
                   key={bun._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />
@@ -93,6 +95,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={sauce}
                   count={
+                    ingredientsCount && 
                     ingredientsCount.hasOwnProperty(sauce._id)
                       ? ingredientsCount[sauce._id]
                       : 0
@@ -116,6 +119,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={main}
                   count={
+                    ingredientsCount && 
                     ingredientsCount.hasOwnProperty(main._id)
                       ? ingredientsCount[main._id]
                       : 0

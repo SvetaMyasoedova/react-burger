@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
-import { getOrder } from "../../services/reducers/burgerConstructor";
+import { getOrder } from "../../services/actions/burgerConstructor";
 
 function OrderDetails() {
   const { createdOrder } = useSelector((state) => state.orderReducer);
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(getOrder());
@@ -18,7 +17,7 @@ function OrderDetails() {
       <div
         className={`${styleOrderDetails.shadow} text text_type_digits-large`}
       >
-        {createdOrder.number}
+        {createdOrder ? createdOrder.number : ""}
       </div>
       <div className="text text_type_main-medium mb-15">
         идентификатор заказа

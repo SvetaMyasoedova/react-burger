@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import  { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +15,8 @@ import {
   CONSTRUCTOR_MAIN,
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
-  CLEAR_CONSTRUCTOR
+  CLEAR_CONSTRUCTOR,
+  CLEAR_ORDER
 } from "../../services/actions/burgerConstructor";
 import stylesConstructor from "./burger-constructor.module.css";
 
@@ -103,9 +104,10 @@ function BurgerConstructor() {
     setIsModalVisible(false);
     dispatch({
       type: CLEAR_CONSTRUCTOR,
-      
     });
-
+    dispatch({
+      type: CLEAR_ORDER,
+    });
   };
 
   const noBun = (
