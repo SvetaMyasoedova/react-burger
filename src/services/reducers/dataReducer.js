@@ -10,7 +10,6 @@ const initialState = {
   dataRequest: false,
   dataFailed: false,
   data: [],
-  currentIngredient: null,
 };
 
 
