@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import stylesTab from "./tab.module.css";
 
-function Tabs() {
-  const [current, setCurrent] = React.useState("one");
+function Tabs({ inViewBuns, inViewSauce, inViewMain }) {
+  const [current, setCurrent] = useState("");
+
+  useEffect(() => {
+    
+    if (inViewBuns) {
+      setCurrent("buns");
+      return;
+    }
+
+    if (inViewSauce) {
+      setCurrent("sauce");
+      return;
+    }
+
+    if (inViewMain) {
+      setCurrent("main");
+      return;
+    }
+  }, [inViewBuns, inViewSauce, inViewMain]);
+  
   return (
-    <div style={{ display: "flex" }} className='mb-10'>
-      <Tab value="one" active={current === "one"} onClick={setCurrent}>
+    <div  className={`${stylesTab.main} mb-10`}>
+      <Tab value="buns" active={current === "buns"} onClick={setCurrent}>
         Булки
       </Tab>
-      <Tab value="two" active={current === "two"} onClick={setCurrent}>
+      <Tab value="sauce" active={current === "sauce"} onClick={setCurrent}>
         Соусы
       </Tab>
-      <Tab value="three" active={current === "three"} onClick={setCurrent}>
+      <Tab value="main" active={current === "main"} onClick={setCurrent}>
         Начинки
       </Tab>
     </div>

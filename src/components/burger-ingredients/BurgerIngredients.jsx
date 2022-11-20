@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  CURRENT_INGREDIENT,
+  CLEAR_CURRENT_INGREDIENT,
+} from "../../services/actions/burgerIngredients";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+import { getIngredients } from "../../services/actions/burgerIngredients";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -10,53 +17,66 @@ import IngredientList from "../ingredients-list/IngredientList";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 
-function BurgerIngredients({ ingredients }) {
+function BurgerIngredients() {
+  const { data } = useSelector((state) => state.dataReducer);
+
+  const { ingredientsCount, constructorBun } = useSelector(
+    (state) => state.constructorReducer
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [currentSelectedElem, setCurrentSelectedElem] = useState({
-    image: "",
-    name: "",
-    calories: 0,
-    proteins: 0,
-    fat: 0,
-    carbohydrates: 0,
-  });
 
   const handleOpenModal = (ingredient) => {
-    setCurrentSelectedElem({
-      image: ingredient.image,
-      name: ingredient.name,
-      calories: ingredient.calories,
-      proteins: ingredient.proteins,
-      fat: ingredient.fat,
-      carbohydrates: ingredient.carbohydrates,
-    });
+    dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
-
-    // console.log("Modal is opened");
   };
 
   const handleCloseModal = () => {
     setIsModalVisible(false);
+    dispatch({ type: CLEAR_CURRENT_INGREDIENT });
   };
+
+  const { ref: refBuns, inView: inViewBuns } = useInView({
+    threshold: 0,
+  });
+  const { ref: refSauce, inView: inViewSauce } = useInView({
+    threshold: 0,
+  });
+  const { ref: refMain, inView: inViewMain } = useInView({
+    threshold: 0,
+  });
 
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
-      <Tabs></Tabs>
+      <Tabs
+        inViewBuns={inViewBuns}
+        inViewSauce={inViewSauce}
+        inViewMain={inViewMain}
+      ></Tabs>
+
       <div className={stylesIngredients.scroll}>
         <h4 className="text text_type_main-medium mb-6">Булки</h4>
 
-        <div className={`${stylesIngredients.buns} ml-4`}>
-          {ingredients
+        <div ref={refBuns} className={`${stylesIngredients.buns} ml-4`}>
+          {data
             .filter((bun) => bun.type === "bun")
             .map((bun) => {
               return (
                 <IngredientList
+                  type={bun.type}
                   id={bun._id}
                   onClick={handleOpenModal}
                   ingredient={bun}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
+                  count={
+                    constructorBun && constructorBun._id === bun._id ? 2 : 0
+                  }
                   key={bun._id + "_IngredientList"}
-                  count={bun._id === "60666c42cc7b410027a1a9b1" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
                 />
               );
@@ -64,18 +84,23 @@ function BurgerIngredients({ ingredients }) {
         </div>
 
         <h4 className="text text_type_main-medium mb-6">Соусы</h4>
-        <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
-          {ingredients
+        <div ref={refSauce} className={`${stylesIngredients.buns} mb-8 ml-4`}>
+          {data
             .filter((sauce) => sauce.type === "sauce")
             .map((sauce) => {
               return (
                 <IngredientList
+                  type={sauce.type}
                   id={sauce._id}
                   onClick={handleOpenModal}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
                   ingredient={sauce}
+                  count={
+                    ingredientsCount && 
+                    ingredientsCount.hasOwnProperty(sauce._id)
+                      ? ingredientsCount[sauce._id]
+                      : 0
+                  }
                   key={sauce._id + "_IngredientList"}
-                  count={sauce._id === "60666c42cc7b410027a1a9b8" ? 1 : 0}
                   icon={<CurrencyIcon type="primary" />}
                 />
               );
@@ -83,16 +108,22 @@ function BurgerIngredients({ ingredients }) {
         </div>
 
         <h4 className="text text_type_main-medium pt-10 mt-15 mb-6">Начинки</h4>
-        <div className={`${stylesIngredients.buns} mb-8 ml-4`}>
-          {ingredients
+        <div ref={refMain} className={`${stylesIngredients.buns} mb-8 ml-4`}>
+          {data
             .filter((main) => main.type === "main")
             .map((main) => {
               return (
                 <IngredientList
+                  type={main.type}
                   id={main._id}
                   onClick={handleOpenModal}
-                  setCurrentSelectedElem={setCurrentSelectedElem}
                   ingredient={main}
+                  count={
+                    ingredientsCount && 
+                    ingredientsCount.hasOwnProperty(main._id)
+                      ? ingredientsCount[main._id]
+                      : 0
+                  }
                   key={main._id + "_IngredientList"}
                   icon={<CurrencyIcon type="primary" />}
                 />
@@ -103,7 +134,7 @@ function BurgerIngredients({ ingredients }) {
 
       {isModalVisible && (
         <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
-          <IngredientDetails currentSelectedElem={currentSelectedElem} />
+          <IngredientDetails />
         </Modal>
       )}
     </section>
