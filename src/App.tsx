@@ -9,7 +9,7 @@ import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
-import { RegisterPage, LoginPage } from "./pages";
+import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage } from "./pages";
 
 function App() {
   return (
@@ -32,6 +32,12 @@ function App() {
         </Route>
         <Route path="/login" exact={true}>
           <LoginPage />
+        </Route>
+        <Route path="/forgot-password" exact={true}>
+          <ForgotPasswordPage />
+        </Route>
+        <Route path="/reset-password" exact={true}>
+          <ResetPassworddPage />
         </Route>
       </Switch>
     </Router>

@@ -8,7 +8,7 @@ import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function LoginList() {
-  console.log("LoginList");
+
   return (
     <div>
       <div className="mb-30">
@@ -34,7 +34,7 @@ function LoginList() {
           Вы новый пользователь? <Link to="/register"> Зарегистрироваться</Link>
         </p>
         <p>
-          Забыли пароль? <Link to="#"> Восстановить пароль</Link>
+          Забыли пароль? <Link to="/forgot-password"> Восстановить пароль</Link>
         </p>
       </div>
     </div>

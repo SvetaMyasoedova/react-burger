@@ -9,7 +9,7 @@ import { Password } from "./password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function RegisterList() {
-  console.log("RegisterList");
+ 
   return (
     <div>
       <div className="mb-30">
