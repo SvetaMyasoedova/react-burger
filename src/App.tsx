@@ -15,26 +15,24 @@ function App() {
   return (
     <Router>
       <Switch>
-        <div className="App">
-          <Route path="/" exact={true}>
-            <AppHeader />
-            <main className="main">
-              <p className="text text_type_main-large mb-5">Соберите бургер</p>
-              <section className="burgerSection">
-                <DndProvider backend={HTML5Backend}>
-                  <BurgerIngredients />
-                  <BurgerConstructor />
-                </DndProvider>
-              </section>
-            </main>
-          </Route>
-          <Route path="/register" exact={true}>
-            <RegisterPage />
-          </Route>
-          <Route path="/login" exact={true}>
-            <LoginPage />
-          </Route>
-        </div>
+        <Route path="/" exact={true}>
+          <AppHeader />
+          <main className="main">
+            <p className="text text_type_main-large mb-5">Соберите бургер</p>
+            <section className="burgerSection">
+              <DndProvider backend={HTML5Backend}>
+                <BurgerIngredients />
+                <BurgerConstructor />
+              </DndProvider>
+            </section>
+          </main>
+        </Route>
+        <Route path="/register" exact={true}>
+          <RegisterPage />
+        </Route>
+        <Route path="/login" exact={true}>
+          <LoginPage />
+        </Route>
       </Switch>
     </Router>
   );
