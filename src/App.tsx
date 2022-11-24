@@ -9,7 +9,7 @@ import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
-import { RegisterPage } from "./pages";
+import { RegisterPage, LoginPage } from "./pages";
 
 function App() {
   return (
@@ -30,6 +30,9 @@ function App() {
           </Route>
           <Route path="/register" exact={true}>
             <RegisterPage />
+          </Route>
+          <Route path="/login" exact={true}>
+            <LoginPage />
           </Route>
         </div>
       </Switch>

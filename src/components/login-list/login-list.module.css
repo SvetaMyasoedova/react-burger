@@ -3,7 +3,7 @@
 
 	margin-left: auto;
 	margin-right: auto;
-	width: 8em;
+	width: 4em;
 	
 }
 
@@ -16,16 +16,16 @@
 	gap: 24px;
 }
 
+
+
 .button{
 	margin-left: auto;
 	margin-right: auto;
-	width: 13em;
+	width: 8em;
 }
-
-
 
 .text {
 	margin-left: auto;
 	margin-right: auto;
-	width: 18em;
+	width: 30em;
 }
