@@ -10,7 +10,7 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ResetPassworddPage } from "../../pages";
+
 
 function ForgotPassword() {
   const history = useHistory();

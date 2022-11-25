@@ -2,8 +2,8 @@ import { useState, useRef } from "react";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const NameInput = ({placeholder}) => {
-  const [value, setValue] = useState("");
+export const NameInput = ({placeholder, onChange, value}) => {
+  //const [value, setValue] = useState("");
   const inputRef = useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
@@ -13,7 +13,7 @@ export const NameInput = ({placeholder}) => {
     <Input
       type={"text"}
       placeholder={placeholder}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={onChange}
       value={value}
       name={"name"}
       error={false}
