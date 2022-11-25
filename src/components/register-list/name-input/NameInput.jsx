@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
+import {  useRef } from "react";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 export const NameInput = ({placeholder, onChange, value}) => {
-  //const [value, setValue] = useState("");
+  
   const inputRef = useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);

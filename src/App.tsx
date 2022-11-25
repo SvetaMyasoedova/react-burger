@@ -9,7 +9,7 @@ import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
-import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage } from "./pages";
+import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage, ProfilePage } from "./pages";
 
 function App() {
   return (
@@ -38,6 +38,9 @@ function App() {
         </Route>
         <Route path="/reset-password" exact={true}>
           <ResetPassworddPage />
+        </Route>
+        <Route path="/profile" exact={true}>
+          <ProfilePage />
         </Route>
       </Switch>
     </Router>
