@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import stylesRegister from "./register-list.module.css";
+import getRegister from "../../services/actions/register";
 
 import { Link } from "react-router-dom";
 
 import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "./name-input/NameInput";
 import { Password } from "./password-input/Password";
-import { Button, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Button,
+  EmailInput,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+
 
 function RegisterList() {
+  const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,41 +31,10 @@ function RegisterList() {
     setPassword(e.target.value);
   };
 
-
   const handleNewUser = () => {
-    fetch(" https://norma.nomoreparties.space/api/auth/register", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        name: userName,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          
-          return res.json();
-          
-        }
-      })
-      .then((res) => {
-        console.log('NewUser' + res)
-        if (res && res.success) {
-         
-        }
-      });
+    dispatch(getRegister(email, password, userName));
   };
+
   return (
     <div>
       <div className="mb-30">
@@ -69,17 +45,26 @@ function RegisterList() {
         <p className="text text_type_main-medium">Регистрация</p>
       </div>
       <div className={`${stylesRegister.input} mb-5`}>
-        <NameInput placeholder='Имя' onChange={onChangeUserName} value={userName}/>
-         <EmailInput
-        onChange={onChangeEmail}
-        value={email}
-        name={"email"}
-        isIcon={false}
-      />
-        <Password onChange={onChangePassword} value={password}/>
+        <NameInput
+          placeholder="Имя"
+          onChange={onChangeUserName}
+          value={userName}
+        />
+        <EmailInput
+          onChange={onChangeEmail}
+          value={email}
+          name={"email"}
+          isIcon={false}
+        />
+        <Password onChange={onChangePassword} value={password} />
       </div>
       <div className={`${stylesRegister.button} mb-20`}>
-        <Button onClick={handleNewUser} htmlType="button" type="primary" size="large">
+        <Button
+          onClick={handleNewUser}
+          htmlType="button"
+          type="primary"
+          size="large"
+        >
           Зарегистрироваться
         </Button>
       </div>
