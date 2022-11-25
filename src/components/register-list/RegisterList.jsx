@@ -20,7 +20,7 @@ function RegisterList() {
         <p className="text text_type_main-medium">Регистрация</p>
       </div>
       <div className={`${stylesRegister.input} mb-5`}>
-        <NameInput />
+        <NameInput placeholder='Имя'/>
         <Email />
         <Password />
       </div>

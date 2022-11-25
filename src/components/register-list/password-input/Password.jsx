@@ -3,7 +3,7 @@ import { PasswordInput } from "@ya.praktikum/react-developer-burger-ui-component
 
 import stylesPassword from './password.module.css'
 
-export const Password = () => {
+export const Password = ({placeholder}) => {
 
 	const [value, setValue] = useState('')
   const onChange = e => {
@@ -16,6 +16,7 @@ export const Password = () => {
         value={value}
         name={'password'}
         extraClass="mb-2"
+        placeholder={placeholder}
       />
       
     </div>

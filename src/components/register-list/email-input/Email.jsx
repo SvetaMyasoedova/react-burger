@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
 
 export const Email = () => {

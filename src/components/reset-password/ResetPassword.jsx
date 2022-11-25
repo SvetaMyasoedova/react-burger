@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import stylesResetPassword from "./reset-password.module.css"
 
 import AppHeader from "../app-header/AppHeader";
-import { Email } from "../register-list/email-input/Email";
+import { NameInput } from "../register-list/name-input/NameInput";
 import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -19,8 +19,8 @@ function ResetPassword() {
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
       <div className={`${stylesResetPassword.input} mb-5`}>
-		<Password />
-		  <Email />
+		<Password  placeholder="Введите новый пароль"/>
+		  <NameInput placeholder="Введите код из письма"/>
         
       </div>
       <div className={`${stylesResetPassword.button} mb-20`}>
