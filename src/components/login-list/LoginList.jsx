@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 import stylesLogin from "./login-list.module.css";
 
 import AppHeader from "../app-header/AppHeader";
-import { Email } from "../register-list/email-input/Email";
+
 import { Password } from "../register-list/password-input/Password";
-import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 
 function LoginList() {
+  const [value, setValue] = useState("");
 
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
   return (
     <div>
       <div className="mb-30">
@@ -19,7 +23,12 @@ function LoginList() {
         <p className="text text_type_main-medium">Вход</p>
       </div>
       <div className={`${stylesLogin.input} mb-5`}>
-        <Email />
+      <EmailInput
+        onChange={onChange}
+        value={value}
+        name={"email"}
+        isIcon={false}
+      />
         <Password />
       </div>
       <div className={`${stylesLogin.button} mb-20`}>
