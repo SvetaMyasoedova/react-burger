@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {  Route, Switch } from "react-router-dom";
 
 import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
@@ -13,7 +13,7 @@ import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage, Profil
 
 function App() {
   return (
-    <Router>
+    
       <Switch>
         <Route path="/" exact={true}>
           <AppHeader />
@@ -43,7 +43,7 @@ function App() {
           <ProfilePage />
         </Route>
       </Switch>
-    </Router>
+    
   );
 }
 
