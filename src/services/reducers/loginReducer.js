@@ -1,0 +1,42 @@
+import { GET_LOGIN, GET_LOGIN_FAILED, GET_LOGIN_SUCCESS } from "../actions/login";
+
+const initialState = {
+	loginRequest: false,
+	loginFailed: false,
+	email: "",
+	name: ""
+
+	
+ };
+
+ export const loginReducer = (state = initialState, action) => {
+	switch (action.type) {
+	  case GET_LOGIN: {
+		 return {
+			...state,
+			loginRequest: true,
+			loginFailed: false,
+		 };
+	  }
+	  case GET_LOGIN_SUCCESS: {
+		 return {
+			...state,
+			email: action.email,
+			name: action.name,
+			loginRequest: false,
+		 };
+	  }
+	  case GET_LOGIN_FAILED: {
+		 return {
+			...state,
+			loginFailed: true,
+			loginRequest: false,
+		 };
+	  }
+	  default: {
+		 return state;
+	  }
+	}
+ };
+
+

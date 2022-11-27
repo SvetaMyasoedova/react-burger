@@ -23,6 +23,7 @@ export function getIngredients() {
 
       .then((res) => {
         if (res && res.success) {
+         
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,
             data: res.data,

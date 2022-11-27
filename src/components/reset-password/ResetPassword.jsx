@@ -37,7 +37,7 @@ function ResetPassword() {
       }),
     })
       .then((res) => {
-        console.log('PasswordReset' + res)
+        
         if (!res.ok) {
           throw new Error("");
         } else {

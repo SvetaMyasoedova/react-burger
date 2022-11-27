@@ -28,6 +28,7 @@ function BurgerIngredients() {
 
   useEffect(() => {
     dispatch(getIngredients());
+    
   }, [dispatch]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,6 +52,7 @@ function BurgerIngredients() {
   const { ref: refMain, inView: inViewMain } = useInView({
     threshold: 0,
   });
+  
 
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
@@ -95,7 +97,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={sauce}
                   count={
-                    ingredientsCount && 
+                    ingredientsCount &&
                     ingredientsCount.hasOwnProperty(sauce._id)
                       ? ingredientsCount[sauce._id]
                       : 0
@@ -119,7 +121,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={main}
                   count={
-                    ingredientsCount && 
+                    ingredientsCount &&
                     ingredientsCount.hasOwnProperty(main._id)
                       ? ingredientsCount[main._id]
                       : 0

@@ -1,14 +1,17 @@
-export const GET_LOGIN = "GET_INGREDIENTS";
-export const GET_REGISTER_FAILED = "GET_INGREDIENTS_FAILED";
-export const GET_REGISTER_SUCCESS = "GET_INGREDIENTS_SUCCESS";
+import { LOGIN_URL } from "../../utils/urls";
 
-const getRegister = (email, password, userName) => {
+
+export const GET_LOGIN = "GET_LOGIN";
+export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
+export const GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS";
+
+const getLogin = (email, password) => {
   return function (dispatch) {
     dispatch({
-      type: GET_REGISTER,
+      type: GET_LOGIN,
     });
 
-    fetch(" https://norma.nomoreparties.space/api/auth/register", {
+    fetch(LOGIN_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -20,7 +23,6 @@ const getRegister = (email, password, userName) => {
       body: JSON.stringify({
         email: email,
         password: password,
-        name: userName,
       }),
     })
       .then((res) => {
@@ -33,21 +35,23 @@ const getRegister = (email, password, userName) => {
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: GET_REGISTER_SUCCESS,
+            type: GET_LOGIN_SUCCESS,
             email: res.user.email,
-            name: res.user.name,
+				name: res.user.name,
           });
+
+			 
         } else {
           dispatch({
-            type: GET_REGISTER_FAILED,
+            type: GET_LOGIN_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: GET_REGISTER_FAILED,
+          type: GET_LOGIN_FAILED,
         });
       });
   };
 };
-export default getRegister;
+export default getLogin;
