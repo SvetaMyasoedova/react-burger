@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch } from "react-redux";
 import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
@@ -12,6 +12,7 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+
 
 
 function RegisterList() {
