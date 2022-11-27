@@ -1,3 +1,5 @@
+import { REGISTER_URL } from "../../utils/urls";
+
 export const GET_REGISTER = "GET_INGREDIENTS";
 export const GET_REGISTER_FAILED = "GET_INGREDIENTS_FAILED";
 export const GET_REGISTER_SUCCESS = "GET_INGREDIENTS_SUCCESS";
@@ -8,7 +10,7 @@ const getRegister = (email, password, userName) => {
       type: GET_REGISTER,
     });
 
-    fetch(" https://norma.nomoreparties.space/api/auth/register", {
+    fetch(REGISTER_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
