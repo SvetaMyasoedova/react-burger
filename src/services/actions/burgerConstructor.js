@@ -1,4 +1,6 @@
 import { ORDER_URL } from "../../utils/urls";
+import { fetchWithRefresh } from "../../utils/refreshToken";
+import { getCookie } from "../../utils/cookie";
 
 export const CONSTRUCTOR_BUN = "CONSTRUCTOR_BUN";
 export const CONSTRUCTOR_MAIN = "CONSTRUCTOR_MAIN";
@@ -23,23 +25,17 @@ export function getOrder() {
     orderIds.unshift(getState().constructorReducer.constructorBun._id);
     orderIds.push(getState().constructorReducer.constructorBun._id);
 
-    fetch(ORDER_URL, {
+    fetchWithRefresh(ORDER_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=utf-8",
+        Authorization: "Bearer " + getCookie("token"),
       },
       body: JSON.stringify({
         ingredients: orderIds,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
       .then((res) => {
         if (res && res.success) {
           dispatch({
