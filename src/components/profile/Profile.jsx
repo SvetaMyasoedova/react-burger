@@ -7,6 +7,9 @@ import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "../register-list/name-input/NameInput";
 import { EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Password } from "../register-list/password-input/Password";
+import { fetchWithRefresh } from "../../utils/refreshToken";
+import { LOGOUT_URL } from "../../utils/urls";
+import { getCookie } from "../../utils/cookie";
 
 function Profile() {
   const [userName, setUserName] = useState("");
@@ -21,6 +24,28 @@ function Profile() {
   };
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleLogOut = () => {
+    fetchWithRefresh(LOGOUT_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: "Bearer " + getCookie("token"),
+      },
+
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({
+        token: localStorage.getItem("refreshToken"),
+      }),
+    })
+      .then((res) => {
+        if (res && res.success) {
+        }
+      })
+      .catch((err) => {});
   };
 
   return (
@@ -48,6 +73,7 @@ function Profile() {
             to="/profile/orders/:id"
             activeClassName={stylesProfile.activeLink}
             className="text_color_inactive"
+            onClick={handleLogOut}
           >
             Выход
           </NavLink>
@@ -67,7 +93,11 @@ function Profile() {
           <Password value={password} onChange={onChangePassword} />
         </div>
       </div>
-      <p className={` ${stylesProfile.text} text text_type_main-default text_color_inactive`}>В этом разделе вы можете изменить свои персональные данные</p>
+      <p
+        className={` ${stylesProfile.text} text text_type_main-default text_color_inactive`}
+      >
+        В этом разделе вы можете изменить свои персональные данные
+      </p>
     </>
   );
 }

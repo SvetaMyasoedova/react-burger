@@ -48,7 +48,7 @@ const getLogin = (email, password) => {
             setCookie("token", authToken);
           }
 			 if (res.refreshToken) {
-            setCookie("refreshToken", res.refreshToken);
+				localStorage.setItem("refreshToken", res.refreshToken)
           }
         } else {
           dispatch({

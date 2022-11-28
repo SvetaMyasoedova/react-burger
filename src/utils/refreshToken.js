@@ -28,6 +28,7 @@ export const fetchWithRefresh = async (url, options) => {
         Promise.reject(refreshData);
       }
       localStorage.setItem("refreshToken", refreshData.refreshToken);
+ 
       setCookie("accessToken", refreshData.accessToken);
       options.headers.authorization = refreshData.accessToken;
       const res = await fetch(url, options); 
