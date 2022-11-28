@@ -2,7 +2,7 @@ import {  useRef } from "react";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const NameInput = ({placeholder, onChange, value}) => {
+export const NameInput = ({placeholder, onChange, value, icon}) => {
   
   const inputRef = useRef(null);
   const onIconClick = () => {
@@ -16,6 +16,7 @@ export const NameInput = ({placeholder, onChange, value}) => {
       onChange={onChange}
       value={value}
       name={"name"}
+      icon={icon}
       error={false}
       ref={inputRef}
       onIconClick={onIconClick}

@@ -3,7 +3,7 @@ import { PasswordInput } from "@ya.praktikum/react-developer-burger-ui-component
 
 import stylesPassword from './password.module.css'
 
-export const Password = ({placeholder, onChange, value}) => {
+export const Password = ({placeholder, onChange, value, icon}) => {
 
 	
   return (
@@ -11,6 +11,7 @@ export const Password = ({placeholder, onChange, value}) => {
       <PasswordInput
         onChange={onChange}
         value={value}
+        icon={icon}
         name={'password'}
         extraClass="mb-2"
         placeholder={placeholder}
