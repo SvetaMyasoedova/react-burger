@@ -46,8 +46,12 @@ function Profile() {
   };
 
   const handleSave = () => {
-    console.log("handleSave");
+   
     dispatch(editUser(newName, newEmail));
+  };
+  const handleCancel = () => {
+    setNewName(name);
+    setNewEmail(email);
   };
   
 
@@ -123,7 +127,7 @@ function Profile() {
           />
 
           <div className={stylesProfile.buttons}>
-            <a className="text text_type_main-default" href="#">
+            <a onClick={handleCancel} className="text text_type_main-default" href="#">
               Отмена
             </a>
             <Button

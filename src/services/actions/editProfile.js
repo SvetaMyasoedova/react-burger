@@ -11,7 +11,7 @@ export function editUser(newName, newEmail) {
     dispatch({
       type: EDIT_USER,
     });
-    console.log("editUser");
+   
     fetchWithRefresh(USER_URL, {
       method: "PATCH",
       mode: "cors",
@@ -30,7 +30,7 @@ export function editUser(newName, newEmail) {
 		 }),
     })
       .then((res) => {
-        console.log("editUser res");
+       
         if (res && res.success) {
           dispatch({
             type: EDIT_USER_SUCCESS,
@@ -47,8 +47,8 @@ export function editUser(newName, newEmail) {
         dispatch({
           type: EDIT_USER_FAILED,
         });
-        console.log("editUser catch");
-        console.log(err);
+       
+       
       });
   };
 }
