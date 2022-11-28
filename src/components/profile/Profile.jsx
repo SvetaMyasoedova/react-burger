@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../services/actions/profile";
-
+import { editUser } from "../../services/actions/editProfile";
 
 import { NavLink } from "react-router-dom";
 import stylesProfile from "./profile.module.css";
@@ -19,26 +19,37 @@ import { getCookie } from "../../utils/cookie";
 
 function Profile() {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.profileReducer);
-  const { name } = useSelector((state) => state.profileReducer);
-  // const [userName, setUserName] = useState("");
-  // const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   useEffect(() => {
     dispatch(getUser());
-    
   }, [dispatch]);
 
-  // const onChangeUserName = (e) => {
-  //   setUserName(e.target.value);
-  // };
-  // const onChangeEmail = (e) => {
-  //   setEmail(e.target.value);
-  // };
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
+  const { name } = useSelector((state) => state.profileReducer);
+  const { email } = useSelector((state) => state.profileReducer);
+
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+
+  useEffect(() => {
+    setNewName(name);
+    setNewEmail(email);
+  }, [name, email]);
+
+  const onChangeUserName = (e) => {
+    setNewName(e.target.value);
   };
+  const onChangeEmail = (e) => {
+    setNewEmail(e.target.value);
+  };
+  const onChangePassword = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const handleSave = () => {
+    console.log("handleSave");
+    dispatch(editUser(newName, newEmail));
+  };
+  
 
   const handleLogOut = () => {
     fetchWithRefresh(LOGOUT_URL, {
@@ -94,26 +105,33 @@ function Profile() {
         </div>
         <div className={stylesProfile.input}>
           <NameInput
-            value={name}
-            // onChange={onChangeUserName}
+            value={newName}
+            onChange={onChangeUserName}
             placeholder="Имя"
             icon="EditIcon"
           />
           <EmailInput
-            // onChange={onChangeEmail}
-            value={email}
+            onChange={onChangeEmail}
+            value={newEmail}
             name={"email"}
             isIcon={true}
           />
           <Password
-            value={password}
+            value={newPassword}
             onChange={onChangePassword}
             icon="EditIcon"
           />
 
-          <div  className={stylesProfile.buttons}>
-            <a className="text text_type_main-default" href="#">Отмена</a>
-            <Button htmlType="button" type="primary" size="medium">
+          <div className={stylesProfile.buttons}>
+            <a className="text text_type_main-default" href="#">
+              Отмена
+            </a>
+            <Button
+              onClick={handleSave}
+              htmlType="button"
+              type="primary"
+              size="medium"
+            >
               Сохранить
             </Button>
           </div>
