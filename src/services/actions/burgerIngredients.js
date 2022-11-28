@@ -1,5 +1,9 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
-
+import { getCookie } from "../../utils/cookie";
+import { refreshToken } from "../../utils/refreshToken";
+import { checkReponse } from "../../utils/refreshToken";
+import { setCookie } from "../../utils/cookie";
+import { fetchWithRefresh } from "../../utils/refreshToken";
 export const GET_INGREDIENTS = "GET_INGREDIENTS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
@@ -12,18 +16,20 @@ export function getIngredients() {
       type: GET_INGREDIENTS,
     });
 
-    fetch(INGREDIENTS_URL)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
-
+    fetchWithRefresh(INGREDIENTS_URL, {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getCookie("token"),
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+    })
       .then((res) => {
         if (res && res.success) {
-         
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,
             data: res.data,

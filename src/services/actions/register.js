@@ -1,4 +1,5 @@
 import { REGISTER_URL } from "../../utils/urls";
+import { setCookie } from "../../utils/cookie";
 
 export const GET_REGISTER = "GET_INGREDIENTS";
 export const GET_REGISTER_FAILED = "GET_INGREDIENTS_FAILED";
@@ -39,6 +40,18 @@ const getRegister = (email, password, userName) => {
             email: res.user.email,
             name: res.user.name,
           });
+          let authToken = res.accessToken;
+          if (authToken.indexOf("Bearer") === 0) {
+            authToken = authToken.split("Bearer ")[1];
+          }
+          if (authToken) {
+            setCookie("token", authToken);
+          }
+          
+          if (res.refreshToken) {
+            setCookie("refreshToken", res.refreshToken);
+          }
+
         } else {
           dispatch({
             type: GET_REGISTER_FAILED,

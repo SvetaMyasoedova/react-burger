@@ -1,5 +1,5 @@
 import { LOGIN_URL } from "../../utils/urls";
-import { setCookie } from "../../utils/setCookie";
+import { setCookie } from "../../utils/cookie";
 
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
@@ -46,6 +46,9 @@ const getLogin = (email, password) => {
           }
           if (authToken) {
             setCookie("token", authToken);
+          }
+			 if (res.refreshToken) {
+            setCookie("refreshToken", res.refreshToken);
           }
         } else {
           dispatch({
