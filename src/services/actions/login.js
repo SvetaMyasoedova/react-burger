@@ -1,5 +1,5 @@
 import { LOGIN_URL } from "../../utils/urls";
-
+import { setCookie } from "../../utils/setCookie";
 
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
@@ -37,10 +37,16 @@ const getLogin = (email, password) => {
           dispatch({
             type: GET_LOGIN_SUCCESS,
             email: res.user.email,
-				name: res.user.name,
+            name: res.user.name,
           });
 
-			 
+          let authToken = res.accessToken;
+          if (authToken.indexOf("Bearer") === 0) {
+            authToken = authToken.split("Bearer ")[1];
+          }
+          if (authToken) {
+            setCookie("token", authToken);
+          }
         } else {
           dispatch({
             type: GET_LOGIN_FAILED,
