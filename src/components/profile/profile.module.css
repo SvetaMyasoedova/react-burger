@@ -21,6 +21,12 @@
   flex-direction: column;
   gap: 24px;
 }
+.buttons {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-left: 240px;
+}
 
 .text {
 	max-width: 320px;

@@ -5,7 +5,10 @@ import stylesProfile from "./profile.module.css";
 
 import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "../register-list/name-input/NameInput";
-import { EditIcon, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  EmailInput,
+  Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
@@ -83,7 +86,7 @@ function Profile() {
             value={userName}
             onChange={onChangeUserName}
             placeholder="Имя"
-            icon='EditIcon'
+            icon="EditIcon"
           />
           <EmailInput
             onChange={onChangeEmail}
@@ -91,7 +94,18 @@ function Profile() {
             name={"email"}
             isIcon={true}
           />
-          <Password value={password} onChange={onChangePassword}  icon='EditIcon'/>
+          <Password
+            value={password}
+            onChange={onChangePassword}
+            icon="EditIcon"
+          />
+
+          <div  className={stylesProfile.buttons}>
+            <a className="text text_type_main-default" href="#">Отмена</a>
+            <Button htmlType="button" type="primary" size="medium">
+              Сохранить
+            </Button>
+          </div>
         </div>
       </div>
       <p
