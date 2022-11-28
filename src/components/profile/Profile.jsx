@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../services/actions/profile";
+
 
 import { NavLink } from "react-router-dom";
 import stylesProfile from "./profile.module.css";
@@ -15,16 +18,24 @@ import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
 
 function Profile() {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const { email } = useSelector((state) => state.profileReducer);
+  const { name } = useSelector((state) => state.profileReducer);
+  // const [userName, setUserName] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChangeUserName = (e) => {
-    setUserName(e.target.value);
-  };
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  useEffect(() => {
+    dispatch(getUser());
+    
+  }, [dispatch]);
+
+  // const onChangeUserName = (e) => {
+  //   setUserName(e.target.value);
+  // };
+  // const onChangeEmail = (e) => {
+  //   setEmail(e.target.value);
+  // };
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
@@ -83,13 +94,13 @@ function Profile() {
         </div>
         <div className={stylesProfile.input}>
           <NameInput
-            value={userName}
-            onChange={onChangeUserName}
+            value={name}
+            // onChange={onChangeUserName}
             placeholder="Имя"
             icon="EditIcon"
           />
           <EmailInput
-            onChange={onChangeEmail}
+            // onChange={onChangeEmail}
             value={email}
             name={"email"}
             isIcon={true}

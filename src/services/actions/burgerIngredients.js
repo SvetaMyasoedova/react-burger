@@ -1,8 +1,6 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
-import { refreshToken } from "../../utils/refreshToken";
-import { checkReponse } from "../../utils/refreshToken";
-import { setCookie } from "../../utils/cookie";
+
 import { fetchWithRefresh } from "../../utils/refreshToken";
 export const GET_INGREDIENTS = "GET_INGREDIENTS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
