@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import stylesHeader from "./app-header.module.css";
 import ElementHeader from "../element-header/ElementHeader";
 import { BurgerIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -7,22 +7,45 @@ import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function AppHeader() {
+  const isConstructor = !!useRouteMatch({ path: "/", exact: true });
+  const isFeed = !!useRouteMatch("/feed");
+  const isProfile = !!useRouteMatch("/profile");
   return (
     <div className={`${stylesHeader.wrapper} mb-10`}>
       <header
         className={`${stylesHeader.header} p-5 text text_type_main-default `}
       >
         <div className={stylesHeader.leftSideElements}>
-          <Link to="#" className={stylesHeader.white}>
+          <Link
+            to="/"
+            className={
+              isConstructor ? stylesHeader.white : "text_color_inactive"
+            }
+          >
             <ElementHeader
-              icon={<BurgerIcon type="primary" />}
+              icon={
+                isConstructor ? (
+                  <BurgerIcon type="primary" />
+                ) : (
+                  <BurgerIcon type="secondary" />
+                )
+              }
               text={"Конструктор"}
             />
           </Link>
 
-          <Link to="#" className="text_color_inactive">
+          <Link
+            to="#"
+            className={isFeed ? stylesHeader.white : "text_color_inactive"}
+          >
             <ElementHeader
-              icon={<ListIcon type="secondary" />}
+              icon={
+                isFeed ? (
+                  <ListIcon type="primary" />
+                ) : (
+                  <ListIcon type="secondary" />
+                )
+              }
               text={"Лента заказов"}
             />
           </Link>
@@ -31,9 +54,18 @@ function AppHeader() {
         <div className={stylesHeader.logo}>
           <Logo />
         </div>
-        <Link to="/profile" className="text_color_inactive">
+        <Link
+          to="/profile"
+          className={isProfile ? stylesHeader.white : "text_color_inactive"}
+        >
           <ElementHeader
-            icon={<ProfileIcon type="secondary" />}
+            icon={
+              isProfile ? (
+                <ProfileIcon type="primary" />
+              ) : (
+                <ProfileIcon type="secondary" />
+              )
+            }
             text={"Личный кабинет"}
           />
         </Link>
