@@ -30,6 +30,7 @@ export function getUser() {
 				 type: GET_USER_SUCCESS,
 				 email: res.user.email,
 				 name: res.user.name,
+				 
 			  });
 			} else {
 			  dispatch({

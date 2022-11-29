@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -10,6 +10,7 @@ import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
 import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage, ProfilePage } from "./pages";
+import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
 
 function App() {
   return (
@@ -39,9 +40,12 @@ function App() {
         <Route path="/reset-password" exact={true}>
           <ResetPassworddPage />
         </Route>
-        <Route path="/profile" exact={true}>
-          <ProfilePage />
-        </Route>
+        {/* <Route path="/profile" exact={true}> */}
+        <ProtectedRoute path="/">
+        <ProfilePage />
+        </ProtectedRoute>
+        
+        {/* </Route> */}
       </Switch>
     
   );

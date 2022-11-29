@@ -10,10 +10,11 @@ import {
 } from "../actions/editProfile";
 
 const initialState = {
-  dataRequest: false,
-  dataFailed: false,
+  userRequest: false,
+  userFailed: false,
   email: "",
   name: "",
+  isUserLoaded: false,
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -21,8 +22,8 @@ export const profileReducer = (state = initialState, action) => {
     case GET_USER: {
       return {
         ...state,
-        dataRequest: true,
-        dataFailed: false,
+        userRequest: true,
+        userFailed: false,
       };
     }
     case GET_USER_SUCCESS: {
@@ -30,21 +31,22 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         email: action.email,
         name: action.name,
-        dataRequest: false,
+        isUserLoaded: true,
+        userRequest: false,
       };
     }
     case GET_USER_FAILED: {
       return {
         ...state,
-        dataFailed: true,
-        dataRequest: false,
+        userFailed: true,
+        userRequest: false,
       };
     }
     case EDIT_USER: {
       return {
         ...state,
-        dataRequest: true,
-        dataFailed: false,
+        userRequest: true,
+        userFailed: false,
       };
     }
     case EDIT_USER_SUCCESS: {
