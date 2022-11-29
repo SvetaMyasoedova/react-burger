@@ -60,7 +60,10 @@ function ResetPassword() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (history.location.state.from === "/forgot-password") {
+    if (
+      !(history.location.state === undefined) &&
+      history.location.state.from === "/forgot-password"
+    ) {
       history.location.state = undefined;
     }
   }, []);
