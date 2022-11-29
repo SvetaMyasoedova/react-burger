@@ -13,7 +13,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
 
-
 function ForgotPassword() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ function ForgotPassword() {
       })
       .then((res) => {
         if (res && res.success) {
-          history.push("/reset-password");
+          history.push("/reset-password", { from: "/forgot-password" });
         }
       });
   };

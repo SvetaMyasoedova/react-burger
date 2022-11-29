@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import stylesResetPassword from "./reset-password.module.css";
@@ -11,18 +11,20 @@ import { getUser } from "../../services/actions/profile";
 
 function ResetPassword() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { isUserLoaded } = useSelector((state) => state.profileReducer);
   const [code, setCode] = useState("");
-  
+
   const [password, setPassword] = useState("");
 
   const onChangeCode = (e) => {
     setCode(e.target.value);
   };
- 
+
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const handlePasswordReset = () => {
     fetch("  https://norma.nomoreparties.space/api/password-reset/reset", {
       method: "POST",
@@ -37,22 +39,18 @@ function ResetPassword() {
       referrerPolicy: "no-referrer",
       body: JSON.stringify({
         password: password,
-        token: code
+        token: code,
       }),
     })
       .then((res) => {
-        
         if (!res.ok) {
           throw new Error("");
         } else {
-          
           return res.json();
-          
         }
       })
       .then((res) => {
         if (res && res.success) {
-         
         }
       });
   };
@@ -60,6 +58,20 @@ function ResetPassword() {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (history.location.state.from === "/forgot-password") {
+      history.location.state = undefined;
+    }
+  }, []);
+
+  if (history.location.state === undefined) {
+    return <Redirect to="/" />;
+  }
+
+  if (history.location.state.from !== "/forgot-password") {
+    return <Redirect to="/" />;
+  }
 
   if (isUserLoaded) {
     return <Redirect to={Redirect.state?.from || "/"} />;
@@ -74,8 +86,16 @@ function ResetPassword() {
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
       <div className={`${stylesResetPassword.input} mb-5`}>
-        <Password placeholder="Введите новый пароль" onChange={onChangePassword} value ={password}/>
-        <NameInput placeholder="Введите код из письма" onChange={onChangeCode} value ={code}/>
+        <Password
+          placeholder="Введите новый пароль"
+          onChange={onChangePassword}
+          value={password}
+        />
+        <NameInput
+          placeholder="Введите код из письма"
+          onChange={onChangeCode}
+          value={code}
+        />
       </div>
       <div className={`${stylesResetPassword.button} mb-20`}>
         <Button
