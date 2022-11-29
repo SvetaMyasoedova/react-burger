@@ -14,18 +14,14 @@ export function getIngredients() {
       type: GET_INGREDIENTS,
     });
 
-    fetchWithRefresh(INGREDIENTS_URL, {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
-      },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
-    })
+    fetch(INGREDIENTS_URL)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("");
+        } else {
+          return res.json();
+        }
+      })
       .then((res) => {
         if (res && res.success) {
           dispatch({
