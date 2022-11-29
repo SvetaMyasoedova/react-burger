@@ -199,7 +199,7 @@ function BurgerConstructor() {
       </div>
 
       {isModalVisible && (
-        <Modal onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal} header={""}>
           <OrderDetails />
         </Modal>
       )}

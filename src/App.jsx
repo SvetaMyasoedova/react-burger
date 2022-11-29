@@ -1,21 +1,35 @@
 import React from "react";
 
-
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import {  Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
 import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
-import { RegisterPage, LoginPage, ForgotPasswordPage, ResetPassworddPage, ProfilePage } from "./pages";
+import {
+  RegisterPage,
+  LoginPage,
+  ForgotPasswordPage,
+  ResetPassworddPage,
+  ProfilePage,
+} from "./pages";
 import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
+import Modal from "./components/modal/Modal";
+import IngredientDetails from "./components/ingredient-details/IngredientDetails";
 
 function App() {
+  const location = useLocation();
+  const history = useHistory();
+  const background = location.state && location.state.background;
+
+  const handleModalClose = () => {
+    history.goBack();
+  };
   return (
-    
-      <Switch>
+    <>
+      <Switch location={background || location}>
         <Route path="/" exact={true}>
           <AppHeader />
           <main className="main">
@@ -40,14 +54,26 @@ function App() {
         <Route path="/reset-password" exact={true}>
           <ResetPassworddPage />
         </Route>
-        {/* <Route path="/profile" exact={true}> */}
+
         <ProtectedRoute path="/">
-        <ProfilePage />
+          <ProfilePage />
         </ProtectedRoute>
-        
-        {/* </Route> */}
+        <Route path='/ingredients/:ingredientId' exact={true}>
+          <IngredientDetails />
+        </Route>
       </Switch>
-    
+
+      {background && (
+        <Route
+          path="/ingredients/:ingredientId"
+          children={
+            <Modal onClose={handleModalClose} header={"Детали ингредиента"}>
+              <IngredientDetails />
+            </Modal>
+          }
+        />
+      )}
+    </>
   );
 }
 

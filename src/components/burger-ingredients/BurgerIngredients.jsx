@@ -38,10 +38,10 @@ function BurgerIngredients() {
     setIsModalVisible(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalVisible(false);
-    dispatch({ type: CLEAR_CURRENT_INGREDIENT });
-  };
+  // const handleCloseModal = () => {
+  //   setIsModalVisible(false);
+  //   dispatch({ type: CLEAR_CURRENT_INGREDIENT });
+  // };
 
   const { ref: refBuns, inView: inViewBuns } = useInView({
     threshold: 0,
@@ -134,11 +134,7 @@ function BurgerIngredients() {
         </div>
       </div>
 
-      {isModalVisible && (
-        <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
-          <IngredientDetails />
-        </Modal>
-      )}
+      
     </section>
   );
 }
