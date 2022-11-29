@@ -15,11 +15,10 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import getLogin from "../../services/actions/login";
-import { getUser } from "../../services/actions/profile";
 
 function LoginList() {
   const dispatch = useDispatch();
-  const { isUserLoaded } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state) => state.loginReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,11 +34,7 @@ function LoginList() {
     dispatch(getLogin(email, password));
   };
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch, email, password]);
-
-  if (isUserLoaded) {
+  if (isLogin) {
     return <Redirect to={Redirect.state?.from || "/"} />;
   }
 
