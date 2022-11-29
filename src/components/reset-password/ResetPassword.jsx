@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import stylesResetPassword from "./reset-password.module.css";
 
 import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "../register-list/name-input/NameInput";
 import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { getUser } from "../../services/actions/profile";
 
 function ResetPassword() {
+  const dispatch = useDispatch();
+  const { isUserLoaded } = useSelector((state) => state.profileReducer);
   const [code, setCode] = useState("");
   
   const [password, setPassword] = useState("");
@@ -52,6 +56,14 @@ function ResetPassword() {
         }
       });
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  if (isUserLoaded) {
+    return <Redirect to={Redirect.state?.from || "/"} />;
+  }
   return (
     <div>
       <div className="mb-30">
