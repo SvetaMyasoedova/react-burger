@@ -1,9 +1,10 @@
-import { useState} from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
+import { getUser } from "../../services/actions/profile";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "./name-input/NameInput";
@@ -17,6 +18,7 @@ import {
 
 function RegisterList() {
   const dispatch = useDispatch();
+  const { isUserLoaded } = useSelector((state) => state.profileReducer);
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,6 +37,14 @@ function RegisterList() {
   const handleNewUser = () => {
     dispatch(getRegister(email, password, userName));
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch, email, password]);
+
+  if (isUserLoaded) {
+    return <Redirect to={Redirect.state?.from || "/"} />;
+  }
 
   return (
     <div>
