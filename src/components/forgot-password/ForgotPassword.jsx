@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import stylesForgotPassword from "./forgot-password.module.css";
 
 import AppHeader from "../app-header/AppHeader";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { getUser } from "../../services/actions/profile";
 
 
 function ForgotPassword() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { isUserLoaded } = useSelector((state) => state.profileReducer);
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -49,6 +53,14 @@ function ForgotPassword() {
         }
       });
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  if (isUserLoaded) {
+    return <Redirect to={Redirect.state?.from || "/"} />;
+  }
 
   return (
     <>
