@@ -4,7 +4,8 @@ const initialState = {
 	loginRequest: false,
 	loginFailed: false,
 	email: "",
-	name: ""
+	name: "",
+	isLogin: false,
 
 	
  };
@@ -23,6 +24,7 @@ const initialState = {
 			...state,
 			email: action.email,
 			name: action.name,
+			isLogin: true,
 			loginRequest: false,
 		 };
 	  }

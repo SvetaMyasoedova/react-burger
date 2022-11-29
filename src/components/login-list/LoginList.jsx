@@ -1,5 +1,6 @@
-import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+
+import { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,17 +15,14 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import getLogin from "../../services/actions/login";
+import { getUser } from "../../services/actions/profile";
 
 function LoginList() {
-  
   const dispatch = useDispatch();
-  const history = useHistory();
-  const {registerRequest} = useSelector((state) => state.loginReducer);
+  const { isUserLoaded } = useSelector((state) => state.profileReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
-
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -32,14 +30,18 @@ function LoginList() {
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
-  
 
   const handleLogin = () => {
     dispatch(getLogin(email, password));
-    if(!registerRequest) {
-      history.push('/')
-    }
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch, email, password]);
+
+  if (isUserLoaded) {
+    return <Redirect to={Redirect.state?.from || "/"} />;
+  }
 
   return (
     <div>
@@ -58,7 +60,6 @@ function LoginList() {
           isIcon={false}
         />
         <Password onChange={onChangePassword} value={password} />
-        
       </div>
       <div className={`${stylesLogin.button} mb-20`}>
         <Button

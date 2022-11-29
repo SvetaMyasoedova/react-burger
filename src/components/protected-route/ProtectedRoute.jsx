@@ -7,17 +7,26 @@ export function ProtectedRoute({ children, ...rest }) {
   const dispatch = useDispatch();
   const { name } = useSelector((state) => state.profileReducer);
   const { email } = useSelector((state) => state.profileReducer);
- 
 
   useEffect(() => {
     dispatch(getUser());
   }, []);
 
-
   return (
     <Route
       {...rest}
-      render={() => (name && email ? children : <Redirect to="/login" />)}
+      render={({ location }) =>
+        name && email ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location },
+            }}
+          />
+        )
+      }
     />
   );
 }
