@@ -26,12 +26,12 @@ export function getUser() {
 		 referrerPolicy: "no-referrer",
 	  })
 		 .then((res) => {
+			console.log("GET_USER_SUCCESS")
 			if (res && res.success) {
 			  dispatch({
 				 type: GET_USER_SUCCESS,
 				 email: res.user.email,
 				 name: res.user.name,
-				 
 			  });
 			} else {
 			  dispatch({

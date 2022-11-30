@@ -10,7 +10,11 @@ import {
   EDIT_USER_SUCCESS,
 } from "../actions/editProfile";
 
-import { GET_LOGIN,  GET_LOGIN_SUCCESS, GET_LOGIN_FAILED} from "../actions/login";
+import {
+  GET_LOGIN,
+  GET_LOGIN_SUCCESS,
+  GET_LOGIN_FAILED,
+} from "../actions/login";
 
 const initialState = {
   userRequest: false,
@@ -19,8 +23,8 @@ const initialState = {
   name: "",
   isUserLoaded: false,
   loginRequest: false,
-	loginFailed: false,
-	isLogin: false,
+  loginFailed: false,
+  isLogin: false,
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -39,6 +43,7 @@ export const profileReducer = (state = initialState, action) => {
         name: action.name,
         isUserLoaded: true,
         userRequest: false,
+        isLogin: true,
       };
     }
     case GET_USER_FAILED: {
@@ -54,7 +59,7 @@ export const profileReducer = (state = initialState, action) => {
         email: "",
         name: "",
         isUserLoaded: false,
-        isLogin: false
+        isLogin: false,
       };
     }
     case EDIT_USER: {
@@ -81,27 +86,27 @@ export const profileReducer = (state = initialState, action) => {
     }
     case GET_LOGIN: {
       return {
-       ...state,
-       loginRequest: true,
-       loginFailed: false,
+        ...state,
+        loginRequest: true,
+        loginFailed: false,
       };
-     }
-     case GET_LOGIN_SUCCESS: {
+    }
+    case GET_LOGIN_SUCCESS: {
       return {
-       ...state,
-       email: action.email,
-       name: action.name,
-       isLogin: true,
-       loginRequest: false,
+        ...state,
+        email: action.email,
+        name: action.name,
+        isLogin: true,
+        loginRequest: false,
       };
-     }
-     case GET_LOGIN_FAILED: {
+    }
+    case GET_LOGIN_FAILED: {
       return {
-       ...state,
-       loginFailed: true,
-       loginRequest: false,
+        ...state,
+        loginFailed: true,
+        loginRequest: false,
       };
-     }
+    }
     default: {
       return state;
     }

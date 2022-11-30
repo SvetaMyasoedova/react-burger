@@ -3,6 +3,8 @@ import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
 import AppHeader from "./components/app-header/AppHeader";
@@ -18,15 +20,22 @@ import {
 import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
 import Modal from "./components/modal/Modal";
 import IngredientDetails from "./components/ingredient-details/IngredientDetails";
+import { getUser } from "./services/actions/profile";
 
 function App() {
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
   const background = location.state && location.state.background;
 
   const handleModalClose = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
   return (
     <>
       <Switch location={background || location}>
@@ -59,7 +68,7 @@ function App() {
           <IngredientDetails />
         </Route>
 
-        <ProtectedRoute path="/profile">
+        <ProtectedRoute path="/">
           <ProfilePage />
         </ProtectedRoute>
       </Switch>
