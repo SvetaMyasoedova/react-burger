@@ -81,10 +81,7 @@ function Profile() {
 
   return (
     <>
-      <div className="mb-30">
-        <AppHeader />
-      </div>
-      <div className={stylesProfile.main}>
+      <div className={`${stylesProfile.main} mt-30`}>
         <div className={`${stylesProfile.nav} text text_type_main-medium `}>
           <NavLink
             exact
