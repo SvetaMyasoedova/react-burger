@@ -53,19 +53,13 @@ function ForgotPassword() {
       });
   };
 
-  
-
   if (isUserLoaded) {
     return <Redirect to={Redirect.state?.from || "/"} />;
   }
 
   return (
     <>
-      <div className="mb-30">
-        <AppHeader />
-      </div>
-
-      <div className={`${stylesForgotPassword.main} mb-10`}>
+      <div className={`${stylesForgotPassword.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
       <div className={`${stylesForgotPassword.input} mb-5`}>
