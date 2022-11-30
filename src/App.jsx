@@ -32,9 +32,9 @@ function App() {
     history.goBack();
   };
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, []);
 
   return (
     <>

@@ -16,7 +16,7 @@ import {
 
 function RegisterList() {
   const dispatch = useDispatch();
-  const { isUserLoaded } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state) => state.profileReducer);
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,11 +36,11 @@ function RegisterList() {
     dispatch(getRegister(email, password, userName));
   };
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [dispatch, email, password]);
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
-  if (isUserLoaded) {
+  if (isLogin) {
     return <Redirect to={Redirect.state?.from || "/"} />;
   }
 

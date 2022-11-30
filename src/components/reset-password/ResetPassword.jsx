@@ -12,7 +12,7 @@ import { getUser } from "../../services/actions/profile";
 function ResetPassword() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isUserLoaded } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state) => state.profileReducer);
   const [code, setCode] = useState("");
 
   const [password, setPassword] = useState("");
@@ -55,9 +55,9 @@ function ResetPassword() {
       });
   };
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   useEffect(() => {
     if (
@@ -76,7 +76,7 @@ function ResetPassword() {
     return <Redirect to="/" />;
   }
 
-  if (isUserLoaded) {
+  if (isLogin) {
     return <Redirect to={Redirect.state?.from || "/"} />;
   }
   return (

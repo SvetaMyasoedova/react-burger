@@ -51,6 +51,7 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         userFailed: true,
         userRequest: false,
+        isUserLoaded: true,
       };
     }
     case LOGOUT_SUCCESS: {

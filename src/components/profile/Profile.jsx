@@ -15,7 +15,7 @@ import {
 import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
-import { getCookie } from "../../utils/cookie";
+import { getCookie, deleteCookie } from "../../utils/cookie";
 import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 
 function Profile() {
@@ -61,7 +61,7 @@ function Profile() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: "Bearer " + getCookie("token"),
+        authorization: "Bearer " + getCookie("token"),
       },
 
       redirect: "follow",
@@ -73,6 +73,8 @@ function Profile() {
       .then((res) => {
         if (res && res.success) {
           dispatch({ type: LOGOUT_SUCCESS });
+          localStorage.removeItem("refreshToken");
+          deleteCookie("token");
           history.push("/login");
         }
       })

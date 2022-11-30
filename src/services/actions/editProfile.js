@@ -11,8 +11,7 @@ export function editUser(newName, newEmail) {
     dispatch({
       type: EDIT_USER,
     });
- 
-   
+
     fetchWithRefresh(USER_URL, {
       method: "PATCH",
       mode: "cors",
@@ -20,18 +19,17 @@ export function editUser(newName, newEmail) {
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + getCookie("token"),
+        authorization: "Bearer " + getCookie("token"),
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-		body: JSON.stringify({
-			name:newName,
-			email: newEmail,
-			// password: password,
-		 }),
+      body: JSON.stringify({
+        name: newName,
+        email: newEmail,
+        // password: password,
+      }),
     })
       .then((res) => {
-       
         if (res && res.success) {
           dispatch({
             type: EDIT_USER_SUCCESS,
@@ -48,8 +46,6 @@ export function editUser(newName, newEmail) {
         dispatch({
           type: EDIT_USER_FAILED,
         });
-       
-       
       });
   };
 }
