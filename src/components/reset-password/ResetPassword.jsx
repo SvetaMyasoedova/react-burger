@@ -81,11 +81,7 @@ function ResetPassword() {
   }
   return (
     <div>
-      <div className="mb-30">
-        <AppHeader />
-      </div>
-
-      <div className={`${stylesResetPassword.main} mb-10`}>
+      <div className={`${stylesResetPassword.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
       <div className={`${stylesResetPassword.input} mb-5`}>
