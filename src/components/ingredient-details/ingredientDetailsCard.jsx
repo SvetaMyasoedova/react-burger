@@ -1,4 +1,6 @@
+import PropTypes from "prop-types";
 import styleIngredientDetails from "./ingredient-details.module.css";
+import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 
 function IngredientDetailsCard({ ingredient }) {
   return (
@@ -45,5 +47,10 @@ function IngredientDetailsCard({ ingredient }) {
     </div>
   );
 }
+
+IngredientDetailsCard.propTypes = {
+  ingredient: ingredientPropTypes.isRequired,
+  
+};
 
 export default IngredientDetailsCard;
