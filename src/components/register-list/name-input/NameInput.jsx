@@ -32,5 +32,5 @@ NameInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  icon: PropTypes.element,
+  icon: PropTypes.string,
 };
