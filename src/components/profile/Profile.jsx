@@ -22,9 +22,7 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, [dispatch]);
+  
 
   const { name } = useSelector((state) => state.profileReducer);
   const { email } = useSelector((state) => state.profileReducer);
