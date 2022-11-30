@@ -112,25 +112,26 @@ function Profile() {
             Выход
           </NavLink>
         </div>
-        
-          <form className={stylesProfile.input} onSubmit={handleSave}>
-            <NameInput
-              value={newName}
-              onChange={onChangeUserName}
-              placeholder="Имя"
-              icon="EditIcon"
-            />
-            <EmailInput
-              onChange={onChangeEmail}
-              value={newEmail}
-              name={"email"}
-              isIcon={true}
-            />
-            <Password
-              value={newPassword}
-              onChange={onChangePassword}
-              icon="EditIcon"
-            />
+
+        <form className={stylesProfile.input} onSubmit={handleSave}>
+          <NameInput
+            value={newName}
+            onChange={onChangeUserName}
+            placeholder="Имя"
+            icon="EditIcon"
+          />
+          <EmailInput
+            onChange={onChangeEmail}
+            value={newEmail}
+            name={"email"}
+            isIcon={true}
+          />
+          <Password
+            value={newPassword}
+            onChange={onChangePassword}
+            icon="EditIcon"
+          />
+          {name === newName && email === newEmail ? null : (
             <div className={stylesProfile.buttons}>
               <Button
                 onClick={handleCancel}
@@ -140,16 +141,12 @@ function Profile() {
               >
                 Отмена
               </Button>
-              <Button
-                htmlType="submit"
-                type="primary"
-                size="medium"
-              >
+              <Button htmlType="submit" type="primary" size="medium">
                 Сохранить
               </Button>
             </div>
-          </form>
-        
+          )}
+        </form>
       </div>
       <p
         className={` ${stylesProfile.text} text text_type_main-default text_color_inactive`}
