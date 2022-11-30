@@ -55,9 +55,9 @@ function ResetPassword() {
       });
   };
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (

@@ -97,8 +97,8 @@ function BurgerConstructor() {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = (order) => {
-
+  const handleOpenModal = ( ) => {
+  
     if (!isLogin) {
       history.push('/login')
       

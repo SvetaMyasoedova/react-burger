@@ -11,6 +11,7 @@ export function editUser(newName, newEmail) {
     dispatch({
       type: EDIT_USER,
     });
+ 
    
     fetchWithRefresh(USER_URL, {
       method: "PATCH",

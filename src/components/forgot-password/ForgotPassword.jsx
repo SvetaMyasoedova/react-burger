@@ -53,9 +53,7 @@ function ForgotPassword() {
       });
   };
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+  
 
   if (isUserLoaded) {
     return <Redirect to={Redirect.state?.from || "/"} />;

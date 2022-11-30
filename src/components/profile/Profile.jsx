@@ -22,8 +22,6 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  
-
   const { name } = useSelector((state) => state.profileReducer);
   const { email } = useSelector((state) => state.profileReducer);
 
@@ -46,10 +44,13 @@ function Profile() {
     setNewPassword(e.target.value);
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    console.log("handleSave");
+    e.preventDefault();
     dispatch(editUser(newName, newEmail));
   };
   const handleCancel = () => {
+    console.log("handleCancel");
     setNewName(name);
     setNewEmail(email);
   };
@@ -72,7 +73,7 @@ function Profile() {
       .then((res) => {
         if (res && res.success) {
           dispatch({ type: LOGOUT_SUCCESS });
-          history.push('/login')
+          history.push("/login");
         }
       })
       .catch((err) => {});
@@ -102,7 +103,7 @@ function Profile() {
             История заказов
           </NavLink>
           <NavLink
-          exact
+            exact
             to="/login"
             activeClassName={stylesProfile.activeLink}
             className="text_color_inactive"
@@ -111,43 +112,44 @@ function Profile() {
             Выход
           </NavLink>
         </div>
-        <div className={stylesProfile.input}>
-          <NameInput
-            value={newName}
-            onChange={onChangeUserName}
-            placeholder="Имя"
-            icon="EditIcon"
-          />
-          <EmailInput
-            onChange={onChangeEmail}
-            value={newEmail}
-            name={"email"}
-            isIcon={true}
-          />
-          <Password
-            value={newPassword}
-            onChange={onChangePassword}
-            icon="EditIcon"
-          />
-
-          <div className={stylesProfile.buttons}>
-            <a
-              onClick={handleCancel}
-              className="text text_type_main-default"
-              href="#"
-            >
-              Отмена
-            </a>
-            <Button
-              onClick={handleSave}
-              htmlType="button"
-              type="primary"
-              size="medium"
-            >
-              Сохранить
-            </Button>
-          </div>
-        </div>
+        
+          <form className={stylesProfile.input} onSubmit={handleSave}>
+            <NameInput
+              value={newName}
+              onChange={onChangeUserName}
+              placeholder="Имя"
+              icon="EditIcon"
+            />
+            <EmailInput
+              onChange={onChangeEmail}
+              value={newEmail}
+              name={"email"}
+              isIcon={true}
+            />
+            <Password
+              value={newPassword}
+              onChange={onChangePassword}
+              icon="EditIcon"
+            />
+            <div className={stylesProfile.buttons}>
+              <Button
+                onClick={handleCancel}
+                htmlType="button"
+                type="secondary"
+                size="medium"
+              >
+                Отмена
+              </Button>
+              <Button
+                htmlType="submit"
+                type="primary"
+                size="medium"
+              >
+                Сохранить
+              </Button>
+            </div>
+          </form>
+        
       </div>
       <p
         className={` ${stylesProfile.text} text text_type_main-default text_color_inactive`}

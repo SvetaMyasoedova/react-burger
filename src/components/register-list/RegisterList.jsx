@@ -38,9 +38,9 @@ function RegisterList() {
     dispatch(getRegister(email, password, userName));
   };
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch, email, password]);
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [dispatch, email, password]);
 
   if (isUserLoaded) {
     return <Redirect to={Redirect.state?.from || "/"} />;

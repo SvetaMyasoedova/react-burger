@@ -23,9 +23,9 @@
 }
 .buttons {
   display: flex;
-  gap: 24px;
+  
   align-items: center;
-  margin-left: 240px;
+  margin-left: 165px;
 }
 
 .text {
