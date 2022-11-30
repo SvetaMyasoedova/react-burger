@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
@@ -13,8 +13,6 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-
-
 
 function RegisterList() {
   const dispatch = useDispatch();
@@ -48,11 +46,7 @@ function RegisterList() {
 
   return (
     <div>
-      <div className="mb-30">
-        <AppHeader />
-      </div>
-
-      <div className={`${stylesRegister.main} mb-10`}>
+      <div className={`${stylesRegister.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Регистрация</p>
       </div>
       <div className={`${stylesRegister.input} mb-5`}>

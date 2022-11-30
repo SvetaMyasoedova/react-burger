@@ -38,9 +38,9 @@ function App() {
 
   return (
     <>
+      <AppHeader />
       <Switch location={background || location}>
         <Route path="/" exact={true}>
-          <AppHeader />
           <main className="main">
             <p className="text text_type_main-large mb-5">Соберите бургер</p>
             <section className="burgerSection">
