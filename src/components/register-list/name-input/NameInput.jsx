@@ -1,4 +1,5 @@
 import {  useRef } from "react";
+import PropTypes from "prop-types";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -25,4 +26,11 @@ export const NameInput = ({placeholder, onChange, value, icon}) => {
       extraClass="ml-1"
     />
   );
+};
+
+NameInput.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  icon: PropTypes.element,
 };
