@@ -26,10 +26,27 @@ function IngredientDetails() {
     if (!background) {
       dispatch(getIngredients());
     }
+
+    if (
+      background &&
+      (currentIngredient === null || currentIngredient === undefined)
+    ) {
+      dispatch(getIngredients());
+    }
   }, []);
 
   useEffect(() => {
     if (data.length !== 0 && !background) {
+      dispatch({
+        currentIngredient: data.find((item) => item._id === ingredientId),
+        type: CURRENT_INGREDIENT,
+      });
+    }
+
+    if (
+      background &&
+      (currentIngredient === null || currentIngredient === undefined)
+    ) {
       dispatch({
         currentIngredient: data.find((item) => item._id === ingredientId),
         type: CURRENT_INGREDIENT,
