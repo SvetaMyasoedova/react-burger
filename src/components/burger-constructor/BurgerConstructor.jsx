@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
 import {
@@ -97,11 +97,10 @@ function BurgerConstructor() {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = ( ) => {
-  
+  const handleOpenModal = (e) => {
+    e.preventDefault();
     if (!isLogin) {
-      history.push('/login')
-      
+      history.push("/login");
     }
     setIsModalVisible(true);
   };
@@ -125,7 +124,6 @@ function BurgerConstructor() {
       </p>
     </div>
   );
-
 
   return (
     <section className={`${stylesConstructor.burgerConstructor} mt-2`}>
@@ -195,16 +193,16 @@ function BurgerConstructor() {
         <div className="mr-10">
           <CurrencyIcon type="primary" />
         </div>
-
-        <Button
-          disabled={constructorBun === null}
-          htmlType="submit"
-          type="primary"
-          size="medium"
-          onClick={handleOpenModal}
-        >
-          Оформить заказ
-        </Button>
+        <form onSubmit={handleOpenModal}>
+          <Button
+            disabled={constructorBun === null}
+            htmlType="submit"
+            type="primary"
+            size="medium"
+          >
+            Оформить заказ
+          </Button>
+        </form>
       </div>
 
       {isModalVisible && (
