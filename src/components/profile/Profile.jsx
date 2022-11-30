@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../services/actions/profile";
 import { editUser } from "../../services/actions/editProfile";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import stylesProfile from "./profile.module.css";
 
 import AppHeader from "../app-header/AppHeader";
@@ -16,9 +16,12 @@ import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
+import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 
 function Profile() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
@@ -46,14 +49,12 @@ function Profile() {
   };
 
   const handleSave = () => {
-   
     dispatch(editUser(newName, newEmail));
   };
   const handleCancel = () => {
     setNewName(name);
     setNewEmail(email);
   };
-  
 
   const handleLogOut = () => {
     fetchWithRefresh(LOGOUT_URL, {
@@ -72,6 +73,8 @@ function Profile() {
     })
       .then((res) => {
         if (res && res.success) {
+          dispatch({ type: LOGOUT_SUCCESS });
+          history.push('/login')
         }
       })
       .catch((err) => {});
@@ -85,6 +88,7 @@ function Profile() {
       <div className={stylesProfile.main}>
         <div className={`${stylesProfile.nav} text text_type_main-medium `}>
           <NavLink
+            exact
             to="/profile"
             activeClassName={stylesProfile.activeLink}
             className="text_color_inactive"
@@ -92,6 +96,7 @@ function Profile() {
             Профиль
           </NavLink>
           <NavLink
+            exact
             to="/profile/orders"
             activeClassName={stylesProfile.activeLink}
             className="text_color_inactive"
@@ -99,7 +104,8 @@ function Profile() {
             История заказов
           </NavLink>
           <NavLink
-            to="/profile/orders/:id"
+          exact
+            to="/login"
             activeClassName={stylesProfile.activeLink}
             className="text_color_inactive"
             onClick={handleLogOut}
@@ -127,7 +133,11 @@ function Profile() {
           />
 
           <div className={stylesProfile.buttons}>
-            <a onClick={handleCancel} className="text text_type_main-default" href="#">
+            <a
+              onClick={handleCancel}
+              className="text text_type_main-default"
+              href="#"
+            >
               Отмена
             </a>
             <Button

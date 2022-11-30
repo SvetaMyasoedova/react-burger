@@ -4,7 +4,6 @@ import { сurrentIngredientReducer } from "./сurrentIngredientReducer";
 import { orderReducer } from "./orderReducer";
 import { constructorReducer } from "./constructorReducer";
 import { registerReducer } from "./registerReducer";
-import { loginReducer } from "./loginReducer";
 import { profileReducer } from "./profileReducer";
 
 export const rootReducer = combineReducers({
@@ -13,6 +12,5 @@ export const rootReducer = combineReducers({
   orderReducer: orderReducer,
   constructorReducer: constructorReducer,
   registerReducer: registerReducer,
-  loginReducer: loginReducer, 
   profileReducer: profileReducer,
 });

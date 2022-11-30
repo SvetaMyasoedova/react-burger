@@ -55,14 +55,13 @@ function App() {
           <ResetPassworddPage />
         </Route>
 
-        <Route path='/ingredients/:ingredientId' exact={true}>
+        <Route path="/ingredients/:ingredientId" exact={true}>
           <IngredientDetails />
         </Route>
 
-        <ProtectedRoute path="/">
+        <ProtectedRoute path="/profile">
           <ProfilePage />
         </ProtectedRoute>
-
       </Switch>
 
       {background && (

@@ -18,7 +18,7 @@ import getLogin from "../../services/actions/login";
 
 function LoginList() {
   const dispatch = useDispatch();
-  const { isLogin } = useSelector((state) => state.loginReducer);
+  const { isLogin } = useSelector((state) => state.profileReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
