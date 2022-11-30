@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory} from "react-router-dom";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
 import {
@@ -27,6 +28,8 @@ import ConstructorElementWrapper from "./ConstructorElementWrapper";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { isLogin } = useSelector((state) => state.profileReducer);
 
   const { constructorBun } = useSelector((state) => state.constructorReducer);
   const { constructorIngredients } = useSelector(
@@ -95,6 +98,11 @@ function BurgerConstructor() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = (order) => {
+
+    if (!isLogin) {
+      history.push('/login')
+      
+    }
     setIsModalVisible(true);
   };
 
@@ -117,6 +125,7 @@ function BurgerConstructor() {
       </p>
     </div>
   );
+
 
   return (
     <section className={`${stylesConstructor.burgerConstructor} mt-2`}>

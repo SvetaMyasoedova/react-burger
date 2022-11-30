@@ -25,17 +25,23 @@ export function getOrder() {
     orderIds.unshift(getState().constructorReducer.constructorBun._id);
     orderIds.push(getState().constructorReducer.constructorBun._id);
 
-    fetchWithRefresh(ORDER_URL, {
+    fetch(ORDER_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: "Bearer " + getCookie("token"),
       },
       body: JSON.stringify({
         ingredients: orderIds,
       }),
     })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("");
+        } else {
+          return res.json();
+        }
+      })
       .then((res) => {
         if (res && res.success) {
           dispatch({
