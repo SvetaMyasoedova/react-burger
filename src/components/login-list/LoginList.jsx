@@ -40,11 +40,7 @@ function LoginList() {
 
   return (
     <div>
-      <div className="mb-30">
-        <AppHeader />
-      </div>
-
-      <div className={`${stylesLogin.main} mb-10`}>
+      <div className={`${stylesLogin.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Вход</p>
       </div>
       <div className={`${stylesLogin.input} mb-5`}>
