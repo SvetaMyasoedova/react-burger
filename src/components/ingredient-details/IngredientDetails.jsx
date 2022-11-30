@@ -41,7 +41,16 @@ function IngredientDetails() {
     return null;
   }
 
-  return <IngredientDetailsCard ingredient={currentIngredient} />;
+  return (
+    <>
+      {background ? null : (
+        <div className={`${styleIngredientDetails.wrapper} pl-10 pr-10 pt-10`}>
+          <div className="text text_type_main-large">Детали ингредиента</div>
+        </div>
+      )}
+      <IngredientDetailsCard ingredient={currentIngredient} />
+    </>
+  );
 }
 
 IngredientDetails.propTypes = {
