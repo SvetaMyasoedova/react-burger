@@ -19,7 +19,7 @@ export const Password = ({ placeholder, onChange, value, icon }) => {
 };
 
 Password.propTypes = {
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,

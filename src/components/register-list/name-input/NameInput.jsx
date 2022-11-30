@@ -29,7 +29,7 @@ export const NameInput = ({placeholder, onChange, value, icon}) => {
 };
 
 NameInput.propTypes = {
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
