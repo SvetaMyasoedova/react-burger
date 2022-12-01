@@ -6,7 +6,7 @@ import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import stylesApp from "./app.module.css"
+import stylesApp from "./app.module.css";
 import AppHeader from "../app-header/AppHeader";
 import BurgerIngredients from "../burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor";
@@ -21,6 +21,7 @@ import { ProtectedRoute } from "../protected-route/ProtectedRoute";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getUser } from "../../services/actions/profile";
+import { getIngredients } from "../../services/actions/burgerIngredients";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,11 @@ function App() {
   const handleModalClose = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    console.log("getIngredients() in app");
+    dispatch(getIngredients());
+  }, []);
 
   // useEffect(() => {
   //   dispatch(getUser());

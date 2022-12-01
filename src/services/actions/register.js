@@ -1,9 +1,10 @@
 import { REGISTER_URL } from "../../utils/urls";
 import { setCookie } from "../../utils/cookie";
+import { checkReponse } from "../../utils/refreshToken";
 
-export const GET_REGISTER = "GET_INGREDIENTS";
-export const GET_REGISTER_FAILED = "GET_INGREDIENTS_FAILED";
-export const GET_REGISTER_SUCCESS = "GET_INGREDIENTS_SUCCESS";
+export const GET_REGISTER = "GET_REGISTER";
+export const GET_REGISTER_FAILED = "GET_REGISTER_FAILED";
+export const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
 
 const getRegister = (email, password, userName) => {
   return function (dispatch) {
@@ -26,13 +27,7 @@ const getRegister = (email, password, userName) => {
         name: userName,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({
@@ -47,11 +42,10 @@ const getRegister = (email, password, userName) => {
           if (authToken) {
             setCookie("token", authToken);
           }
-          
-          if (res.refreshToken) {
-            setCookie("refreshToken", res.refreshToken);
-          }
 
+          if (res.refreshToken) {
+            localStorage.setItem("refreshToken", res.refreshToken);
+          }
         } else {
           dispatch({
             type: GET_REGISTER_FAILED,

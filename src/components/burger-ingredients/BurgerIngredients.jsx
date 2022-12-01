@@ -26,10 +26,9 @@ function BurgerIngredients() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getIngredients());
-    
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getIngredients());
+  // }, [dispatch]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -52,7 +51,13 @@ function BurgerIngredients() {
   const { ref: refMain, inView: inViewMain } = useInView({
     threshold: 0,
   });
-  
+
+  console.log("data");
+  console.log(data);
+
+  if (data === undefined) {
+    return null;
+  }
 
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
@@ -133,8 +138,6 @@ function BurgerIngredients() {
             })}
         </div>
       </div>
-
-      
     </section>
   );
 }
