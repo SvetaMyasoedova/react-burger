@@ -5,7 +5,7 @@ import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 function IngredientDetailsCard({ ingredient }) {
   return (
     <div className={styleIngredientDetails.wrapper}>
-      <img src={ingredient.image} alt="" className="mb-4" />
+      <img src={ingredient.image} alt={ingredient.name} className="mb-4" />
       <div className="mb-8 text text_type_main-medium">
         {ingredient.name}
       </div>

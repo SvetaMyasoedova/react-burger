@@ -31,7 +31,7 @@ function IngredientList({ ingredient, icon, onClick, id, type, count }) {
         }}
         className={`${stylesList.wrapper} mb-10`}
       >
-        <img src={ingredient.image} alt="" className="mb-1" />
+        <img src={ingredient.image} alt={ingredient.name} className="mb-1" />
         {count > 0 && (
           <div className={stylesList.counter}>
             <Counter count={count} size="default" />
