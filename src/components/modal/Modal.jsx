@@ -10,7 +10,7 @@ const modalRoot = document.getElementById("modal-root");
 function Modal({ header, onClose, children }) {
   useEffect(() => {
     const close = (e) => {
-      if (e.keyCode === 27) {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
