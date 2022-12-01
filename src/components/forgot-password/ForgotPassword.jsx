@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import stylesForgotPassword from "./forgot-password.module.css";
 
-import AppHeader from "../app-header/AppHeader";
+
 
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +12,8 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
+
+import { checkReponse } from "../../utils/refreshToken";
 
 function ForgotPassword() {
   const history = useHistory();
@@ -43,13 +45,7 @@ function ForgotPassword() {
         email: value,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           history.push("/reset-password", { from: "/forgot-password" });

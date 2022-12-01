@@ -7,6 +7,7 @@ import { NameInput } from "../register-list/name-input/NameInput";
 import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
+import { checkReponse } from "../../utils/refreshToken";
 
 function ResetPassword() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function ResetPassword() {
   };
 
   const handlePasswordReset = () => {
-    fetch("  https://norma.nomoreparties.space/api/password-reset/reset", {
+    fetch("https://norma.nomoreparties.space/api/password-reset/reset", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -41,13 +42,7 @@ function ResetPassword() {
         token: code,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           history.push("/login");
