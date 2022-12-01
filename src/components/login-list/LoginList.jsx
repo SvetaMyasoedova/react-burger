@@ -43,25 +43,23 @@ function LoginList() {
       <div className={`${stylesLogin.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Вход</p>
       </div>
-      <div className={`${stylesLogin.input} mb-5`}>
-        <EmailInput
-          onChange={onChangeEmail}
-          value={email}
-          name={"email"}
-          isIcon={false}
-        />
-        <Password onChange={onChangePassword} value={password} />
-      </div>
-      <div className={`${stylesLogin.button} mb-20`}>
-        <Button
-          onClick={handleLogin}
-          htmlType="button"
-          type="primary"
-          size="large"
-        >
-          Войти
-        </Button>
-      </div>
+      <form onSubmit={handleLogin}>
+        <div className={`${stylesLogin.input} mb-5`}>
+          <EmailInput
+            onChange={onChangeEmail}
+            value={email}
+            name={"email"}
+            isIcon={false}
+          />
+          <Password onChange={onChangePassword} value={password} />
+        </div>
+        <div className={`${stylesLogin.button} mb-20`}>
+          <Button htmlType="button" type="submit" size="large">
+            Войти
+          </Button>
+        </div>
+      </form>
+
       <div
         className={` ${stylesLogin.text} text text_type_main-default text_color_inactive`}
       >
