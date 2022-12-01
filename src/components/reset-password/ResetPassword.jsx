@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import stylesResetPassword from "./reset-password.module.css";
 
-import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "../register-list/name-input/NameInput";
 import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -51,6 +50,7 @@ function ResetPassword() {
       })
       .then((res) => {
         if (res && res.success) {
+          history.push("/login");
         }
       });
   };
@@ -58,15 +58,6 @@ function ResetPassword() {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (
-      !(history.location.state === undefined) &&
-      history.location.state.from === "/forgot-password"
-    ) {
-      history.location.state = undefined;
-    }
-  }, []);
 
   if (history.location.state === undefined) {
     return <Redirect to="/" />;
