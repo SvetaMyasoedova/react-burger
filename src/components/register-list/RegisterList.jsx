@@ -4,9 +4,8 @@ import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
 import { getUser } from "../../services/actions/profile";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 
-import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "./name-input/NameInput";
 import { Password } from "./password-input/Password";
 import {
@@ -16,6 +15,7 @@ import {
 
 function RegisterList() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isLogin } = useSelector((state) => state.profileReducer);
 
   const [userName, setUserName] = useState("");
@@ -42,7 +42,7 @@ function RegisterList() {
   }, []);
 
   if (isLogin) {
-    return <Redirect to={Redirect.state?.from || "/"} />;
+    return <Redirect to={location?.state?.from || "/"} />;
   }
 
   return (

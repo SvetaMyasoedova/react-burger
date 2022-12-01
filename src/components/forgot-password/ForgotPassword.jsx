@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import stylesForgotPassword from "./forgot-password.module.css";
 
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory, Redirect, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -16,6 +16,7 @@ import { checkReponse } from "../../utils/refreshToken";
 function ForgotPassword() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isLogin } = useSelector((state) => state.profileReducer);
   const [value, setValue] = useState("");
 
@@ -53,7 +54,7 @@ function ForgotPassword() {
   };
 
   if (isLogin) {
-    return <Redirect to={Redirect.state?.from || "/"} />;
+    return <Redirect to={location?.state?.from || "/"} />;
   }
 
   return (

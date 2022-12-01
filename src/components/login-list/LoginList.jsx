@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 
 import { useState} from "react";
 
@@ -16,6 +16,7 @@ import getLogin from "../../services/actions/login";
 
 function LoginList() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { isLogin } = useSelector((state) => state.profileReducer);
 
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ function LoginList() {
   };
 
   if (isLogin) {
-    return <Redirect to={Redirect.state?.from || "/"} />;
+    return <Redirect to={location?.state?.from || "/"} />;
   }
 
   return (

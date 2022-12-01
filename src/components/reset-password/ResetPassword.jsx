@@ -1,4 +1,4 @@
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import stylesResetPassword from "./reset-password.module.css";
@@ -12,6 +12,7 @@ import { checkReponse } from "../../utils/refreshToken";
 function ResetPassword() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const { isLogin } = useSelector((state) => state.profileReducer);
   const [code, setCode] = useState("");
 
@@ -64,7 +65,7 @@ function ResetPassword() {
   }
 
   if (isLogin) {
-    return <Redirect to={Redirect.state?.from || "/"} />;
+    return <Redirect to={location?.state?.from || "/"} />;
   }
   return (
     <div>
