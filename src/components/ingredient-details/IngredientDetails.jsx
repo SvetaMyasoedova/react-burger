@@ -10,7 +10,7 @@ import { getIngredients } from "../../services/actions/burgerIngredients";
 import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
 function IngredientDetails() {
-  let { ingredientId } = useParams();
+  const { ingredientId } = useParams();
   const dispatch = useDispatch();
 
   const { currentIngredient } = useSelector(
