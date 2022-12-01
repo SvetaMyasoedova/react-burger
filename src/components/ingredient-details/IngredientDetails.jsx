@@ -1,54 +1,58 @@
 import styleIngredientDetails from "./ingredient-details.module.css";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
+
+import IngredientDetailsCard from "./ingredientDetailsCard";
+
+import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
 function IngredientDetails() {
+  const { ingredientId } = useParams();
+  const dispatch = useDispatch();
+
   const { currentIngredient } = useSelector(
     (state) => state.сurrentIngredientReducer
   );
 
-  return (
-    <div className={styleIngredientDetails.wrapper}>
-      <img src={currentIngredient.image} alt="" className="mb-4" />
-      <div className="mb-8 text text_type_main-medium">
-        {currentIngredient.name}
-      </div>
+  const { data } = useSelector((state) => state.dataReducer);
 
-      <div className={`${styleIngredientDetails.nutrients} pb-15`}>
-        <div className={styleIngredientDetails.aboutNutrients}>
-          <p className="text text_type_main-default text_color_inactive">
-            Калории, ккал
-          </p>
-          <div className="text text_type_digits-default text_color_inactive">
-            {currentIngredient.calories}
-          </div>
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
+  useEffect(() => {
+    if (data.length !== 0 && !background) {
+      dispatch({
+        currentIngredient: data.find((item) => item._id === ingredientId),
+        type: CURRENT_INGREDIENT,
+      });
+    }
+
+    if (
+      background &&
+      (currentIngredient === null || currentIngredient === undefined)
+    ) {
+      dispatch({
+        currentIngredient: data.find((item) => item._id === ingredientId),
+        type: CURRENT_INGREDIENT,
+      });
+    }
+  }, [data]);
+
+  if (currentIngredient === null || currentIngredient === undefined) {
+    return null;
+  }
+
+  return (
+    <>
+      {background ? null : (
+        <div className={`${styleIngredientDetails.wrapper} pl-10 pr-10 pt-10`}>
+          <div className="text text_type_main-large">Детали ингредиента</div>
         </div>
-        <div className={styleIngredientDetails.aboutNutrients}>
-          <p className="text text_type_main-default text_color_inactive">
-            Белки, г
-          </p>
-          <div className="text text_type_digits-default text_color_inactive">
-            {currentIngredient.proteins}
-          </div>
-        </div>
-        <div className={styleIngredientDetails.aboutNutrients}>
-          <p className="text text_type_main-default text_color_inactive">
-            Жиры, г
-          </p>
-          <div className="text text_type_digits-default text_color_inactive">
-            {currentIngredient.fat}
-          </div>
-        </div>
-        <div className={styleIngredientDetails.aboutNutrients}>
-          <p className="text text_type_main-default text_color_inactive">
-            Углеводы, г
-          </p>
-          <div className="text text_type_digits-default text_color_inactive">
-            {currentIngredient.carbohydrates}
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+      <IngredientDetailsCard ingredient={currentIngredient} />
+    </>
   );
 }
 

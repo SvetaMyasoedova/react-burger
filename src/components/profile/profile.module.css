@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  gap: 120px;
+  max-height: 860px;
+  margin-left: 340px;
+  margin-right: 720px;
+  margin-bottom: 80px;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.activeLink {
+  color: #f2f2f3;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.buttons {
+  display: flex;
+  
+  align-items: center;
+  margin-left: 165px;
+}
+
+.text {
+	max-width: 320px;
+	margin-left: 340px;
+	opacity: 0.4;
+}

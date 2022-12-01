@@ -1,5 +1,5 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
-
+import { checkReponse } from "../../utils/refreshToken";
 export const GET_INGREDIENTS = "GET_INGREDIENTS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
@@ -13,14 +13,7 @@ export function getIngredients() {
     });
 
     fetch(INGREDIENTS_URL)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
-
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({

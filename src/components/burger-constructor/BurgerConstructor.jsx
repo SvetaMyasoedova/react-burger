@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 
 import {
@@ -27,6 +28,8 @@ import ConstructorElementWrapper from "./ConstructorElementWrapper";
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { isLogin } = useSelector((state) => state.profileReducer);
 
   const { constructorBun } = useSelector((state) => state.constructorReducer);
   const { constructorIngredients } = useSelector(
@@ -94,7 +97,11 @@ function BurgerConstructor() {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = (order) => {
+  const handleOpenModal = (e) => {
+    e.preventDefault();
+    if (!isLogin) {
+      history.push("/login");
+    }
     setIsModalVisible(true);
   };
 
@@ -186,20 +193,20 @@ function BurgerConstructor() {
         <div className="mr-10">
           <CurrencyIcon type="primary" />
         </div>
-
-        <Button
-          disabled={constructorBun === null}
-          htmlType="submit"
-          type="primary"
-          size="medium"
-          onClick={handleOpenModal}
-        >
-          Оформить заказ
-        </Button>
+        <form onSubmit={handleOpenModal}>
+          <Button
+            disabled={constructorBun === null}
+            htmlType="submit"
+            type="primary"
+            size="medium"
+          >
+            Оформить заказ
+          </Button>
+        </form>
       </div>
 
       {isModalVisible && (
-        <Modal onClose={handleCloseModal}>
+        <Modal onClose={handleCloseModal} header={""}>
           <OrderDetails />
         </Modal>
       )}

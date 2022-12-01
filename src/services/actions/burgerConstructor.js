@@ -1,4 +1,5 @@
 import { ORDER_URL } from "../../utils/urls";
+import { checkReponse } from "../../utils/refreshToken";
 
 export const CONSTRUCTOR_BUN = "CONSTRUCTOR_BUN";
 export const CONSTRUCTOR_MAIN = "CONSTRUCTOR_MAIN";
@@ -33,13 +34,7 @@ export function getOrder() {
         ingredients: orderIds,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({

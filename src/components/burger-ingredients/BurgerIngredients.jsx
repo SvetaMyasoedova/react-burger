@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import {
-  CURRENT_INGREDIENT,
-  CLEAR_CURRENT_INGREDIENT,
-} from "../../services/actions/burgerIngredients";
+import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
-import { getIngredients } from "../../services/actions/burgerIngredients";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
-import Modal from "../modal/Modal";
-import IngredientDetails from "../ingredient-details/IngredientDetails";
 
 function BurgerIngredients() {
   const { data } = useSelector((state) => state.dataReducer);
@@ -26,20 +20,11 @@ function BurgerIngredients() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = (ingredient) => {
     dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalVisible(false);
-    dispatch({ type: CLEAR_CURRENT_INGREDIENT });
   };
 
   const { ref: refBuns, inView: inViewBuns } = useInView({
@@ -51,6 +36,10 @@ function BurgerIngredients() {
   const { ref: refMain, inView: inViewMain } = useInView({
     threshold: 0,
   });
+
+  if (data === undefined) {
+    return null;
+  }
 
   return (
     <section className={`${stylesIngredients.burgerIngredients} mr-10`}>
@@ -95,7 +84,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={sauce}
                   count={
-                    ingredientsCount && 
+                    ingredientsCount &&
                     ingredientsCount.hasOwnProperty(sauce._id)
                       ? ingredientsCount[sauce._id]
                       : 0
@@ -119,7 +108,7 @@ function BurgerIngredients() {
                   onClick={handleOpenModal}
                   ingredient={main}
                   count={
-                    ingredientsCount && 
+                    ingredientsCount &&
                     ingredientsCount.hasOwnProperty(main._id)
                       ? ingredientsCount[main._id]
                       : 0
@@ -131,12 +120,6 @@ function BurgerIngredients() {
             })}
         </div>
       </div>
-
-      {isModalVisible && (
-        <Modal header={"Детали ингредиента"} onClose={handleCloseModal}>
-          <IngredientDetails />
-        </Modal>
-      )}
     </section>
   );
 }
