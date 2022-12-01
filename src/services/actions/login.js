@@ -1,5 +1,6 @@
 import { LOGIN_URL } from "../../utils/urls";
 import { setCookie } from "../../utils/cookie";
+import { checkReponse } from "../../utils/refreshToken";
 
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
@@ -25,13 +26,7 @@ const getLogin = (email, password) => {
         password: password,
       }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("");
-        } else {
-          return res.json();
-        }
-      })
+      .then(checkReponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({
