@@ -7,20 +7,20 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import "./App.css";
-import AppHeader from "./components/app-header/AppHeader";
-import BurgerIngredients from "./components/burger-ingredients/BurgerIngredients";
-import BurgerConstructor from "./components/burger-constructor/BurgerConstructor";
+import AppHeader from "../app-header/AppHeader";
+import BurgerIngredients from "../burger-ingredients/BurgerIngredients";
+import BurgerConstructor from "../burger-constructor/BurgerConstructor";
 import {
   RegisterPage,
   LoginPage,
   ForgotPasswordPage,
   ResetPassworddPage,
   ProfilePage,
-} from "./pages";
-import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
-import Modal from "./components/modal/Modal";
-import IngredientDetails from "./components/ingredient-details/IngredientDetails";
-import { getUser } from "./services/actions/profile";
+} from "../../pages";
+import { ProtectedRoute } from "../protected-route/ProtectedRoute";
+import Modal from "../modal/Modal";
+import IngredientDetails from "../ingredient-details/IngredientDetails";
+import { getUser } from "../../services/actions/profile";
 
 function App() {
   const location = useLocation();
