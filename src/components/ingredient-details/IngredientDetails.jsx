@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import IngredientDetailsCard from "./ingredientDetailsCard";
-import { getIngredients } from "../../services/actions/burgerIngredients";
 
 import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
@@ -21,19 +20,6 @@ function IngredientDetails() {
 
   const location = useLocation();
   const background = location.state && location.state.background;
-
-  useEffect(() => {
-    if (!background) {
-      dispatch(getIngredients());
-    }
-
-    if (
-      background &&
-      (currentIngredient === null || currentIngredient === undefined)
-    ) {
-      dispatch(getIngredients());
-    }
-  }, []);
 
   useEffect(() => {
     if (data.length !== 0 && !background) {
