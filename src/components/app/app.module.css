@@ -1,13 +1,8 @@
-.App {
-  /* margin: 0 auto;
-  width: 1280px; */
-}
-
 .main {
   display: flex;
   flex-direction: column;
   max-width: 1260px;
-  
+
   margin: 0 auto;
 }
 

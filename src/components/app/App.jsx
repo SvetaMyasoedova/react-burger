@@ -6,7 +6,7 @@ import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import "./App.css";
+import stylesApp from "./app.module.css"
 import AppHeader from "../app-header/AppHeader";
 import BurgerIngredients from "../burger-ingredients/BurgerIngredients";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor";
@@ -41,9 +41,9 @@ function App() {
       <AppHeader />
       <Switch location={background || location}>
         <Route path="/" exact={true}>
-          <main className="main">
+          <main className={stylesApp.main}>
             <p className="text text_type_main-large mb-5">Соберите бургер</p>
-            <section className="burgerSection">
+            <section className={stylesApp.burgerSection}>
               <DndProvider backend={HTML5Backend}>
                 <BurgerIngredients />
                 <BurgerConstructor />
