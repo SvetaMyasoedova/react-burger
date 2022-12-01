@@ -17,13 +17,11 @@ function IngredientList({ ingredient, icon, onClick, id, type, count }) {
 
   return (
     <Link
-      key={ingredientId}
       to={{
         pathname: `/ingredients/${ingredientId}`,
         state: { background: location },
       }}
-      className= {stylesList.link}
-      
+      className={stylesList.link}
     >
       <div
         ref={dragRef}
