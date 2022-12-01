@@ -17,7 +17,6 @@ import {
 import getLogin from "../../services/actions/login";
 
 function LoginList() {
-  console.log("LoginPage");
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.profileReducer);
 

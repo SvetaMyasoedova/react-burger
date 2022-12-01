@@ -45,12 +45,10 @@ function Profile() {
   };
 
   const handleSave = (e) => {
-    console.log("handleSave");
     e.preventDefault();
     dispatch(editUser(newName, newEmail));
   };
   const handleCancel = () => {
-    console.log("handleCancel");
     setNewName(name);
     setNewEmail(email);
   };
