@@ -1,12 +1,10 @@
 import { Link, Redirect } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import stylesLogin from "./login-list.module.css";
-
-import AppHeader from "../app-header/AppHeader";
 
 import { Password } from "../register-list/password-input/Password";
 
@@ -30,7 +28,8 @@ function LoginList() {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     dispatch(getLogin(email, password));
   };
 
@@ -54,7 +53,7 @@ function LoginList() {
           <Password onChange={onChangePassword} value={password} />
         </div>
         <div className={`${stylesLogin.button} mb-20`}>
-          <Button htmlType="button" type="submit" size="large">
+          <Button htmlType="submit" type="primary" size="large">
             Войти
           </Button>
         </div>

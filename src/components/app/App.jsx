@@ -34,7 +34,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("getIngredients() in app");
     dispatch(getIngredients());
   }, []);
 

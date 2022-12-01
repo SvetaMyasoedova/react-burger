@@ -52,9 +52,6 @@ function BurgerIngredients() {
     threshold: 0,
   });
 
-  console.log("data");
-  console.log(data);
-
   if (data === undefined) {
     return null;
   }

@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 import stylesForgotPassword from "./forgot-password.module.css";
 
-
-
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -29,7 +27,8 @@ function ForgotPassword() {
     dispatch(getUser());
   }, []);
 
-  const handlePasswordRecovery = () => {
+  const handlePasswordRecovery = (e) => {
+    e.preventDefault();
     fetch("https://norma.nomoreparties.space/api/password-reset", {
       method: "POST",
       mode: "cors",
@@ -62,24 +61,27 @@ function ForgotPassword() {
       <div className={`${stylesForgotPassword.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
-      <div className={`${stylesForgotPassword.input} mb-5`}>
-        <EmailInput
-          onChange={onChange}
-          value={value}
-          name={"email"}
-          isIcon={false}
-        />
-      </div>
-      <div className={`${stylesForgotPassword.button} mb-20`}>
-        <Button
-          onClick={handlePasswordRecovery}
-          htmlType="button"
-          type="primary"
-          size="large"
-        >
-          Восстановить
-        </Button>
-      </div>
+      <form onSubmit={handlePasswordRecovery}>
+        <div className={`${stylesForgotPassword.input} mb-5`}>
+          <EmailInput
+            onChange={onChange}
+            value={value}
+            name={"email"}
+            isIcon={false}
+          />
+        </div>
+        <div className={`${stylesForgotPassword.button} mb-20`}>
+          <Button
+            // onClick={handlePasswordRecovery}
+            htmlType="submit"
+            type="primary"
+            size="large"
+          >
+            Восстановить
+          </Button>
+        </div>
+      </form>
+
       <div
         className={` ${stylesForgotPassword.text} text text_type_main-default text_color_inactive`}
       >

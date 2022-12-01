@@ -25,7 +25,8 @@ function ResetPassword() {
     setPassword(e.target.value);
   };
 
-  const handlePasswordReset = () => {
+  const handlePasswordReset = (e) => {
+    e.preventDefault();
     fetch("https://norma.nomoreparties.space/api/password-reset/reset", {
       method: "POST",
       mode: "cors",
@@ -70,28 +71,32 @@ function ResetPassword() {
       <div className={`${stylesResetPassword.main} mt-30 mb-10`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
       </div>
-      <div className={`${stylesResetPassword.input} mb-5`}>
-        <Password
-          placeholder="Введите новый пароль"
-          onChange={onChangePassword}
-          value={password}
-        />
-        <NameInput
-          placeholder="Введите код из письма"
-          onChange={onChangeCode}
-          value={code}
-        />
-      </div>
-      <div className={`${stylesResetPassword.button} mb-20`}>
-        <Button
-          onClick={handlePasswordReset}
-          htmlType="button"
-          type="primary"
-          size="large"
-        >
-          Сохранить
-        </Button>
-      </div>
+
+      <form onSubmit={handlePasswordReset}>
+        <div className={`${stylesResetPassword.input} mb-5`}>
+          <Password
+            placeholder="Введите новый пароль"
+            onChange={onChangePassword}
+            value={password}
+          />
+          <NameInput
+            placeholder="Введите код из письма"
+            onChange={onChangeCode}
+            value={code}
+          />
+        </div>
+        <div className={`${stylesResetPassword.button} mb-20`}>
+          <Button
+            // onClick={handlePasswordReset}
+            htmlType="submit"
+            type="primary"
+            size="large"
+          >
+            Сохранить
+          </Button>
+        </div>
+      </form>
+
       <div
         className={` ${stylesResetPassword.text} text text_type_main-default text_color_inactive`}
       >
