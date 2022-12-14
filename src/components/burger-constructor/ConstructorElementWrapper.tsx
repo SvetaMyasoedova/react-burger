@@ -11,12 +11,19 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function ConstructorElementWrapper(
-  ingredient: TIngredient,
-  index: number,
-  onDelete: any,
-  sortIngredients: any,
-) {
+interface IWrapper {
+  ingredient: TIngredient;
+  index: number;
+  onDelete: any;
+  sortIngredients: any;
+}
+
+function ConstructorElementWrapper({
+  ingredient,
+  index,
+  onDelete,
+  sortIngredients,
+}: IWrapper) {
   ingredient.index = index;
 
   const ref = useRef<HTMLInputElement>(null);
@@ -84,11 +91,11 @@ function ConstructorElementWrapper(
   );
 }
 
-ConstructorElementWrapper.propTypes = {
-  ingredient: ingredientPropTypes.isRequired,
-  index: PropTypes.number.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  sortIngredients: PropTypes.func.isRequired,
-};
+// ConstructorElementWrapper.propTypes = {
+//   ingredient: ingredientPropTypes.isRequired,
+//   index: PropTypes.number.isRequired,
+//   onDelete: PropTypes.func.isRequired,
+//   sortIngredients: PropTypes.func.isRequired,
+// };
 
 export default ConstructorElementWrapper;

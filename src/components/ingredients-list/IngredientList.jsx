@@ -52,8 +52,8 @@ IngredientList.propTypes = {
   ingredient: ingredientPropTypes.isRequired,
   icon: PropTypes.element.isRequired,
   onClick: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  type: PropTypes.string,
   count: PropTypes.number.isRequired,
 };
 

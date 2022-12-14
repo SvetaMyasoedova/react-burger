@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 import {
@@ -30,9 +30,11 @@ import ConstructorElementWrapper from "./ConstructorElementWrapper";
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isLogin } = useSelector((state: any) => state.profileReducer );
+  const { isLogin } = useSelector((state: any) => state.profileReducer);
 
-  const { constructorBun } = useSelector((state: any) => state.constructorReducer);
+  const { constructorBun } = useSelector(
+    (state: any) => state.constructorReducer
+  );
   const { constructorIngredients } = useSelector(
     (state: any) => state.constructorReducer
   );
@@ -91,7 +93,7 @@ function BurgerConstructor() {
 
   const totalPrice = useMemo<number>(() => {
     return constructorIngredients.reduce(
-      (acc:number, item: any) => acc + item.price,
+      (acc: number, item: any) => acc + item.price,
       constructorBun ? constructorBun.price * 2 : 0
     );
   }, [constructorBun, constructorIngredients]);
@@ -160,15 +162,17 @@ function BurgerConstructor() {
           </div>
         ) : (
           <div className={`${stylesConstructor.box}  mb-2`}>
-            {constructorIngredients.map((ingredient: TIngredient, index: number) => (
-              <ConstructorElementWrapper
-                key={ingredient.uuid}
-                ingredient={ingredient}
-                index={index}
-                onDelete={onDelete}
-                sortIngredients={sortIngredients}
-              />
-            ))}
+            {constructorIngredients.map(
+              (ingredient: TIngredient, index: number) => (
+                <ConstructorElementWrapper
+                  key={ingredient.uuid}
+                  index={index}
+                  ingredient={ingredient}
+                  onDelete={onDelete}
+                  sortIngredients={sortIngredients}
+                />
+              )
+            )}
           </div>
         )}
       </div>
@@ -215,6 +219,6 @@ function BurgerConstructor() {
   );
 }
 
-BurgerConstructor.propTypes = ingredientsPropTypes;
+// BurgerConstructor.propTypes = ingredientsPropTypes;
 
 export default BurgerConstructor;

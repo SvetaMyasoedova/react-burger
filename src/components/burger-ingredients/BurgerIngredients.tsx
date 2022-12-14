@@ -5,24 +5,25 @@ import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
-import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+import {TIngredient} from "../../services/types/data";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
 
 function BurgerIngredients() {
-  const { data } = useSelector((state) => state.dataReducer);
+  const { data } = useSelector((state: any) => state.dataReducer);
 
   const { ingredientsCount, constructorBun } = useSelector(
-    (state) => state.constructorReducer
+    (state: any) => state.constructorReducer
   );
 
   const dispatch = useDispatch();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = (ingredient) => {
+  const handleOpenModal = (ingredient: TIngredient) => {
     dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
     setIsModalVisible(true);
   };
@@ -54,8 +55,8 @@ function BurgerIngredients() {
 
         <div ref={refBuns} className={`${stylesIngredients.buns} ml-4`}>
           {data
-            .filter((bun) => bun.type === "bun")
-            .map((bun) => {
+            .filter((bun: TIngredient) => bun.type === "bun")
+            .map((bun: TIngredient) => {
               return (
                 <IngredientList
                   type={bun.type}
@@ -75,8 +76,8 @@ function BurgerIngredients() {
         <h4 className="text text_type_main-medium mb-6">Соусы</h4>
         <div ref={refSauce} className={`${stylesIngredients.buns} mb-8 ml-4`}>
           {data
-            .filter((sauce) => sauce.type === "sauce")
-            .map((sauce) => {
+            .filter((sauce: TIngredient) => sauce.type === "sauce")
+            .map((sauce: TIngredient) => {
               return (
                 <IngredientList
                   type={sauce.type}
@@ -99,8 +100,8 @@ function BurgerIngredients() {
         <h4 className="text text_type_main-medium pt-10 mt-15 mb-6">Начинки</h4>
         <div ref={refMain} className={`${stylesIngredients.buns} mb-8 ml-4`}>
           {data
-            .filter((main) => main.type === "main")
-            .map((main) => {
+            .filter((main: TIngredient) => main.type === "main")
+            .map((main: TIngredient) => {
               return (
                 <IngredientList
                   type={main.type}
@@ -124,6 +125,6 @@ function BurgerIngredients() {
   );
 }
 
-BurgerIngredients.propTypes = ingredientsPropTypes;
+// BurgerIngredients.propTypes = ingredientsPropTypes;
 
 export default BurgerIngredients;
