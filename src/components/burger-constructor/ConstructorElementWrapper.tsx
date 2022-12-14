@@ -1,7 +1,8 @@
 import { useRef } from "react";
-import { useDrop, useDrag } from "react-dnd";
+import { useDrop, useDrag, XYCoord } from "react-dnd";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+import { TIngredient } from "../../services/types/data";
 
 import stylesWrapper from "./wrapper.module.css";
 
@@ -10,18 +11,18 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function ConstructorElementWrapper({
-  ingredient,
-  index,
-  onDelete,
-  sortIngredients,
-}) {
+function ConstructorElementWrapper(
+  ingredient: TIngredient,
+  index: number,
+  onDelete: any,
+  sortIngredients: any,
+) {
   ingredient.index = index;
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
   const [, drop] = useDrop({
     accept: ["sauce", "main"],
-    hover(item, monitor) {
+    hover(item: any, monitor) {
       if (item.index === undefined) {
         return;
       }
@@ -42,7 +43,7 @@ function ConstructorElementWrapper({
 
       const clientOffset = monitor.getClientOffset();
 
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
@@ -58,7 +59,7 @@ function ConstructorElementWrapper({
     },
   });
 
-  const [, drag] = useDrag(() => ({
+  const [, drag] = useDrag((): any => ({
     type: ingredient.type,
     item: ingredient,
   }));
