@@ -4,6 +4,7 @@ import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
+import { TIngredient } from "../../services/types/data";
 
 import {
   ConstructorElement,
@@ -29,16 +30,16 @@ import ConstructorElementWrapper from "./ConstructorElementWrapper";
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { isLogin } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state: any) => state.profileReducer );
 
-  const { constructorBun } = useSelector((state) => state.constructorReducer);
+  const { constructorBun } = useSelector((state: any) => state.constructorReducer);
   const { constructorIngredients } = useSelector(
-    (state) => state.constructorReducer
+    (state: any) => state.constructorReducer
   );
 
   const [, dropBunTop] = useDrop({
     accept: "bun",
-    drop(ingredient) {
+    drop(ingredient: TIngredient) {
       dispatch({
         type: CONSTRUCTOR_BUN,
         constructorBun: ingredient,
@@ -48,7 +49,7 @@ function BurgerConstructor() {
 
   const [, dropMain] = useDrop({
     accept: ["sauce", "main"],
-    drop(ingredient) {
+    drop(ingredient: TIngredient) {
       if (ingredient.hasOwnProperty("uuid")) {
         return;
       }
@@ -72,7 +73,7 @@ function BurgerConstructor() {
     },
   });
 
-  const onDelete = (ingredient) => {
+  const onDelete = (ingredient: TIngredient) => {
     dispatch({
       type: DELETE_CONSTRUCTOR_INGREDIENT,
       uuid: ingredient.uuid,
@@ -80,7 +81,7 @@ function BurgerConstructor() {
     });
   };
 
-  const sortIngredients = (dragIndex, hoverIndex) => {
+  const sortIngredients = (dragIndex: number, hoverIndex: number) => {
     dispatch({
       type: SORTABLE_INGREDIENT,
       hoverIndex: hoverIndex,
@@ -88,16 +89,16 @@ function BurgerConstructor() {
     });
   };
 
-  const totalPrice = useMemo(() => {
+  const totalPrice = useMemo<number>(() => {
     return constructorIngredients.reduce(
-      (acc, item) => acc + item.price,
+      (acc:number, item: any) => acc + item.price,
       constructorBun ? constructorBun.price * 2 : 0
     );
   }, [constructorBun, constructorIngredients]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleOpenModal = (e) => {
+  const handleOpenModal = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isLogin) {
       history.push("/login");
@@ -159,7 +160,7 @@ function BurgerConstructor() {
           </div>
         ) : (
           <div className={`${stylesConstructor.box}  mb-2`}>
-            {constructorIngredients.map((ingredient, index) => (
+            {constructorIngredients.map((ingredient: TIngredient, index: number) => (
               <ConstructorElementWrapper
                 key={ingredient.uuid}
                 ingredient={ingredient}
