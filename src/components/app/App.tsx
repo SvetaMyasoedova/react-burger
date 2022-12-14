@@ -2,6 +2,7 @@ import React from "react";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -20,11 +21,18 @@ import {
 import { ProtectedRoute } from "../protected-route/ProtectedRoute";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
-import { getUser } from "../../services/actions/profile";
 import { getIngredients } from "../../services/actions/burgerIngredients";
 
+type TLocationState = {
+  background: {
+    pathname: string;
+    search: string;
+    hash: string;
+    state: any;
+  };
+};
 function App() {
-  const location = useLocation();
+  const location = useLocation<TLocationState>();
   const history = useHistory();
   const dispatch = useDispatch();
   const background = location.state && location.state.background;
@@ -36,10 +44,6 @@ function App() {
   useEffect(() => {
     dispatch(getIngredients());
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, []);
 
   return (
     <>

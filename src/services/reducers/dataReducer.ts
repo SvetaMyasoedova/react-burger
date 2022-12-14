@@ -1,8 +1,9 @@
-import {
-  GET_INGREDIENTS,
-  GET_INGREDIENTS_FAILED,
-  GET_INGREDIENTS_SUCCESS,
-} from "../actions/burgerIngredients";
+// import {
+//   GET_INGREDIENTS,
+//   GET_INGREDIENTS_FAILED,
+//   GET_INGREDIENTS_SUCCESS,
+// } from "../actions/burgerIngredients";
+import { Action, ActionType  } from "../actions/burgerIngredients";
 
 const initialState = {
   dataRequest: false,
@@ -10,23 +11,23 @@ const initialState = {
   data: [],
 };
 
-export const dataReducer = (state = initialState, action) => {
+export const dataReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case GET_INGREDIENTS: {
+    case ActionType.GET_INGREDIENTS: {
       return {
         ...state,
         dataRequest: true,
         dataFailed: false,
       };
     }
-    case GET_INGREDIENTS_SUCCESS: {
+    case ActionType.GET_INGREDIENTS_SUCCESS: {
       return {
         ...state,
         data: action.data,
         dataRequest: false,
       };
     }
-    case GET_INGREDIENTS_FAILED: {
+    case ActionType.GET_INGREDIENTS_FAILED: {
       return {
         ...state,
         dataFailed: true,
