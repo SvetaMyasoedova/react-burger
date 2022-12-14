@@ -13,14 +13,23 @@ import { getUser } from "../../services/actions/profile";
 
 import { checkReponse } from "../../utils/refreshToken";
 
+type TLocationState = {
+  from: {
+    pathname: string;
+    search: string;
+    hash: string;
+    state: any;
+  }
+}
+
 function ForgotPassword() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { isLogin } = useSelector((state) => state.profileReducer);
+  const location = useLocation<TLocationState>();
+  const { isLogin } = useSelector((state: any) => state.profileReducer);
   const [value, setValue] = useState("");
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
@@ -28,7 +37,7 @@ function ForgotPassword() {
     dispatch(getUser());
   }, []);
 
-  const handlePasswordRecovery = (e) => {
+  const handlePasswordRecovery = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetch("https://norma.nomoreparties.space/api/password-reset", {
       method: "POST",
@@ -72,12 +81,7 @@ function ForgotPassword() {
           />
         </div>
         <div className={`${stylesForgotPassword.button} mb-20`}>
-          <Button
-            // onClick={handlePasswordRecovery}
-            htmlType="submit"
-            type="primary"
-            size="large"
-          >
+          <Button htmlType="submit" type="primary" size="large">
             Восстановить
           </Button>
         </div>

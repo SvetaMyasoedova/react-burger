@@ -1,15 +1,40 @@
 import { LOGIN_URL } from "../../utils/urls";
 import { setCookie } from "../../utils/cookie";
 import { checkReponse } from "../../utils/refreshToken";
+import { Dispatch } from "redux";
 
-export const GET_LOGIN = "GET_LOGIN";
-export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
-export const GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS";
+// export const GET_LOGIN = "GET_LOGIN";
+// export const GET_LOGIN_FAILED = "GET_LOGIN_FAILED";
+// export const GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS";
 
-const getLogin = (email, password) => {
-  return function (dispatch) {
+export enum ActionLoginType {
+  GET_LOGIN = "GET_LOGIN",
+  GET_LOGIN_FAILED = "GET_LOGIN_FAILED",
+  GET_LOGIN_SUCCESS = "GET_LOGIN_SUCCESS",
+}
+
+interface actionLoginPending {
+  type: ActionLoginType.GET_LOGIN;
+}
+
+interface actionLoginSuccess {
+  type: ActionLoginType.GET_LOGIN_SUCCESS;
+  email: string;
+  name: string;
+  
+ 
+}
+
+interface actionLoginFail {
+  type: ActionLoginType.GET_LOGIN_FAILED;
+}
+
+export type ActionLogin = actionLoginPending | actionLoginSuccess | actionLoginFail;
+
+const getLogin = (email: string, password: string) => {
+  return function (dispatch: Dispatch<ActionLogin>) {
     dispatch({
-      type: GET_LOGIN,
+      type: ActionLoginType.GET_LOGIN,
     });
 
     fetch(LOGIN_URL, {
@@ -30,7 +55,7 @@ const getLogin = (email, password) => {
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: GET_LOGIN_SUCCESS,
+            type: ActionLoginType.GET_LOGIN_SUCCESS,
             email: res.user.email,
             name: res.user.name,
           });
@@ -47,13 +72,13 @@ const getLogin = (email, password) => {
           }
         } else {
           dispatch({
-            type: GET_LOGIN_FAILED,
+            type: ActionLoginType.GET_LOGIN_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: GET_LOGIN_FAILED,
+          type: ActionLoginType.GET_LOGIN_FAILED,
         });
       });
   };

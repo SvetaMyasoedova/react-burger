@@ -1,15 +1,40 @@
 import { REGISTER_URL } from "../../utils/urls";
 import { setCookie } from "../../utils/cookie";
 import { checkReponse } from "../../utils/refreshToken";
+import { Dispatch } from "redux";
 
-export const GET_REGISTER = "GET_REGISTER";
-export const GET_REGISTER_FAILED = "GET_REGISTER_FAILED";
-export const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
+// export const GET_REGISTER = "GET_REGISTER";
+// export const GET_REGISTER_FAILED = "GET_REGISTER_FAILED";
+// export const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
 
-const getRegister = (email, password, userName) => {
-  return function (dispatch) {
+export enum ActionRegisterType {
+  GET_REGISTER = "GET_REGISTER",
+  GET_REGISTER_FAILED = "GET_REGISTER_FAILED",
+  GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS",
+}
+
+interface actionRegisterPending {
+  type: ActionRegisterType.GET_REGISTER;
+}
+
+interface actionRegisterSuccess {
+  type: ActionRegisterType.GET_REGISTER_SUCCESS;
+  email: string;
+  name: string;
+ 
+}
+
+interface actionRegisterFail {
+  type: ActionRegisterType.GET_REGISTER_FAILED;
+}
+
+export type ActionRegister = actionRegisterPending | actionRegisterSuccess | actionRegisterFail;
+
+
+ const getRegister = (email: string, password: string, userName: string) => {
+  return function (dispatch: Dispatch<ActionRegister>) {
     dispatch({
-      type: GET_REGISTER,
+      type: ActionRegisterType.GET_REGISTER,
     });
 
     fetch(REGISTER_URL, {
@@ -31,7 +56,7 @@ const getRegister = (email, password, userName) => {
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: GET_REGISTER_SUCCESS,
+            type: ActionRegisterType.GET_REGISTER_SUCCESS,
             email: res.user.email,
             name: res.user.name,
           });
@@ -48,13 +73,13 @@ const getRegister = (email, password, userName) => {
           }
         } else {
           dispatch({
-            type: GET_REGISTER_FAILED,
+            type: ActionRegisterType.GET_REGISTER_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: GET_REGISTER_FAILED,
+          type: ActionRegisterType.GET_REGISTER_FAILED,
         });
       });
   };
