@@ -3,11 +3,18 @@ import PropTypes from "prop-types";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export const NameInput = ({placeholder, onChange, value, icon}) => {
+interface INameInput {
+  placeholder: string;
+  onChange: any;
+  value: string;
+  icon: any;
+}
+
+export const NameInput = ({placeholder, onChange, value, icon}: INameInput) => {
   
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0);
+    setTimeout(() => inputRef?.current?.focus(), 0);
     alert("Icon Click Callback");
   };
   return (
@@ -28,9 +35,9 @@ export const NameInput = ({placeholder, onChange, value, icon}) => {
   );
 };
 
-NameInput.propTypes = {
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-};
+// NameInput.propTypes = {
+//   placeholder: PropTypes.string,
+//   onChange: PropTypes.func.isRequired,
+//   value: PropTypes.string.isRequired,
+//   icon: PropTypes.string,
+// };
