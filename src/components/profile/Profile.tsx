@@ -35,13 +35,13 @@ function Profile() {
     setNewEmail(email);
   }, [name, email]);
 
-  const onChangeUserName = (e: any) => {
+  const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewName(e.target.value);
   };
-  const onChangeEmail = (e: any) => {
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewEmail(e.target.value);
   };
-  const onChangePassword = (e: any) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPassword(e.target.value);
   };
 
