@@ -13,20 +13,20 @@ function ResetPassword() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const { isLogin } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state: any) => state.profileReducer);
   const [code, setCode] = useState("");
 
   const [password, setPassword] = useState("");
 
-  const onChangeCode = (e) => {
+  const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCode(e.target.value);
   };
 
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handlePasswordReset = (e) => {
+  const handlePasswordReset = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetch("https://norma.nomoreparties.space/api/password-reset/reset", {
       method: "POST",

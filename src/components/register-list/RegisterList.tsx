@@ -16,23 +16,23 @@ import {
 function RegisterList() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { isLogin } = useSelector((state) => state.profileReducer);
+  const { isLogin } = useSelector((state: any) => state.profileReducer);
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChangeUserName = (e) => {
+  const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleNewUser = (e) => {
+  const handleNewUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getRegister(email, password, userName));
   };
