@@ -33,7 +33,7 @@ export type ActionEdit =
   | actionEditFail;
 
 export function editUser(newName: string, newEmail: string) {
-  return function (dispatch: Dispatch<ActionEdit>) {
+  return function (dispatch: Dispatch<ActionEdit> ) {
     dispatch({
       type: ActionEditType.EDIT_USER,
     });

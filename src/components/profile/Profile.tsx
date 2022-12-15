@@ -23,8 +23,8 @@ function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { name } = useSelector((state) => state.profileReducer);
-  const { email } = useSelector((state) => state.profileReducer);
+  const { name } = useSelector((state: any) => state.profileReducer);
+  const { email } = useSelector((state: any) => state.profileReducer);
 
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -35,17 +35,17 @@ function Profile() {
     setNewEmail(email);
   }, [name, email]);
 
-  const onChangeUserName = (e) => {
+  const onChangeUserName = (e: any) => {
     setNewName(e.target.value);
   };
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: any) => {
     setNewEmail(e.target.value);
   };
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: any) => {
     setNewPassword(e.target.value);
   };
 
-  const handleSave = (e) => {
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(editUser(newName, newEmail));
   };
