@@ -3,13 +3,15 @@ import styleIngredientDetails from "./ingredient-details.module.css";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
-function IngredientDetailsCard( ingredient : TIngredient) {
+interface IIngredientDetailsCard {
+  ingredient: TIngredient;
+}
+
+function IngredientDetailsCard({ ingredient }: IIngredientDetailsCard) {
   return (
     <div className={styleIngredientDetails.wrapper}>
       <img src={ingredient.image} alt={ingredient.name} className="mb-4" />
-      <div className="mb-8 text text_type_main-medium">
-        {ingredient.name}
-      </div>
+      <div className="mb-8 text text_type_main-medium">{ingredient.name}</div>
 
       <div className={`${styleIngredientDetails.nutrients} pb-15`}>
         <div className={styleIngredientDetails.aboutNutrients}>
@@ -51,7 +53,7 @@ function IngredientDetailsCard( ingredient : TIngredient) {
 
 // IngredientDetailsCard.propTypes = {
 //   ingredient: ingredientPropTypes.isRequired,
-  
+
 // };
 
 export default IngredientDetailsCard;

@@ -10,6 +10,7 @@ import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";
 
+
 interface IIngredientDetailsParams {
   ingredientId: string;
 }
@@ -18,8 +19,8 @@ function IngredientDetails() {
   const { ingredientId } = useParams<IIngredientDetailsParams>();
   const dispatch = useDispatch();
 
-  const { currentIngredient } = useSelector(
-    (state: any) => state.сurrentIngredientReducer
+  const currentIngredient = useSelector(
+    (state: any) : TIngredient => state.сurrentIngredientReducer.currentIngredient
   );
 
   const { data } = useSelector((state: any) => state.dataReducer);
