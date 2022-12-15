@@ -4,8 +4,19 @@ import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+import { TIngredient } from "../../services/types/data";
 
-function IngredientList({ ingredient, icon, onClick, id, type, count }) {
+interface IList {
+  ingredient: TIngredient;
+  icon: any;
+  onClick: any;
+  id: string;
+  type: string;
+  count: number;
+
+}
+
+function IngredientList({ ingredient, icon, onClick, id, type, count }: IList) {
   const [, dragRef] = useDrag(() => ({
     type: type,
     item: ingredient,
@@ -48,13 +59,13 @@ function IngredientList({ ingredient, icon, onClick, id, type, count }) {
   );
 }
 
-IngredientList.propTypes = {
-  ingredient: ingredientPropTypes.isRequired,
-  icon: PropTypes.element.isRequired,
-  onClick: PropTypes.func.isRequired,
-  id: PropTypes.string,
-  type: PropTypes.string,
-  count: PropTypes.number.isRequired,
-};
+// IngredientList.propTypes = {
+//   ingredient: ingredientPropTypes.isRequired,
+//   icon: PropTypes.element.isRequired,
+//   onClick: PropTypes.func.isRequired,
+//   id: PropTypes.string,
+//   type: PropTypes.string,
+//   count: PropTypes.number.isRequired,
+// };
 
 export default IngredientList;

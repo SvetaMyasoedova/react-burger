@@ -7,24 +7,26 @@ import { useLocation, useParams } from "react-router-dom";
 import IngredientDetailsCard from "./ingredientDetailsCard";
 
 import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+import { TIngredient } from "../../services/types/data";
+import { TLocationState } from "../app/App";
 
 function IngredientDetails() {
   const { ingredientId } = useParams();
   const dispatch = useDispatch();
 
   const { currentIngredient } = useSelector(
-    (state) => state.сurrentIngredientReducer
+    (state: any) => state.сurrentIngredientReducer
   );
 
-  const { data } = useSelector((state) => state.dataReducer);
+  const { data } = useSelector((state: any) => state.dataReducer);
 
-  const location = useLocation();
+  const location = useLocation<TLocationState>();;
   const background = location.state && location.state.background;
 
   useEffect(() => {
     if (data.length !== 0 && !background) {
       dispatch({
-        currentIngredient: data.find((item) => item._id === ingredientId),
+        currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
         type: CURRENT_INGREDIENT,
       });
     }
@@ -34,7 +36,7 @@ function IngredientDetails() {
       (currentIngredient === null || currentIngredient === undefined)
     ) {
       dispatch({
-        currentIngredient: data.find((item) => item._id === ingredientId),
+        currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
         type: CURRENT_INGREDIENT,
       });
     }
@@ -56,15 +58,15 @@ function IngredientDetails() {
   );
 }
 
-IngredientDetails.propTypes = {
-  currentSelectedElem: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-  }),
-};
+// IngredientDetails.propTypes = {
+//   currentSelectedElem: PropTypes.shape({
+//     image: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     calories: PropTypes.number.isRequired,
+//     proteins: PropTypes.number.isRequired,
+//     fat: PropTypes.number.isRequired,
+//     carbohydrates: PropTypes.number.isRequired,
+//   }),
+// };
 
 export default IngredientDetails;

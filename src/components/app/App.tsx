@@ -23,7 +23,7 @@ import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getIngredients } from "../../services/actions/burgerIngredients";
 
-type TLocationState = {
+export type TLocationState = {
   background: {
     pathname: string;
     search: string;
