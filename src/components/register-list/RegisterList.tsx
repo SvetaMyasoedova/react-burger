@@ -12,10 +12,11 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TLocationState } from "../../services/types/location";
 
 function RegisterList() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
 
   const [userName, setUserName] = useState("");
