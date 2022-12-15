@@ -5,9 +5,10 @@ import { getUser } from "../../services/actions/profile";
 
 type IProtectedRoute = {
   children: React.ReactNode;
+  path?: string
 }
 
-export function ProtectedRoute({ children, ...rest }: IProtectedRoute) {
+export function ProtectedRoute({ children, path, ...rest }: IProtectedRoute) {
   const dispatch = useDispatch();
   const { name } = useSelector((state: any) => state.profileReducer);
   const { email } = useSelector((state: any) => state.profileReducer);

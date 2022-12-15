@@ -22,15 +22,16 @@ import { ProtectedRoute } from "../protected-route/ProtectedRoute";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getIngredients } from "../../services/actions/burgerIngredients";
+import { TLocationState } from "../../services/types/location";
 
-export type TLocationState = {
-  background: {
-    pathname: string;
-    search: string;
-    hash: string;
-    state: any;
-  };
-};
+// export type TLocationState = {
+//   background: {
+//     pathname: string;
+//     search: string;
+//     hash: string;
+//     state: any;
+//   };
+// };
 function App() {
   const location = useLocation<TLocationState>();
   const history = useHistory();

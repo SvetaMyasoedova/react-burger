@@ -8,10 +8,14 @@ import IngredientDetailsCard from "./ingredientDetailsCard";
 
 import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 import { TIngredient } from "../../services/types/data";
-import { TLocationState } from "../app/App";
+import { TLocationState } from "../../services/types/location";
+
+interface IIngredientDetailsParams {
+  ingredientId: string;
+}
 
 function IngredientDetails() {
-  const { ingredientId } = useParams();
+  const { ingredientId } = useParams<IIngredientDetailsParams>();
   const dispatch = useDispatch();
 
   const { currentIngredient } = useSelector(

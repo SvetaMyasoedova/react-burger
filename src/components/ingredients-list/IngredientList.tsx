@@ -5,6 +5,7 @@ import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
+import { TLocationState } from "../../services/types/location";
 
 interface IList {
   ingredient: TIngredient;
@@ -13,7 +14,6 @@ interface IList {
   id: string;
   type: string;
   count: number;
-
 }
 
 function IngredientList({ ingredient, icon, onClick, id, type, count }: IList) {
@@ -27,7 +27,7 @@ function IngredientList({ ingredient, icon, onClick, id, type, count }: IList) {
   const ingredientId = ingredient["_id"];
 
   return (
-    <Link
+    <Link<TLocationState>
       to={{
         pathname: `/ingredients/${ingredientId}`,
         state: { background: location },

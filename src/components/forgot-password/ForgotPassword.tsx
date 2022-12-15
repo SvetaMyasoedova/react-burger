@@ -13,14 +13,9 @@ import { getUser } from "../../services/actions/profile";
 
 import { checkReponse } from "../../utils/refreshToken";
 
-type TLocationState = {
-  from: {
-    pathname: string;
-    search: string;
-    hash: string;
-    state: any;
-  }
-}
+import { TLocationState } from "../../services/types/location";
+
+
 
 function ForgotPassword() {
   const history = useHistory();
@@ -63,7 +58,7 @@ function ForgotPassword() {
   };
 
   if (isLogin) {
-    return <Redirect to={location?.state?.from || "/"} />;
+    return <Redirect to={location.state.from || "/"} />;
   }
 
   return (

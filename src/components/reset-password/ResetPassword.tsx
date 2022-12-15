@@ -8,11 +8,12 @@ import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
 import { checkReponse } from "../../utils/refreshToken";
+import { TLocationState } from "../../services/types/location";
 
 function ResetPassword() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
+  const history = useHistory<{ from: string }>();
+  const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
   const [code, setCode] = useState("");
 
@@ -60,7 +61,7 @@ function ResetPassword() {
     return <Redirect to="/" />;
   }
 
-  if (history.location.state.from !== "/forgot-password") {
+  if (history.location?.state?.from !== "/forgot-password") {
     return <Redirect to="/" />;
   }
 
