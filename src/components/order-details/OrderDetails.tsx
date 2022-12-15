@@ -5,7 +5,7 @@ import styleOrderDetails from "./order-details.module.css";
 import { getOrder } from "../../services/actions/burgerConstructor";
 
 function OrderDetails() {
-  const { createdOrder } = useSelector((state) => state.orderReducer);
+  const { createdOrder } = useSelector((state: any) => state.orderReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
