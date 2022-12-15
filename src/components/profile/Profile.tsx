@@ -17,7 +17,7 @@ import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie, deleteCookie } from "../../utils/cookie";
 import { LOGOUT_SUCCESS } from "../../services/actions/profile";
-// import { ActionLogoutType } from "../../services/actions/profile";
+import { ActionLogoutType } from "../../services/actions/profile";
 
 function Profile() {
   const dispatch = useDispatch();

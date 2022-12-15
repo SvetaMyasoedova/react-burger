@@ -11,7 +11,7 @@ export const SORTABLE_INGREDIENT = "SORTABLE_INGREDIENT";
 // export const GET_ORDER = "GET_ORDER";
 // export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
 // export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
-export const CLEAR_ORDER = "CLEAR_ORDER";
+// export const CLEAR_ORDER = "CLEAR_ORDER";
 
 export const CLEAR_CONSTRUCTOR = "CLEAR_CONSTRUCTOR";
 
@@ -19,6 +19,7 @@ export enum ActionOrderType {
   GET_ORDER = "GET_ORDER",
   GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS",
   GET_ORDER_FAILED = "GET_ORDER_FAILED",
+  CLEAR_ORDER = "CLEAR_ORDER",
 }
 
 interface actionOrderPending {
@@ -34,7 +35,11 @@ interface actionOrderFail {
   type: ActionOrderType.GET_ORDER_FAILED;
 }
 
-export type ActionOrder = actionOrderPending | actionOrderSuccess | actionOrderFail;
+interface IClearOrder {
+  type: ActionOrderType.CLEAR_ORDER;
+}
+
+export type ActionOrder = actionOrderPending | actionOrderSuccess | actionOrderFail | IClearOrder;
 
 export function getOrder(): any {
   return function (dispatch: Dispatch<ActionOrder>, getState: any) {
