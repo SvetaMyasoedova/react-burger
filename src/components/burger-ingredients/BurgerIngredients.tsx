@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+import { ActionCurrentIngredientType } from "../../services/actions/burgerIngredients";
 
 // import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
-import {TIngredient} from "../../services/types/data";
+import { TIngredient } from "../../services/types/data";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
@@ -24,7 +24,10 @@ const BurgerIngredients: FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = (ingredient: TIngredient) => {
-    dispatch({ currentIngredient: ingredient, type: CURRENT_INGREDIENT });
+    dispatch({
+      currentIngredient: ingredient,
+      type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
+    });
     setIsModalVisible(true);
   };
 
@@ -123,7 +126,7 @@ const BurgerIngredients: FC = () => {
       </div>
     </section>
   );
-}
+};
 
 // BurgerIngredients.propTypes = ingredientsPropTypes;
 

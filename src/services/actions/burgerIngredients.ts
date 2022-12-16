@@ -1,12 +1,15 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
-// export const GET_INGREDIENTS = "GET_INGREDIENTS";
-// export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
-// export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
-export const CURRENT_INGREDIENT: "CURRENT_INGREDIENT" = "CURRENT_INGREDIENT";
-export const CLEAR_CURRENT_INGREDIENT: "CLEAR_CURRENT_INGREDIENT" =
-  "CLEAR_CURRENT_INGREDIENT";
+
+// export const CURRENT_INGREDIENT= "CURRENT_INGREDIENT";
+// export const CLEAR_CURRENT_INGREDIENT=
+//   "CLEAR_CURRENT_INGREDIENT";
+
+export enum ActionCurrentIngredientType {
+  CURRENT_INGREDIENT = "CURRENT_INGREDIENT",
+  CLEAR_CURRENT_INGREDIENT = "CLEAR_CURRENT_INGREDIENT",
+}
 
 export enum ActionType {
   GET_INGREDIENTS = "GET_INGREDIENTS",
@@ -26,6 +29,17 @@ interface actionSuccess {
 interface actionFail {
   type: ActionType.GET_INGREDIENTS_FAILED;
 }
+
+interface IActionCurrentIngredient {
+  type: ActionCurrentIngredientType.CURRENT_INGREDIENT
+  currentIngredient: any;
+}
+interface IActionClearCurrentIngredient {
+  type: ActionCurrentIngredientType.CLEAR_CURRENT_INGREDIENT
+}
+
+export type ActionCurrentIngredient = IActionCurrentIngredient | IActionClearCurrentIngredient;
+
 
 export type Action = actionPending | actionSuccess | actionFail;
 

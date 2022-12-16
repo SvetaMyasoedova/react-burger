@@ -7,7 +7,8 @@ import { useLocation, useParams } from "react-router-dom";
 
 import IngredientDetailsCard from "./ingredientDetailsCard";
 
-import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+// import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+import { ActionCurrentIngredientType } from "../../services/actions/burgerIngredients";
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";
 
@@ -33,7 +34,7 @@ const IngredientDetails: FC = () => {
     if (data.length !== 0 && !background) {
       dispatch({
         currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
-        type: CURRENT_INGREDIENT,
+        type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
       });
     }
 
@@ -43,7 +44,7 @@ const IngredientDetails: FC = () => {
     ) {
       dispatch({
         currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
-        type: CURRENT_INGREDIENT,
+        type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
       });
     }
   }, [data]);
