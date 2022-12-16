@@ -1,6 +1,6 @@
 export type IInput = {
 	placeholder?: string;
-	onChange: any;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	value: string;
 	icon?: any;
  }
