@@ -2,7 +2,7 @@
 import stylesElement from "./element-header.module.css";
 
 interface IHeader {
-  icon: any;
+  icon: JSX.Element;
   text: string;
 }
 
