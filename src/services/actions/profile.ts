@@ -20,8 +20,8 @@ interface actionUserPending {
 
 interface actionUserSuccess {
   type: ActionUserType.GET_USER_SUCCESS;
-  email: any;
-  name: any;
+  email: string;
+  name: string;
 }
 
 interface actionUserFail {
