@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleModalHeader from "./modal-header.module.css";
+import { IModal } from "../Modal";
 
-type THeader = {
-  onClose: any;
-  header: string;
-}
+
+
+type THeader = Omit<IModal, 'children'> 
 
 function ModalHeader({ onClose, header}: THeader) {
   return (

@@ -7,7 +7,7 @@ import ModalOverlay from "../modal-overlay/ModalOverlay";
 
 const modalRoot = document.getElementById("modal-root") as HTMLDivElement;
 
-interface IModal {
+export interface IModal {
   header: string;
   onClose: () => void;
   children: React.ReactNode; 
