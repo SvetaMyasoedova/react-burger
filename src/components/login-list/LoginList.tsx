@@ -1,12 +1,9 @@
 import { Link, Redirect, useLocation } from "react-router-dom";
-
-import { useState} from "react";
-
+import { useState, FC} from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import stylesLogin from "./login-list.module.css";
-
 import { Password } from "../register-list/password-input/Password";
+import { TLocationState } from "../../services/types/location";
 
 import {
   Button,
@@ -14,22 +11,22 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import getLogin from "../../services/actions/login";
 
-function LoginList() {
+const LoginList: FC = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { isLogin } = useSelector((state) => state.profileReducer);
+  const location = useLocation<TLocationState>();
+  const { isLogin } = useSelector((state: any) => state.profileReducer);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const onChangePassword = (e) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(getLogin(email, password));
   };
