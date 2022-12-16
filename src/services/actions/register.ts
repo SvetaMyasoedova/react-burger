@@ -21,17 +21,22 @@ interface actionRegisterSuccess {
   type: ActionRegisterType.GET_REGISTER_SUCCESS;
   email: string;
   name: string;
- 
 }
 
 interface actionRegisterFail {
   type: ActionRegisterType.GET_REGISTER_FAILED;
 }
 
-export type ActionRegister = actionRegisterPending | actionRegisterSuccess | actionRegisterFail;
+export type ActionRegister =
+  | actionRegisterPending
+  | actionRegisterSuccess
+  | actionRegisterFail;
 
-
- const getRegister = (email: string, password: string, userName: string) => {
+const getRegister = (
+  email: string,
+  password: string,
+  userName: string
+): any => {
   return function (dispatch: Dispatch<ActionRegister>) {
     dispatch({
       type: ActionRegisterType.GET_REGISTER,

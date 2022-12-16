@@ -30,13 +30,13 @@ interface actionUserFail {
 
 export type ActionUser = actionUserPending | actionUserSuccess | actionUserFail;
 
-export enum ActionLogoutType {LOGOUT_SUCCESS = "LOGOUT_SUCCESS"}
+export enum ActionLogoutType {
+  LOGOUT_SUCCESS = "LOGOUT_SUCCESS",
+}
 interface ILogout {
   type: ActionLogoutType.LOGOUT_SUCCESS;
 }
 export type ActionLogout = ILogout;
-
-
 
 export function getUser(): any {
   return function (dispatch: Dispatch<ActionUser>) {
@@ -76,5 +76,3 @@ export function getUser(): any {
       });
   };
 }
-
-

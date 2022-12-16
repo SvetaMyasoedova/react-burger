@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from "redux";
 import { USER_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
 
@@ -27,13 +27,10 @@ interface actionEditFail {
   type: ActionEditType.EDIT_USER_FAILED;
 }
 
-export type ActionEdit =
-  | actionEditPending
-  | actionEditSuccess
-  | actionEditFail;
+export type ActionEdit = actionEditPending | actionEditSuccess | actionEditFail;
 
-export function editUser(newName: string, newEmail: string) {
-  return function (dispatch: Dispatch<ActionEdit> ) {
+export function editUser(newName: string, newEmail: string): any {
+  return function (dispatch: Dispatch<ActionEdit>) {
     dispatch({
       type: ActionEditType.EDIT_USER,
     });

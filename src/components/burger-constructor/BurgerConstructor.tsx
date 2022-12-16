@@ -18,8 +18,9 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-  CLEAR_ORDER,
+  ActionOrderType,
 } from "../../services/actions/burgerConstructor";
+
 import stylesConstructor from "./burger-constructor.module.css";
 
 //components
@@ -114,7 +115,7 @@ function BurgerConstructor() {
       type: CLEAR_CONSTRUCTOR,
     });
     dispatch({
-      type: CLEAR_ORDER,
+      type: ActionOrderType.CLEAR_ORDER,
     });
   };
 

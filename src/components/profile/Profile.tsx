@@ -16,7 +16,7 @@ import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie, deleteCookie } from "../../utils/cookie";
-import { LOGOUT_SUCCESS } from "../../services/actions/profile";
+//import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 import { ActionLogoutType } from "../../services/actions/profile";
 
 function Profile() {
@@ -71,7 +71,7 @@ function Profile() {
     })
       .then((res) => {
         if (res && res.success) {
-          dispatch({ type: LOGOUT_SUCCESS });
+          dispatch({ type: ActionLogoutType.LOGOUT_SUCCESS });
           localStorage.removeItem("refreshToken");
           deleteCookie("token");
           history.push("/login");

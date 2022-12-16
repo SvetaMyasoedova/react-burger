@@ -21,17 +21,18 @@ interface actionLoginSuccess {
   type: ActionLoginType.GET_LOGIN_SUCCESS;
   email: string;
   name: string;
-  
- 
 }
 
 interface actionLoginFail {
   type: ActionLoginType.GET_LOGIN_FAILED;
 }
 
-export type ActionLogin = actionLoginPending | actionLoginSuccess | actionLoginFail;
+export type ActionLogin =
+  | actionLoginPending
+  | actionLoginSuccess
+  | actionLoginFail;
 
-const getLogin = (email: string, password: string) => {
+const getLogin = (email: string, password: string): any => {
   return function (dispatch: Dispatch<ActionLogin>) {
     dispatch({
       type: ActionLoginType.GET_LOGIN,
@@ -67,8 +68,8 @@ const getLogin = (email: string, password: string) => {
           if (authToken) {
             setCookie("token", authToken);
           }
-			 if (res.refreshToken) {
-				localStorage.setItem("refreshToken", res.refreshToken)
+          if (res.refreshToken) {
+            localStorage.setItem("refreshToken", res.refreshToken);
           }
         } else {
           dispatch({
