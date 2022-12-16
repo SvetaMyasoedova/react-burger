@@ -1,10 +1,10 @@
-import {  useRef } from "react";
-import PropTypes from "prop-types";
+import {  useRef, FC } from "react";
+// import PropTypes from "prop-types";
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IInput } from "../../../services/types/input";
 
-export const NameInput = ({placeholder, onChange, value, icon}: IInput) => {
+export const NameInput: FC<IInput> = ({placeholder, onChange, value, icon}) => {
   
   const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {

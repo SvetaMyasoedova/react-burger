@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import stylesTab from "./tab.module.css";
 
@@ -8,7 +8,7 @@ interface ITab {
   inViewMain: boolean;
 }
 
-function Tabs({ inViewBuns, inViewSauce, inViewMain }: ITab) {
+const Tabs: FC<ITab> = ({ inViewBuns, inViewSauce, inViewMain }) => {
   const [current, setCurrent] = useState("");
 
   useEffect(() => {

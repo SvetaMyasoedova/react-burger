@@ -1,5 +1,5 @@
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import stylesResetPassword from "./reset-password.module.css";
 
@@ -10,7 +10,7 @@ import { getUser } from "../../services/actions/profile";
 import { checkReponse } from "../../utils/refreshToken";
 import { TLocationState } from "../../services/types/location";
 
-function ResetPassword() {
+const ResetPassword: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory<{ from: string }>();
   const location = useLocation<TLocationState>();
