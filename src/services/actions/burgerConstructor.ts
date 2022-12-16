@@ -26,6 +26,7 @@ interface actionOrderPending {
   type: ActionOrderType.GET_ORDER;
 }
 
+// {number: 9727}
 interface actionOrderSuccess {
   type: ActionOrderType.GET_ORDER_SUCCESS;
   createdOrder: any;

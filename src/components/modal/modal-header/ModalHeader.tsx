@@ -5,7 +5,7 @@ import { IModal } from "../Modal";
 
 
 
-type THeader = Omit<IModal, 'children'> 
+export type THeader = Omit<IModal, 'children'> 
 
 function ModalHeader({ onClose, header}: THeader) {
   return (
