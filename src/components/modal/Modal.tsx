@@ -9,7 +9,7 @@ const modalRoot = document.getElementById("modal-root") as HTMLDivElement;
 
 interface IModal {
   header: string;
-  onClose: any;
+  onClose: () => void;
   children: React.ReactNode; 
 }
 
