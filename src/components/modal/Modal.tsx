@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import ModalHeader from "./modal-header/ModalHeader";
 import styleModal from "./modal.module.css";
 import ModalOverlay from "../modal-overlay/ModalOverlay";
@@ -13,7 +13,7 @@ export interface IModal {
   children: React.ReactNode; 
 }
 
-function Modal({ header, onClose, children }: IModal) {
+const Modal: FC<IModal> = ({ header, onClose, children }) => {
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {

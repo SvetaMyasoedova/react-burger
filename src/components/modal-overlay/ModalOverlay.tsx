@@ -1,10 +1,11 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { FC } from "react";
 import styleModalOverlay from "./modal-overlay.module.css";
 import { THeader } from "../modal/modal-header/ModalHeader";
 
 type TModalOverlay = Omit<THeader, 'header'> 
 
-function ModalOverlay({ onClose}: TModalOverlay) {
+const ModalOverlay: FC<TModalOverlay> = ({ onClose}) => {
   return <div onClick={onClose} className={styleModalOverlay.overlay}></div>;
 }
 
