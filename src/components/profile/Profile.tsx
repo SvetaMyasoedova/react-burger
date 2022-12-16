@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../services/actions/profile";
 import { editUser } from "../../services/actions/editProfile";
@@ -19,7 +19,7 @@ import { getCookie, deleteCookie } from "../../utils/cookie";
 //import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 import { ActionLogoutType } from "../../services/actions/profile";
 
-function Profile() {
+const Profile: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -153,6 +153,6 @@ function Profile() {
       </p>
     </>
   );
-}
+};
 
 export default Profile;

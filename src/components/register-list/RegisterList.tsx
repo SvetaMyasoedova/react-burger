@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
@@ -14,7 +14,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TLocationState } from "../../services/types/location";
 
-function RegisterList() {
+const RegisterList: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
@@ -85,6 +85,6 @@ function RegisterList() {
       </p>
     </div>
   );
-}
+};
 
 export default RegisterList;
