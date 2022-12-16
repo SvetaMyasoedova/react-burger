@@ -94,7 +94,7 @@ function BurgerConstructor() {
 
   const totalPrice = useMemo<number>(() => {
     return constructorIngredients.reduce(
-      (acc: number, item: any) => acc + item.price,
+      (acc: number, item: TIngredient) => acc + item.price,
       constructorBun ? constructorBun.price * 2 : 0
     );
   }, [constructorBun, constructorIngredients]);
