@@ -14,8 +14,8 @@ import {
 interface IWrapper {
   ingredient: TIngredient;
   index: number;
-  onDelete: any;
-  sortIngredients: any;
+  onDelete: (ingredient: TIngredient) => void;
+  sortIngredients: (dragIndex: number, hoverIndex: number) => void;
 }
 
 function ConstructorElementWrapper({
