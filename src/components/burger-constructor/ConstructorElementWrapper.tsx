@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, FC } from "react";
 import { useDrop, useDrag, XYCoord } from "react-dnd";
 import PropTypes from "prop-types";
 import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
@@ -18,12 +18,12 @@ interface IWrapper {
   sortIngredients: (dragIndex: number, hoverIndex: number) => void;
 }
 
-function ConstructorElementWrapper({
+const ConstructorElementWrapper: FC<IWrapper> = ({
   ingredient,
   index,
   onDelete,
   sortIngredients,
-}: IWrapper) {
+}) => {
   ingredient.index = index;
 
   const ref = useRef<HTMLInputElement>(null);

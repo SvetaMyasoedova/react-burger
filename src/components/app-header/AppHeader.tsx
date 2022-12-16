@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import stylesHeader from "./app-header.module.css";
 import ElementHeader from "../element-header/ElementHeader";
@@ -6,7 +7,7 @@ import { ListIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function AppHeader() {
+const AppHeader: FC = () => {
   const isConstructor = !!useRouteMatch({ path: "/", exact: true });
   const isFeed = !!useRouteMatch("/feed");
   const isProfile = !!useRouteMatch("/profile");
@@ -72,6 +73,6 @@ function AppHeader() {
       </header>
     </div>
   );
-}
+};
 
 export default AppHeader;

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
@@ -28,7 +28,7 @@ import OrderDetails from "../order-details/OrderDetails";
 import Modal from "../modal/Modal";
 import ConstructorElementWrapper from "./ConstructorElementWrapper";
 
-function BurgerConstructor() {
+const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
