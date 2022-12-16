@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 
 import stylesForgotPassword from "./forgot-password.module.css";
 
@@ -17,7 +17,7 @@ import { TLocationState } from "../../services/types/location";
 
 
 
-function ForgotPassword() {
+const ForgotPassword: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();

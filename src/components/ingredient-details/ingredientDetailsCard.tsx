@@ -1,13 +1,14 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
+// import PropTypes from "prop-types";
 import styleIngredientDetails from "./ingredient-details.module.css";
-import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+// import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 interface IIngredientDetailsCard {
   ingredient: TIngredient;
 }
 
-function IngredientDetailsCard({ ingredient }: IIngredientDetailsCard) {
+const IngredientDetailsCard: FC<IIngredientDetailsCard> = ({ ingredient }) => {
   return (
     <div className={styleIngredientDetails.wrapper}>
       <img src={ingredient.image} alt={ingredient.name} className="mb-4" />

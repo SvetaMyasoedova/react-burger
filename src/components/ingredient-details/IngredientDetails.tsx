@@ -1,5 +1,6 @@
+import { FC } from "react";
 import styleIngredientDetails from "./ingredient-details.module.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -15,7 +16,7 @@ interface IIngredientDetailsParams {
   ingredientId: string;
 }
 
-function IngredientDetails() {
+const IngredientDetails: FC = () => {
   const { ingredientId } = useParams<IIngredientDetailsParams>();
   const dispatch = useDispatch();
 

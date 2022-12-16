@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
@@ -12,7 +12,7 @@ import {TIngredient} from "../../services/types/data";
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
 
-function BurgerIngredients() {
+const BurgerIngredients: FC = () => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
   const { ingredientsCount, constructorBun } = useSelector(

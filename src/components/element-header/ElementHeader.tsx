@@ -1,4 +1,5 @@
 // import PropTypes from 'prop-types';
+import { FC } from "react";
 import stylesElement from "./element-header.module.css";
 
 interface IHeader {
@@ -6,7 +7,7 @@ interface IHeader {
   text: string;
 }
 
-function ElementHeader({ icon, text }: IHeader) {
+const ElementHeader:FC<IHeader> = ({ icon, text }) => {
   return (
     <div className={`${stylesElement.main} p-2`}>
       <div>{icon}</div>

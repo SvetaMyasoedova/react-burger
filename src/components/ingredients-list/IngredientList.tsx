@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import stylesList from "./ingredient-list.module.css";
@@ -16,7 +17,7 @@ interface IList {
   count: number;
 }
 
-function IngredientList({ ingredient, icon, onClick, id, type, count }: IList) {
+const IngredientList: FC<IList> = ({ ingredient, icon, onClick, id, type, count }) => {
   const [, dragRef] = useDrag(() => ({
     type: type,
     item: ingredient,
