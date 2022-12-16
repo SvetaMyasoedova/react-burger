@@ -9,8 +9,8 @@ import { TLocationState } from "../../services/types/location";
 
 interface IList {
   ingredient: TIngredient;
-  icon: any;
-  onClick: any;
+  icon: JSX.Element;
+  onClick: (ingredient: TIngredient) =>  void;
   id: string;
   type: string;
   count: number;
