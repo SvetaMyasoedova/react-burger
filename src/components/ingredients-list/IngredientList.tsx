@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import stylesList from "./ingredient-list.module.css";
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+// import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";
 

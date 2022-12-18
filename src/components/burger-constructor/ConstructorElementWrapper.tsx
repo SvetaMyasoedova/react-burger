@@ -1,7 +1,7 @@
 import { useRef, FC } from "react";
 import { useDrop, useDrag, XYCoord } from "react-dnd";
 import PropTypes from "prop-types";
-import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
+// import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 import stylesWrapper from "./wrapper.module.css";
