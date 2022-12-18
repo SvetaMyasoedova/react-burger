@@ -1,8 +1,10 @@
 import { TOKEN_URL } from "./urls";
 import { setCookie } from "./cookie";
 
-export const checkReponse = (res) => {
-  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+export const checkReponse = (res: { ok: boolean; json(): Promise<any> }) => {
+  return res.ok
+    ? res.json()
+    : res.json().then((err: Error) => Promise.reject(err));
 };
 
 export const refreshToken = () => {
@@ -17,11 +19,20 @@ export const refreshToken = () => {
   }).then(checkReponse);
 };
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async (
+  url: string,
+  options: RequestInit & {
+    headers: {
+      Accept?: string;
+      "Content-type"?: string;
+      authorization: string;
+    };
+  }
+) => {
   try {
     const res = await fetch(url, options);
     return await checkReponse(res);
-  } catch (err) {
+  } catch (err: any) {
     if (err.message === "jwt expired") {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
