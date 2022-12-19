@@ -14,9 +14,9 @@ export const ProtectedRoute: FC<IProtectedRoute> = ({ children, path, ...rest })
   const { email } = useSelector((state: any) => state.profileReducer);
   const { isUserLoaded } = useSelector((state: any) => state.profileReducer);
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, []);
 
   if (!isUserLoaded) {
     return null;

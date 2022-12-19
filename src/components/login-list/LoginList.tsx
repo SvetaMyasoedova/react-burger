@@ -15,6 +15,7 @@ const LoginList: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
+  console.log(isLogin)
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

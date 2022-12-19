@@ -23,6 +23,7 @@ import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getIngredients } from "../../services/actions/burgerIngredients";
 import { TLocationState } from "../../services/types/location";
+import { getUser } from "../../services/actions/profile";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch(getUser());
   }, []);
 
   return (
