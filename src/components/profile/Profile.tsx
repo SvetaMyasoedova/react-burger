@@ -1,12 +1,10 @@
-import { useState, useEffect, FC } from "react";
+import { useEffect, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../../services/actions/profile";
 import { editUser } from "../../services/actions/editProfile";
 
 import { NavLink, useHistory } from "react-router-dom";
 import stylesProfile from "./profile.module.css";
 
-import AppHeader from "../app-header/AppHeader";
 import { NameInput } from "../register-list/name-input/NameInput";
 import {
   EmailInput,
@@ -16,42 +14,32 @@ import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie, deleteCookie } from "../../utils/cookie";
-//import { LOGOUT_SUCCESS } from "../../services/actions/profile";
+
 import { ActionLogoutType } from "../../services/actions/profile";
+import { useForm } from "../../hooks/useForm";
 
 const Profile: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { name } = useSelector((state: any) => state.profileReducer);
-  const { email } = useSelector((state: any) => state.profileReducer);
+  const { name, email } = useSelector((state: any) => state.profileReducer);
 
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const { values, handleChange, setValues } = useForm({
+    newName: "",
+    newEmail: "",
+    newPassword: "",
+  });
 
   useEffect(() => {
-    setNewName(name);
-    setNewEmail(email);
-  }, [name, email]);
-
-  const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewName(e.target.value);
-  };
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewEmail(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPassword(e.target.value);
-  };
+    setValues({ newName: name, newEmail: email });
+  }, [name, email, setValues]);
 
   const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(editUser(newName, newEmail));
+    dispatch(editUser(values.newName, values.newEmail));
   };
   const handleCancel = () => {
-    setNewName(name);
-    setNewEmail(email);
+    setValues({ newName: name, newEmail: email });
   };
 
   const handleLogOut = () => {
@@ -113,23 +101,25 @@ const Profile: FC = () => {
 
         <form className={stylesProfile.input} onSubmit={handleSave}>
           <NameInput
-            value={newName}
-            onChange={onChangeUserName}
+            value={values.newName}
+            onChange={handleChange}
             placeholder="Имя"
             icon="EditIcon"
+            name={"newName"}
           />
           <EmailInput
-            onChange={onChangeEmail}
-            value={newEmail}
-            name={"email"}
+            onChange={handleChange}
+            value={values.newEmail}
+            name={"newEmail"}
             isIcon={true}
           />
           <Password
-            value={newPassword}
-            onChange={onChangePassword}
+            value={values.newPassword}
+            onChange={handleChange}
             icon="EditIcon"
+            name={"newPassword"}
           />
-          {name === newName && email === newEmail ? null : (
+          {name === values.newName && email === values.newEmail ? null : (
             <div className={stylesProfile.buttons}>
               <Button
                 onClick={handleCancel}

@@ -5,14 +5,14 @@ import { PasswordInput } from "@ya.praktikum/react-developer-burger-ui-component
 import stylesPassword from "./password.module.css";
 import { IInput } from "../../../services/types/input";
 
-export const Password: FC<IInput> = ({ placeholder, onChange, value, icon }) => {
+export const Password: FC<IInput> = ({ placeholder, onChange, value, icon, name }) => {
   return (
     <div className={stylesPassword.main}>
       <PasswordInput
         onChange={onChange}
         value={value}
         icon={icon}
-        name={"password"}
+        name={name}
         extraClass="mb-2"
         placeholder={placeholder}
       />
