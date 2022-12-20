@@ -1,5 +1,5 @@
 import { Link, Redirect, useLocation } from "react-router-dom";
-import { useState, FC} from "react";
+import { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import stylesLogin from "./login-list.module.css";
 import { Password } from "../register-list/password-input/Password";
@@ -10,26 +10,31 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import getLogin from "../../services/actions/login";
+import { useForm } from "../../hooks/useForm";
 
 const LoginList: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
-  
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  //const [email, setEmail] = useState("");
+  //const [password, setPassword] = useState("");
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange, setValues } = useForm({
+    email: "",
+    password: "",
+  });
+
+  // const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setEmail(e.target.value);
+  // };
+  // const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(e.target.value);
+  // };
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(getLogin(email, password));
+    dispatch(getLogin(values.email, values.password));
   };
 
   if (isLogin) {
@@ -44,12 +49,12 @@ const LoginList: FC = () => {
       <form onSubmit={handleLogin}>
         <div className={`${stylesLogin.input} mb-5`}>
           <EmailInput
-            onChange={onChangeEmail}
-            value={email}
+            onChange={handleChange}
+            value={values.email}
             name={"email"}
             isIcon={false}
           />
-          <Password onChange={onChangePassword} value={password} />
+          <Password onChange={handleChange} value={values.password} />
         </div>
         <div className={`${stylesLogin.button} mb-20`}>
           <Button htmlType="submit" type="primary" size="large">
@@ -70,6 +75,6 @@ const LoginList: FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LoginList;
