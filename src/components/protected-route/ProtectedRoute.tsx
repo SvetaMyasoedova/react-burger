@@ -1,22 +1,20 @@
 import { Route, Redirect } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, FC } from "react";
-import { getUser } from "../../services/actions/profile";
+import { useSelector } from "react-redux";
+import React, { FC } from "react";
 
 type IProtectedRoute = {
   children: React.ReactNode;
-  path?: string
-}
+  path?: string;
+};
 
-export const ProtectedRoute: FC<IProtectedRoute> = ({ children, path, ...rest }) => {
-  const dispatch = useDispatch();
-  const { name } = useSelector((state: any) => state.profileReducer);
-  const { email } = useSelector((state: any) => state.profileReducer);
-  const { isUserLoaded } = useSelector((state: any) => state.profileReducer);
-
-  // useEffect(() => {
-  //   dispatch(getUser());
-  // }, []);
+export const ProtectedRoute: FC<IProtectedRoute> = ({
+  children,
+  path,
+  ...rest
+}) => {
+  const { name, email, isUserLoaded } = useSelector(
+    (state: any) => state.profileReducer
+  );
 
   if (!isUserLoaded) {
     return null;
@@ -39,4 +37,4 @@ export const ProtectedRoute: FC<IProtectedRoute> = ({ children, path, ...rest })
       }
     />
   );
-}
+};
