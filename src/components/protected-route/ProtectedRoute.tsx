@@ -1,17 +1,10 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import React, { FC } from "react";
 
-type IProtectedRoute = {
-  children: React.ReactNode;
-  path?: string;
-};
-
-export const ProtectedRoute: FC<IProtectedRoute> = ({
-  children,
-  path,
-  ...rest
-}) => {
+export const ProtectedRoute: FC<
+  RouteProps & { children?: React.ReactNode }
+> = ({ children, path, ...rest }) => {
   const { name, email, isUserLoaded } = useSelector(
     (state: any) => state.profileReducer
   );
