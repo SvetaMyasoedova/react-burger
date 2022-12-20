@@ -9,23 +9,29 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
 import { checkReponse } from "../../utils/refreshToken";
 import { TLocationState } from "../../services/types/location";
+import { useForm } from "../../hooks/useForm";
 
 const ResetPassword: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory<{ from: string }>();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
-  const [code, setCode] = useState("");
 
-  const [password, setPassword] = useState("");
+  // const [code, setCode] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCode(e.target.value);
-  };
+  // const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCode(e.target.value);
+  // };
 
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  // const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(e.target.value);
+  // };
+
+  const { values, handleChange, setValues } = useForm({
+    code: "",
+    password: "",
+  });
 
   const handlePasswordReset = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,8 +47,8 @@ const ResetPassword: FC = () => {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify({
-        password: password,
-        token: code,
+        password: values.password,
+        token: values.code,
       }),
     })
       .then(checkReponse)
@@ -78,13 +84,15 @@ const ResetPassword: FC = () => {
         <div className={`${stylesResetPassword.input} mb-5`}>
           <Password
             placeholder="Введите новый пароль"
-            onChange={onChangePassword}
-            value={password}
+            onChange={handleChange}
+            value={values.password}
+            name={"password"}
           />
           <NameInput
             placeholder="Введите код из письма"
-            onChange={onChangeCode}
-            value={code}
+            onChange={handleChange}
+            value={values.code}
+            name={"code"}
           />
         </div>
         <div className={`${stylesResetPassword.button} mb-20`}>
@@ -108,6 +116,6 @@ const ResetPassword: FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ResetPassword;

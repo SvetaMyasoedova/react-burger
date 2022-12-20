@@ -58,7 +58,11 @@ const RegisterList: FC = () => {
             name={"email"}
             isIcon={false}
           />
-          <Password onChange={handleChange} value={values.password} />
+          <Password
+            onChange={handleChange}
+            value={values.password}
+            name={"password"}
+          />
         </div>
         <div className={`${stylesRegister.button} mb-20`}>
           <Button

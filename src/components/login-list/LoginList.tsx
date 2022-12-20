@@ -44,7 +44,7 @@ const LoginList: FC = () => {
             name={"email"}
             isIcon={false}
           />
-          <Password onChange={handleChange} value={values.password} />
+          <Password onChange={handleChange} value={values.password} name= {"password"}/>
         </div>
         <div className={`${stylesLogin.button} mb-20`}>
           <Button htmlType="submit" type="primary" size="large">
