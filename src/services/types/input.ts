@@ -3,5 +3,6 @@ export type IInput = {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	value: string;
 	icon?: any;
+	name?: string;
  }
  

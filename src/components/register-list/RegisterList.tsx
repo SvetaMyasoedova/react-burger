@@ -13,29 +13,22 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TLocationState } from "../../services/types/location";
+import { useForm } from "../../hooks/useForm";
 
 const RegisterList: FC = () => {
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
 
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange, setValues } = useForm({
+    userName: "",
+    email: "",
+    password: "",
+  });
 
   const handleNewUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(getRegister(email, password, userName));
+    dispatch(getRegister(values.email, values.password, values.userName));
   };
 
   useEffect(() => {
@@ -55,16 +48,17 @@ const RegisterList: FC = () => {
         <div className={`${stylesRegister.input} mb-5`}>
           <NameInput
             placeholder="Имя"
-            onChange={onChangeUserName}
-            value={userName}
+            onChange={handleChange}
+            value={values.userName}
+            name={"userName"}
           />
           <EmailInput
-            onChange={onChangeEmail}
-            value={email}
+            onChange={handleChange}
+            value={values.email}
             name={"email"}
             isIcon={false}
           />
-          <Password onChange={onChangePassword} value={password} />
+          <Password onChange={handleChange} value={values.password} />
         </div>
         <div className={`${stylesRegister.button} mb-20`}>
           <Button

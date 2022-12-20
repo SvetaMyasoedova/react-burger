@@ -17,20 +17,10 @@ const LoginList: FC = () => {
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
 
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
-
   const { values, handleChange, setValues } = useForm({
     email: "",
     password: "",
   });
-
-  // const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setEmail(e.target.value);
-  // };
-  // const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPassword(e.target.value);
-  // };
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

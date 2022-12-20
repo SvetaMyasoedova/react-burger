@@ -4,7 +4,7 @@ import {  useRef, FC } from "react";
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IInput } from "../../../services/types/input";
 
-export const NameInput: FC<IInput> = ({placeholder, onChange, value, icon}) => {
+export const NameInput: FC<IInput> = ({placeholder, onChange, value, icon, name}) => {
   
   const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
@@ -17,7 +17,7 @@ export const NameInput: FC<IInput> = ({placeholder, onChange, value, icon}) => {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      name={"name"}
+      name={name}
       icon={icon}
       error={false}
       ref={inputRef}
