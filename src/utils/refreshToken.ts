@@ -1,7 +1,7 @@
 import { TOKEN_URL } from "./urls";
 import { setCookie } from "./cookie";
 
-export const checkReponse = (res: { ok: boolean; json(): Promise<any> }) => {
+export const checkReponse =(res:Response): Promise<any> => {
   return res.ok
     ? res.json()
     : res.json().then((err: Error) => Promise.reject(err));
