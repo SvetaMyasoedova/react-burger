@@ -1,32 +1,25 @@
 import { useState, useEffect, FC } from "react";
-
 import stylesForgotPassword from "./forgot-password.module.css";
-
 import { Link, useHistory, Redirect, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { getUser } from "../../services/actions/profile";
-
 import { checkReponse } from "../../utils/refreshToken";
-
 import { TLocationState } from "../../services/types/location";
-
-
+import { useForm } from "../../hooks/useForm";
 
 const ForgotPassword: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
-  const [value, setValue] = useState("");
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
+  const { values, handleChange, setValues } = useForm({
+    email: "",
+  });
 
   useEffect(() => {
     dispatch(getUser());
@@ -46,7 +39,7 @@ const ForgotPassword: FC = () => {
       redirect: "follow",
       referrerPolicy: "no-referrer",
       body: JSON.stringify({
-        email: value,
+        email: values.email,
       }),
     })
       .then(checkReponse)
@@ -69,8 +62,8 @@ const ForgotPassword: FC = () => {
       <form onSubmit={handlePasswordRecovery}>
         <div className={`${stylesForgotPassword.input} mb-5`}>
           <EmailInput
-            onChange={onChange}
-            value={value}
+            onChange={handleChange}
+            value={values.email}
             name={"email"}
             isIcon={false}
           />
@@ -91,6 +84,6 @@ const ForgotPassword: FC = () => {
       </div>
     </>
   );
-}
+};
 
 export default ForgotPassword;
