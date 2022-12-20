@@ -11,6 +11,6 @@ export const rootReducer = combineReducers({
   сurrentIngredientReducer: сurrentIngredientReducer,
   orderReducer: orderReducer,
   constructorReducer: constructorReducer,
-  // registerReducer: registerReducer,
+  registerReducer: registerReducer,
   profileReducer: profileReducer,
 });
