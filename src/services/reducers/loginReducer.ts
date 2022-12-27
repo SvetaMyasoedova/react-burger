@@ -1,5 +1,9 @@
-// import { GET_LOGIN, GET_LOGIN_FAILED, GET_LOGIN_SUCCESS } from "../actions/login";
-import { ActionLoginType, ActionLogin } from "../actions/login";
+import {
+  GET_LOGIN,
+  GET_LOGIN_FAILED,
+  GET_LOGIN_SUCCESS,
+} from "../actions/login";
+import { ActionLogin } from "../actions/login";
 
 const initialState = {
   loginRequest: false,
@@ -11,14 +15,14 @@ const initialState = {
 
 export const loginReducer = (state = initialState, action: ActionLogin) => {
   switch (action.type) {
-    case ActionLoginType.GET_LOGIN: {
+    case GET_LOGIN: {
       return {
         ...state,
         loginRequest: true,
         loginFailed: false,
       };
     }
-    case ActionLoginType.GET_LOGIN_SUCCESS: {
+    case GET_LOGIN_SUCCESS: {
       return {
         ...state,
         email: action.email,
@@ -27,7 +31,7 @@ export const loginReducer = (state = initialState, action: ActionLogin) => {
         loginRequest: false,
       };
     }
-    case ActionLoginType.GET_LOGIN_FAILED: {
+    case GET_LOGIN_FAILED: {
       return {
         ...state,
         loginFailed: true,

@@ -10,24 +10,23 @@ import {
   EDIT_USER_SUCCESS,
 } from "../actions/editProfile";
 
-// import {
-//   GET_LOGIN,
-//   GET_LOGIN_SUCCESS,
-//   GET_LOGIN_FAILED,
-// } from "../actions/login";
+import {
+  GET_LOGIN,
+  GET_LOGIN_SUCCESS,
+  GET_LOGIN_FAILED,
+} from "../actions/login";
 
 // import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
 
 import { ActionUser, ActionUserType } from "../actions/profile";
-import { ActionRegister, ActionRegisterType } from './../actions/register';
-import { ActionLogin, ActionLoginType } from "../actions/login";
-import { ActionEdit} from './../actions/editProfile';
-import { ActionLogout, ActionLogoutType } from './../actions/profile';
-
+import { ActionRegister, ActionRegisterType } from "./../actions/register";
+import { ActionLogin } from "../actions/login";
+import { ActionEdit } from "./../actions/editProfile";
+import { ActionLogout, ActionLogoutType } from "./../actions/profile";
 
 const initialState = {
   registerRequest: false,
-	registerFailed: false,
+  registerFailed: false,
   userRequest: false,
   userFailed: false,
   email: "",
@@ -38,32 +37,37 @@ const initialState = {
   isLogin: false,
 };
 
-type Action = ActionUser | ActionRegister | ActionLogin | ActionEdit |ActionLogout;
+type Action =
+  | ActionUser
+  | ActionRegister
+  | ActionLogin
+  | ActionEdit
+  | ActionLogout;
 
 export const profileReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ActionRegisterType.GET_REGISTER: {
       return {
-       ...state,
-       registerRequest: true,
-       registerFailed: false,
+        ...state,
+        registerRequest: true,
+        registerFailed: false,
       };
-     }
-     case ActionRegisterType.GET_REGISTER_SUCCESS: {
+    }
+    case ActionRegisterType.GET_REGISTER_SUCCESS: {
       return {
-       ...state,
-       email: action.email,
-       name: action.name,
-       registerRequest: false,
+        ...state,
+        email: action.email,
+        name: action.name,
+        registerRequest: false,
       };
-     }
-     case ActionRegisterType.GET_REGISTER_FAILED: {
+    }
+    case ActionRegisterType.GET_REGISTER_FAILED: {
       return {
-       ...state,
-       registerFailed: true,
-       registerRequest: false,
+        ...state,
+        registerFailed: true,
+        registerRequest: false,
       };
-     }
+    }
     case ActionUserType.GET_USER: {
       return {
         ...state,
@@ -120,14 +124,14 @@ export const profileReducer = (state = initialState, action: Action) => {
         dataRequest: false,
       };
     }
-    case ActionLoginType.GET_LOGIN: {
+    case GET_LOGIN: {
       return {
         ...state,
         loginRequest: true,
         loginFailed: false,
       };
     }
-    case ActionLoginType.GET_LOGIN_SUCCESS: {
+    case GET_LOGIN_SUCCESS: {
       return {
         ...state,
         email: action.email,
@@ -136,7 +140,7 @@ export const profileReducer = (state = initialState, action: Action) => {
         loginRequest: false,
       };
     }
-    case ActionLoginType.GET_LOGIN_FAILED: {
+    case GET_LOGIN_FAILED: {
       return {
         ...state,
         loginFailed: true,
