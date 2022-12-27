@@ -14,9 +14,8 @@ import { Password } from "../register-list/password-input/Password";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie, deleteCookie } from "../../utils/cookie";
-
-import { ActionLogoutType } from "../../services/actions/profile";
 import { useForm } from "../../hooks/useForm";
+import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 
 const Profile: FC = () => {
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const Profile: FC = () => {
     })
       .then((res) => {
         if (res && res.success) {
-          dispatch({ type: ActionLogoutType.LOGOUT_SUCCESS });
+          dispatch({ type: LOGOUT_SUCCESS });
           localStorage.removeItem("refreshToken");
           deleteCookie("token");
           history.push("/login");
