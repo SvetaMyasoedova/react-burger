@@ -17,10 +17,10 @@ import {
   GET_LOGIN_FAILED,
 } from "../actions/login";
 
-// import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
+import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
 
 import { ActionUser } from "../actions/profile";
-import { ActionRegister, ActionRegisterType } from "./../actions/register";
+import { ActionRegister} from "./../actions/register";
 import { ActionLogin } from "../actions/login";
 import { ActionEdit } from "./../actions/editProfile";
 import { ActionLogout} from "./../actions/profile";
@@ -47,14 +47,14 @@ type Action =
 
 export const profileReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionRegisterType.GET_REGISTER: {
+    case GET_REGISTER: {
       return {
         ...state,
         registerRequest: true,
         registerFailed: false,
       };
     }
-    case ActionRegisterType.GET_REGISTER_SUCCESS: {
+    case GET_REGISTER_SUCCESS: {
       return {
         ...state,
         email: action.email,
@@ -62,7 +62,7 @@ export const profileReducer = (state = initialState, action: Action) => {
         registerRequest: false,
       };
     }
-    case ActionRegisterType.GET_REGISTER_FAILED: {
+    case GET_REGISTER_FAILED: {
       return {
         ...state,
         registerFailed: true,

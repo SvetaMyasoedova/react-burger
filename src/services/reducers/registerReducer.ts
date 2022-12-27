@@ -1,6 +1,6 @@
-// import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
+import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
 
-import { ActionRegisterType, ActionRegister } from "../actions/register";
+import { ActionRegister } from "../actions/register";
 
 const initialState = {
 	registerRequest: false,
@@ -11,14 +11,14 @@ const initialState = {
 
  export const registerReducer = (state = initialState, action: ActionRegister) => {
 	switch (action.type) {
-	  case ActionRegisterType.GET_REGISTER: {
+	  case GET_REGISTER: {
 		 return {
 			...state,
 			registerRequest: true,
 			registerFailed: false,
 		 };
 	  }
-	  case ActionRegisterType.GET_REGISTER_SUCCESS: {
+	  case GET_REGISTER_SUCCESS: {
 		 return {
 			...state,
 			email: action.email,
@@ -26,7 +26,7 @@ const initialState = {
 			registerRequest: false,
 		 };
 	  }
-	  case ActionRegisterType.GET_REGISTER_FAILED: {
+	  case GET_REGISTER_FAILED: {
 		 return {
 			...state,
 			registerFailed: true,
