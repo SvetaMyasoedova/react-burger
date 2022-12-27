@@ -18,7 +18,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-  ActionOrderType,
+  CLEAR_ORDER
 } from "../../services/actions/burgerConstructor";
 
 import stylesConstructor from "./burger-constructor.module.css";
@@ -115,7 +115,7 @@ const BurgerConstructor: FC = () => {
       type: CLEAR_CONSTRUCTOR,
     });
     dispatch({
-      type: ActionOrderType.CLEAR_ORDER,
+      type: CLEAR_ORDER,
     });
   };
 

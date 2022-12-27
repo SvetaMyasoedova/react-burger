@@ -1,13 +1,13 @@
-// import {
-//   GET_ORDER,
-//   GET_ORDER_SUCCESS,
-//   GET_ORDER_FAILED,
-//   CLEAR_ORDER
+import {
+  GET_ORDER,
+  GET_ORDER_SUCCESS,
+  GET_ORDER_FAILED,
+  CLEAR_ORDER
 
-// } from "../actions/burgerConstructor";
+} from "../actions/burgerConstructor";
 
 
-import { ActionOrderType, ActionOrder } from "../actions/burgerConstructor";
+import { ActionOrder } from "../actions/burgerConstructor";
 
 const initialState = {
   orderRequest: false,
@@ -18,28 +18,28 @@ const initialState = {
 
 export const orderReducer = (state = initialState, action: ActionOrder) => {
   switch (action.type) {
-    case ActionOrderType.GET_ORDER: {
+    case GET_ORDER: {
       return {
         ...state,
         orderRequest: true,
         orderFailed: false,
       };
     }
-    case ActionOrderType.GET_ORDER_SUCCESS: {
+    case GET_ORDER_SUCCESS: {
       return {
         ...state,
         createdOrder: action.createdOrder,
         orderRequest: false,
       };
     }
-    case ActionOrderType.GET_ORDER_FAILED: {
+    case GET_ORDER_FAILED: {
       return {
         ...state,
         orderFailed: true,
         orderRequest: false,
       };
     }
-    case ActionOrderType.CLEAR_ORDER: {
+    case CLEAR_ORDER: {
       return {
         ...state,
         createdOrder: null,
