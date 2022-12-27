@@ -1,17 +1,14 @@
-
-
-
 // import {
 //   GET_USER,
 //   GET_USER_FAILED,
 //   GET_USER_SUCCESS,
 //   LOGOUT_SUCCESS,
 // } from "../actions/profile";
-// import {
-//   EDIT_USER,
-//   EDIT_USER_FAILED,
-//   EDIT_USER_SUCCESS,
-// } from "../actions/editProfile";
+import {
+  EDIT_USER,
+  EDIT_USER_FAILED,
+  EDIT_USER_SUCCESS,
+} from "../actions/editProfile";
 
 // import {
 //   GET_LOGIN,
@@ -24,7 +21,7 @@
 import { ActionUser, ActionUserType } from "../actions/profile";
 import { ActionRegister, ActionRegisterType } from './../actions/register';
 import { ActionLogin, ActionLoginType } from "../actions/login";
-import { ActionEdit, ActionEditType } from './../actions/editProfile';
+import { ActionEdit} from './../actions/editProfile';
 import { ActionLogout, ActionLogoutType } from './../actions/profile';
 
 
@@ -101,14 +98,14 @@ export const profileReducer = (state = initialState, action: Action) => {
         isLogin: false,
       };
     }
-    case ActionEditType.EDIT_USER: {
+    case EDIT_USER: {
       return {
         ...state,
         userRequest: true,
         userFailed: false,
       };
     }
-    case ActionEditType.EDIT_USER_SUCCESS: {
+    case EDIT_USER_SUCCESS: {
       return {
         ...state,
         email: action.email,
@@ -116,7 +113,7 @@ export const profileReducer = (state = initialState, action: Action) => {
         dataRequest: false,
       };
     }
-    case ActionEditType.EDIT_USER_FAILED: {
+    case EDIT_USER_FAILED: {
       return {
         ...state,
         dataFailed: true,

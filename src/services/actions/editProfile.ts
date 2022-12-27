@@ -1,30 +1,23 @@
 import { Dispatch } from "redux";
 import { USER_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
-
 import { fetchWithRefresh } from "../../utils/refreshToken";
-// export const EDIT_USER = "EDIT_USER";
-// export const EDIT_USER_FAILED = "EDIT_USER_FAILED";
-// export const EDIT_USER_SUCCESS = "GET_EDIT_SUCCESS";
 
-export enum ActionEditType {
-  EDIT_USER = "EDIT_USER",
-  EDIT_USER_FAILED = "EDIT_USER_FAILED",
-  EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS",
-}
+export const EDIT_USER:"EDIT_USER"  = "EDIT_USER";
+export const EDIT_USER_FAILED: "EDIT_USER_FAILED" = "EDIT_USER_FAILED";
+export const EDIT_USER_SUCCESS: "GET_EDIT_SUCCESS" = "GET_EDIT_SUCCESS";
+
 
 interface actionEditPending {
-  type: ActionEditType.EDIT_USER;
+  readonly type: typeof EDIT_USER;
 }
-
 interface actionEditSuccess {
-  type: ActionEditType.EDIT_USER_SUCCESS;
+  readonly type: typeof EDIT_USER_SUCCESS;
   email: string;
   name: string;
 }
-
 interface actionEditFail {
-  type: ActionEditType.EDIT_USER_FAILED;
+  readonly type: typeof EDIT_USER_FAILED;
 }
 
 export type ActionEdit = actionEditPending | actionEditSuccess | actionEditFail;
@@ -32,7 +25,7 @@ export type ActionEdit = actionEditPending | actionEditSuccess | actionEditFail;
 export function editUser(newName: string, newEmail: string): any {
   return function (dispatch: Dispatch<ActionEdit>) {
     dispatch({
-      type: ActionEditType.EDIT_USER,
+      type: EDIT_USER,
     });
 
     fetchWithRefresh(USER_URL, {
@@ -55,19 +48,19 @@ export function editUser(newName: string, newEmail: string): any {
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: ActionEditType.EDIT_USER_SUCCESS,
+            type: EDIT_USER_SUCCESS,
             email: newEmail,
             name: newName,
           });
         } else {
           dispatch({
-            type: ActionEditType.EDIT_USER_FAILED,
+            type: EDIT_USER_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: ActionEditType.EDIT_USER_FAILED,
+          type: EDIT_USER_FAILED,
         });
       });
   };
