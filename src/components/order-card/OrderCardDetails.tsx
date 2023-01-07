@@ -1,6 +1,14 @@
+import { useParams } from "react-router-dom";
 import IngredientDetails from "./ingredientDetails";
 import styleOrderCardDetails from "./order-card-details.module.css";
+
+interface IOrderDetails {
+  ingredientId: string;
+}
+
 const OrderCardDetails = () => {
+
+  // const { id } = useParams<IOrderDetails>();
   return (
     <div className={styleOrderCardDetails.main}>
       <p

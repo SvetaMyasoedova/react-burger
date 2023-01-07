@@ -10,10 +10,18 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { rootReducer } from "./services/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
+import { socketMiddleware } from "./services/middlewares/socketMiddleware";
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(
+    applyMiddleware(
+      thunk,
+      socketMiddleware(
+        "wss://norma.nomoreparties.space/orders/allwss://norma.nomoreparties.space/orders/all"
+      )
+    )
+  )
 );
 
 const root = ReactDOM.createRoot(

@@ -28,6 +28,7 @@ import { getUser } from "../../services/actions/profile";
 import { FeedDetailsPage } from "../../pages/feed/feedDetails";
 
 
+
 function App() {
   const location = useLocation<TLocationState>();
   const history = useHistory();
@@ -77,7 +78,7 @@ function App() {
         <Route path="/feed" exact={true}>
           <FeedPage />
         </Route>
-        <Route path="/feeds" exact={true}>
+        <Route path="/feed/:id" exact={true}>
           <FeedDetailsPage />
         </Route>
 
