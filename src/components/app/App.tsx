@@ -26,6 +26,7 @@ import { getIngredients } from "../../services/actions/burgerIngredients";
 import { TLocationState } from "../../services/types/location";
 import { getUser } from "../../services/actions/profile";
 import { FeedDetailsPage } from "../../pages/feed/feedDetails";
+import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
 
 
 
@@ -42,6 +43,10 @@ function App() {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUser());
+    dispatch({
+      type: WS_CONNECTION_START,
+     
+    });
   }, []);
 
   return (
