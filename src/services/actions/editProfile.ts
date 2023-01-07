@@ -3,10 +3,9 @@ import { USER_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 
-export const EDIT_USER:"EDIT_USER"  = "EDIT_USER";
+export const EDIT_USER: "EDIT_USER" = "EDIT_USER";
 export const EDIT_USER_FAILED: "EDIT_USER_FAILED" = "EDIT_USER_FAILED";
 export const EDIT_USER_SUCCESS: "GET_EDIT_SUCCESS" = "GET_EDIT_SUCCESS";
-
 
 interface actionEditPending {
   readonly type: typeof EDIT_USER;

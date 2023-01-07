@@ -25,7 +25,23 @@ import { ActionLogin } from "../actions/login";
 import { ActionEdit } from "./../actions/editProfile";
 import { ActionLogout} from "./../actions/profile";
 
-const initialState = {
+
+type TProfileState = {
+  registerRequest: boolean;
+  registerFailed: boolean;
+  userRequest: boolean;
+  userFailed: boolean;
+  email: string;
+  name: string;
+  isUserLoaded: boolean;
+  loginRequest: boolean;
+  loginFailed: boolean;
+  isLogin: boolean;
+  dataRequest: boolean;
+  dataFailed: boolean;
+};
+
+const initialState: TProfileState = {
   registerRequest: false,
   registerFailed: false,
   userRequest: false,
@@ -36,6 +52,8 @@ const initialState = {
   loginRequest: false,
   loginFailed: false,
   isLogin: false,
+  dataRequest: false,
+  dataFailed: false,
 };
 
 type Action =
@@ -45,7 +63,7 @@ type Action =
   | ActionEdit
   | ActionLogout;
 
-export const profileReducer = (state = initialState, action: Action) => {
+export const profileReducer = (state = initialState, action: Action): TProfileState => {
   switch (action.type) {
     case GET_REGISTER: {
       return {
