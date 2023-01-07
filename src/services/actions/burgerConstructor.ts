@@ -20,12 +20,12 @@ interface actionConstructorBun {
   constructorBun: any;
 }
 
-interface ICount {
-  _id: number;
-}
+// interface ICount {
+//   _id: number;
+// }
 interface actionConstructorMain {
   readonly type: typeof CONSTRUCTOR_MAIN;
-  constructorIngredient: ICount;
+  constructorIngredient: TIngredient;
 }
 interface actionDeleteElement {
   uuid: any;

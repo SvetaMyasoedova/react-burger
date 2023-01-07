@@ -8,7 +8,17 @@ import {
 } from "../actions/burgerConstructor";
 import { TIngredient } from "../types/data";
 
-const initialState = {
+interface IIngredientsCount {
+  [key: string]: number;
+}
+
+type TConstructorState = {
+  constructorBun: null | TIngredient;
+  constructorIngredients: Array<TIngredient>;
+  ingredientsCount: null | IIngredientsCount;
+};
+
+const initialState: TConstructorState = {
   constructorBun: null,
   constructorIngredients: [],
   ingredientsCount: null,
@@ -17,7 +27,7 @@ const initialState = {
 export const constructorReducer = (
   state = initialState,
   action: ActionIngredient
-) => {
+): TConstructorState => {
   switch (action.type) {
     case CONSTRUCTOR_BUN: {
       return {
