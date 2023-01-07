@@ -8,9 +8,9 @@ import { TIngredient } from "../types/data";
 
 
 type TDataState = {
-  dataRequest: boolean,
-  dataFailed: boolean,
-  data: Array<TIngredient>,
+  dataRequest: boolean;
+  dataFailed: boolean;
+  data: Array<TIngredient>;
 } 
 
 const initialState: TDataState = {

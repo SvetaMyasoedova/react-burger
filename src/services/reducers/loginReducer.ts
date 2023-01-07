@@ -5,7 +5,15 @@ import {
 } from "../actions/login";
 import { ActionLogin } from "../actions/login";
 
-const initialState = {
+type TLoginState = {
+  loginRequest: boolean;
+  loginFailed: boolean;
+  email: string;
+  name: string;
+  isLogin: boolean;
+} 
+
+const initialState: TLoginState = {
   loginRequest: false,
   loginFailed: false,
   email: "",
@@ -13,7 +21,7 @@ const initialState = {
   isLogin: false,
 };
 
-export const loginReducer = (state = initialState, action: ActionLogin) => {
+export const loginReducer = (state = initialState, action: ActionLogin): TLoginState => {
   switch (action.type) {
     case GET_LOGIN: {
       return {
