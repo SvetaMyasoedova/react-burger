@@ -1,0 +1,15 @@
+.main {
+  position: absolute;
+  height: 620px;
+  left: 34%;
+  right: 34%;
+  top: 230px;
+}
+
+.number{
+	text-align: center;
+}
+
+.status{
+	color: #00CCCC;
+}

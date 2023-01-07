@@ -25,6 +25,7 @@ import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getIngredients } from "../../services/actions/burgerIngredients";
 import { TLocationState } from "../../services/types/location";
 import { getUser } from "../../services/actions/profile";
+import { FeedDetailsPage } from "../../pages/feed/feedDetails";
 
 
 function App() {
@@ -75,6 +76,9 @@ function App() {
         </Route>
         <Route path="/feed" exact={true}>
           <FeedPage />
+        </Route>
+        <Route path="/feeds" exact={true}>
+          <FeedDetailsPage />
         </Route>
 
         <ProtectedRoute path="/">
