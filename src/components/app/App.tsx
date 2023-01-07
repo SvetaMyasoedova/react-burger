@@ -18,6 +18,7 @@ import {
   ResetPassworddPage,
   ProfilePage,
 } from "../../pages";
+import { FeedPage } from "../../pages/feed/feed";
 import { ProtectedRoute } from "../protected-route/ProtectedRoute";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
@@ -71,6 +72,9 @@ function App() {
 
         <Route path="/ingredients/:ingredientId" exact={true}>
           <IngredientDetails />
+        </Route>
+        <Route path="/feed" exact={true}>
+          <FeedPage />
         </Route>
 
         <ProtectedRoute path="/">
