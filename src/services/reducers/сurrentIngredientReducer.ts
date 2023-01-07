@@ -4,12 +4,20 @@ import {
 } from "../actions/burgerIngredients";
 
 import { ActionCurrentIngredient } from "../actions/burgerIngredients";
+import { TIngredient } from "../types/data";
 
-const initialState = {
+type TCurrentIngredientState = {
+  currentIngredient: null | TIngredient;
+};
+
+const initialState: TCurrentIngredientState = {
   currentIngredient: null,
 };
 
-export const сurrentIngredientReducer = (state = initialState, action: ActionCurrentIngredient) => {
+export const сurrentIngredientReducer = (
+  state = initialState,
+  action: ActionCurrentIngredient
+): TCurrentIngredientState => {
   switch (action.type) {
     case CURRENT_INGREDIENT: {
       return {
