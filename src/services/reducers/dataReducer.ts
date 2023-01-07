@@ -4,14 +4,22 @@ import {
   GET_INGREDIENTS_SUCCESS,
 } from "../actions/burgerIngredients";
 import { Action} from "../actions/burgerIngredients";
+import { TIngredient } from "../types/data";
 
-const initialState = {
+
+type TDataState = {
+  dataRequest: boolean,
+  dataFailed: boolean,
+  data: Array<TIngredient>,
+} 
+
+const initialState: TDataState = {
   dataRequest: false,
   dataFailed: false,
   data: [],
 };
 
-export const dataReducer = (state = initialState, action: Action) => {
+export const dataReducer = (state = initialState, action: Action): TDataState => {
   switch (action.type) {
     case GET_INGREDIENTS: {
       return {
