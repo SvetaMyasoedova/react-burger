@@ -2,21 +2,31 @@ import {
   GET_ORDER,
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILED,
-  CLEAR_ORDER
-
+  CLEAR_ORDER,
 } from "../actions/burgerConstructor";
-
 
 import { ActionOrder } from "../actions/burgerConstructor";
 
-const initialState = {
+interface ICreatedOrder {
+  number: number;
+}
+
+type TOrderState = {
+  orderRequest: boolean;
+  orderFailed: boolean;
+  createdOrder: null | ICreatedOrder;
+};
+
+const initialState: TOrderState = {
   orderRequest: false,
   orderFailed: false,
   createdOrder: null,
 };
 
-
-export const orderReducer = (state = initialState, action: ActionOrder) => {
+export const orderReducer = (
+  state = initialState,
+  action: ActionOrder
+): TOrderState => {
   switch (action.type) {
     case GET_ORDER: {
       return {
