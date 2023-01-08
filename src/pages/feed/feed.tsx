@@ -1,11 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import OrderCard from "../../components/order-card/OrderCard";
+import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
 import styleFeed from "./feed.module.css";
 
 export const FeedPage = () => {
   const { orders, total, totalToday } = useSelector(
     (state: any) => state.wsReducer
   );
+
+  const dispatch = useDispatch();
+  const handleOpenModal = (order: any) => {
+    dispatch({
+      payload: {currentOrder: order},
+      type: WS_CURRENT_ORDER,
+    });
+  };
   return (
     <div className={styleFeed.main}>
       
@@ -13,7 +22,7 @@ export const FeedPage = () => {
       <p className="text text_type_main-large mb-5">Лента заказов</p>
       <div className={styleFeed.scroll}>
          {orders.map((order: any) => {
-          return <OrderCard order={order} key={order._id} />;
+          return <OrderCard onClick={handleOpenModal} order={order} key={order._id} />;
         })}
       </div>
        

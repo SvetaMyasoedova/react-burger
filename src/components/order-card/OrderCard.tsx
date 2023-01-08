@@ -8,41 +8,46 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { TLocationState } from "../../services/types/location";
 
 export interface IOrderCard {
-  number: number;
-  name: string;
-  price: number;
+  order: any;
+  onClick: (order: any) =>  void;
 }
 
-const OrderCard = (order: any) => {
+const OrderCard = ({order, onClick}: IOrderCard) => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
   const filteredArray = data.filter((value: any) =>
-    order.order.ingredients.includes(value._id)
+    order.ingredients.includes(value._id)
   );
   const location = useLocation<TLocationState>();
+
 
   return (
     <Link<TLocationState>
       to={{
-        pathname: `/feed/${order.order._id}`,
+        pathname: `/feed/${order._id}`,
         state: { background: location },
       }}
       className={styleOrderCard.link}
     >
-      <div className={`${styleOrderCard.main} p-4 mb-4 mr-2`}>
+      <div
+        onClick={() => {
+          onClick(order.order);
+        }}
+        className={`${styleOrderCard.main} p-4 mb-4 mr-2`}
+      >
         <div className={`${styleOrderCard.header} mb-6`}>
-          <p className="text text_type_digits-default">#{order.order.number}</p>
+          <p className="text text_type_digits-default">#{order.number}</p>
           <div className="text text_type_main-default text_color_inactive">
-            <FormattedDate date={new Date(order.order.createdAt)} />
+            <FormattedDate date={new Date(order.createdAt)} />
           </div>
         </div>
-        <p className="text text_type_main-medium  mb-6">{order.order.name}</p>
+        <p className="text text_type_main-medium  mb-6">{order.name}</p>
         <div className={styleOrderCard.bottom}>
           <div className={styleOrderCard.ingredientsWrapper}>
             {filteredArray.slice(0, 6).map((ingredient: any, index: number) => {
               if (index === 5) {
                 return (
-                  <div className={styleOrderCard.wrapper}>
+                  <div key={ingredient._id} className={styleOrderCard.wrapper}>
                     <div className={styleOrderCard.imgWrapper}>
                       <img
                         className={styleOrderCard.ingredientImgLast}
@@ -59,7 +64,7 @@ const OrderCard = (order: any) => {
                 );
               }
               return (
-                <div className={styleOrderCard.wrapper}>
+                <div key={ingredient._id} className={styleOrderCard.wrapper}>
                   <div className={styleOrderCard.imgWrapper}>
                     <img
                       className={styleOrderCard.ingredientImg}

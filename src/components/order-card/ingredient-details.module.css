@@ -6,4 +6,30 @@
 .flex {
 	display: flex;
 	gap: 16px;
+	align-items: center;
+}
+.wrapper {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(left top, #801ab3 0%, #4c4cff 100%);
+}
+.imgWrapper {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #131316;
+  border-radius: 50%;
+}
+
+.ingredientImg {
+  width: 112px;
+  height: 56px;
 }

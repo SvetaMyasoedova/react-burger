@@ -28,7 +28,7 @@ export const socketMiddleware = (wsUrl: string): Middleware => {
 
         socket.onmessage = (event) => {
           const dataObj = JSON.parse(event.data);
-          console.log(dataObj)
+       
           if (dataObj.success) {
             dispatch({ type: "WS_GET_MESSAGE", payload: dataObj });
           }

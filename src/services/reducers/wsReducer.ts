@@ -56,7 +56,7 @@ export const wsReducer = (state = initialState, action: TWSActions) => {
         totalToday: action.payload.totalToday,
       };
     case WS_CURRENT_ORDER:
-      console.log(action)
+     
       return {
         ...state,
         currentOrder: action.payload.currentOrder,
