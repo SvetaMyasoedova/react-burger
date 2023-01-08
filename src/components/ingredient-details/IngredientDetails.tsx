@@ -27,7 +27,7 @@ const IngredientDetails: FC = () => {
 
   const { data } = useSelector((state: any) => state.dataReducer);
 
-  const location = useLocation<TLocationState>();;
+  const location = useLocation<TLocationState>();
   const background = location.state && location.state.background;
 
   useEffect(() => {

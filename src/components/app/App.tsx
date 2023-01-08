@@ -28,8 +28,6 @@ import { getUser } from "../../services/actions/profile";
 import { FeedDetailsPage } from "../../pages/feed/feedDetails";
 import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
 
-
-
 function App() {
   const location = useLocation<TLocationState>();
   const history = useHistory();
@@ -82,7 +80,7 @@ function App() {
         <Route path="/feed" exact={true}>
           <FeedPage />
         </Route>
-        <Route path="/feed/:id" exact={true}>
+        <Route path="/feed/:orderId" exact={true}>
           <FeedDetailsPage />
         </Route>
 
@@ -97,6 +95,16 @@ function App() {
           children={
             <Modal onClose={handleModalClose} header={"Детали ингредиента"}>
               <IngredientDetails />
+            </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route
+          path="/feed/:orderId"
+          children={
+            <Modal onClose={handleModalClose}>
+              <FeedDetailsPage />
             </Modal>
           }
         />

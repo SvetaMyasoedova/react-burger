@@ -6,13 +6,14 @@ export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" =
   "WS_CONNECTION_CLOSED";
 export const WS_GET_MESSAGE: "WS_GET_MESSAGE" = "WS_GET_MESSAGE";
 export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
+export const WS_CURRENT_ORDER: "WS_CURRENT_ORDER" = "WS_CURRENT_ORDER";
 
 interface wsConnectionStart {
-	payload: any;
+  payload: any;
   readonly type: typeof WS_CONNECTION_START;
 }
 interface wsConnectionSuccess {
-	payload: any;
+  payload: any;
   readonly type: typeof WS_CONNECTION_SUCCESS;
 }
 interface wsConnectionError {
@@ -20,7 +21,7 @@ interface wsConnectionError {
   readonly type: typeof WS_CONNECTION_ERROR;
 }
 interface wsConnectionClosed {
-	payload: any;
+  payload: any;
   readonly type: typeof WS_CONNECTION_CLOSED;
 }
 interface wsGetMessage {
@@ -28,8 +29,12 @@ interface wsGetMessage {
   readonly type: typeof WS_GET_MESSAGE;
 }
 interface wsSendMessage {
-	payload: any;
+  payload: any;
   readonly type: typeof WS_SEND_MESSAGE;
+}
+interface wsCurrentOrder {
+  payload: any;
+  readonly type: typeof WS_CURRENT_ORDER;
 }
 
 export type TWSActions =
@@ -38,4 +43,5 @@ export type TWSActions =
   | wsConnectionError
   | wsConnectionClosed
   | wsGetMessage
-  | wsSendMessage;
+  | wsSendMessage
+  | wsCurrentOrder;
