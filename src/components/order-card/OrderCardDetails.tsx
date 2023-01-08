@@ -85,7 +85,7 @@ const OrderCardDetails = () => {
         {currentOrder.status === "done" ? "Выполнен" : "Готовится"}
       </p>
 
-      <div className={`${styleOrderCardDetails.details} mb-2`}>
+      <div className={`${styleOrderCardDetails.details}`}>
         <p className="text text_type_main-medium mb-6">Состав:</p>
 
         {filteredArray.map((ingredient: any) => {

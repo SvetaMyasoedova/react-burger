@@ -1,5 +1,7 @@
 .main {
   height: 80%;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .number {
@@ -12,8 +14,10 @@
 
 .details {
   width: 700px;
+  margin: 0 auto;
   max-height: 24vh;
   overflow-y: scroll;
+  margin-bottom: 40px;
 }
 
 .details::-webkit-scrollbar {
