@@ -4,7 +4,7 @@
     0px 0px 1px rgba(0, 0, 0, 0.04);
   border-radius: 40px;
   max-width: 584px;
-  max-height: 214px;
+  /* max-height: 214px; */
 }
 
 .header {
@@ -16,7 +16,35 @@
 .bottom {
   display: flex;
   justify-content: space-between;
-  
+}
+
+.ingredientsWrapper {
+  display: flex;
+}
+.imgWrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: #131316;
+  border-radius: 100px;
+  border: 2px solid;
+  border-image-source: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+}
+
+.ingredientImg {
+  width: 112px;
+  height: 56px;
+  position: absolute;
+  right: 1%;
+  top: 0%;
+}
+.ingredientImgLast {
+  width: 112px;
+  height: 56px;
+  position: absolute;
+  right: 1%;
+  top: 0%;
+  opacity: 0.6;
 }
 
 .price {
