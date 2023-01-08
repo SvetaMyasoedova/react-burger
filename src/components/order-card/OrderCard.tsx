@@ -26,17 +26,17 @@ const OrderCard = (order: any) => {
               return (
                 <div className={styleOrderCard.wrapper}>
                   <div className={styleOrderCard.imgWrapper}>
-                     <img
-                    className={styleOrderCard.ingredientImgLast}
-                    src={ingredient.image}
-                    alt={ingredient.name}
-                  />
-                  <p className={`${styleOrderCard.lastLabel} text text_type_digits-default`}>
-                    +{filteredArray.length - 6}
-                  </p>
+                    <img
+                      className={styleOrderCard.ingredientImgLast}
+                      src={ingredient.image}
+                      alt={ingredient.name}
+                    />
+                    <p
+                      className={`${styleOrderCard.lastLabel} text text_type_digits-default`}
+                    >
+                      +{filteredArray.length - 6}
+                    </p>
                   </div>
-                 
-                  
                 </div>
               );
             }
@@ -44,19 +44,30 @@ const OrderCard = (order: any) => {
               <div className={styleOrderCard.wrapper}>
                 <div className={styleOrderCard.imgWrapper}>
                   <img
-                  className={styleOrderCard.ingredientImg}
-                  src={ingredient.image}
-                  alt={ingredient.name}
-                />
+                    className={styleOrderCard.ingredientImg}
+                    src={ingredient.image}
+                    alt={ingredient.name}
+                  />
                 </div>
-                
               </div>
             );
           })}
         </div>
-
         <div className={styleOrderCard.price}>
-          <p className="text text_type_digits-default">480</p>
+          <p className="text text_type_digits-default">
+            {filteredArray.reduce(
+              (acc: number, ingredient: any, currentIndex: number) => {
+                let sum: number = 0;
+                if(currentIndex === 0) {
+                  sum = acc + ingredient.price*2;
+                } else {
+                  sum = acc + ingredient.price;
+                }
+                return sum;
+              },
+              0
+            )}
+          </p>
           <CurrencyIcon type="primary" />
         </div>
       </div>
