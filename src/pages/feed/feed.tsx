@@ -42,7 +42,7 @@ export const FeedPage = () => {
           </div>
           <div>
             <p
-              className={`${styleFeed.wrapper} text text_type_main-medium bm-6`}
+              className={`${styleFeed.wrapper} text text_type_main-medium mb-6`}
             >
               В работе:
             </p>

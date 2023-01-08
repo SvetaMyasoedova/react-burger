@@ -24,29 +24,37 @@ const OrderCard = (order: any) => {
           {filteredArray.slice(0, 6).map((ingredient: any, index: number) => {
             if (index === 5) {
               return (
-                <div className={styleOrderCard.imgWrapper}>
-                  <img
+                <div className={styleOrderCard.wrapper}>
+                  <div className={styleOrderCard.imgWrapper}>
+                     <img
                     className={styleOrderCard.ingredientImgLast}
                     src={ingredient.image}
                     alt={ingredient.name}
                   />
-                  <p className="text text_type_digits-default">
+                  <p className={`${styleOrderCard.lastLabel} text text_type_digits-default`}>
                     +{filteredArray.length - 6}
                   </p>
+                  </div>
+                 
+                  
                 </div>
               );
             }
             return (
-              <div className={styleOrderCard.imgWrapper}>
-                <img
+              <div className={styleOrderCard.wrapper}>
+                <div className={styleOrderCard.imgWrapper}>
+                  <img
                   className={styleOrderCard.ingredientImg}
                   src={ingredient.image}
                   alt={ingredient.name}
                 />
+                </div>
+                
               </div>
             );
           })}
         </div>
+
         <div className={styleOrderCard.price}>
           <p className="text text_type_digits-default">480</p>
           <CurrencyIcon type="primary" />
