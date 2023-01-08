@@ -1,4 +1,4 @@
-import { FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
+import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
@@ -104,9 +104,29 @@ const OrderCardDetails = () => {
           );
         })}
       </div>
-      <div className="text text_type_main-default text_color_inactive">
+      <div className={styleOrderCardDetails.priceData}>
+        <div className="text text_type_main-default text_color_inactive">
         <FormattedDate date={new Date(currentOrder.createdAt)} />
       </div>
+      <div className={styleOrderCardDetails.price}>
+            <p className="text text_type_digits-default">
+              {filteredArray.reduce(
+                (acc: number, ingredient: any, currentIndex: number) => {
+                  let sum: number = 0;
+                  if (currentIndex === 0) {
+                    sum = acc + ingredient.price * 2;
+                  } else {
+                    sum = acc + ingredient.price;
+                  }
+                  return sum;
+                },
+                0
+              )}
+            </p>
+            <CurrencyIcon type="primary" />
+          </div>
+      </div>
+      
     </div>
   );
 };
