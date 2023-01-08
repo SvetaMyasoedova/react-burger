@@ -9,6 +9,21 @@
   flex-direction: column;
   gap: 10px;
   margin-left: 320px;
+  
+}
+.scroll {
+  width: 600px;
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2f2f37;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border: 3px solid #8585ad;
+  background-color: #8585ad;
 }
 .leftSide {
   /* margin-right: 300px; */
@@ -20,6 +35,16 @@
 
 .wrapper {
   width: 280px;
+}
+
+.done {
+  color: #00cccc;
+  display: flex;
+  gap: 8;
+}
+.pending {
+  display: flex;
+  gap: 8;
 }
 
 .shadow {
