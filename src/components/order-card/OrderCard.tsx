@@ -1,5 +1,8 @@
 import styleOrderCard from "./order-card.module.css";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  CurrencyIcon,
+  FormattedDate,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector } from "react-redux";
 
 export interface IOrderCard {
@@ -9,6 +12,7 @@ export interface IOrderCard {
 }
 
 const OrderCard = (order: any) => {
+
   const { data } = useSelector((state: any) => state.dataReducer);
   const filteredArray = data.filter((value: any) =>
     order.order.ingredients.includes(value._id)
@@ -17,6 +21,10 @@ const OrderCard = (order: any) => {
     <div className={`${styleOrderCard.main} p-4 mb-4 mr-2`}>
       <div className={`${styleOrderCard.header} mb-6`}>
         <p className="text text_type_digits-default">#{order.order.number}</p>
+        <div className="text text_type_main-default text_color_inactive">
+          <FormattedDate date={new Date(order.order.createdAt)} />
+        </div>
+        
       </div>
       <p className="text text_type_main-medium  mb-6">{order.order.name}</p>
       <div className={styleOrderCard.bottom}>
@@ -58,8 +66,8 @@ const OrderCard = (order: any) => {
             {filteredArray.reduce(
               (acc: number, ingredient: any, currentIndex: number) => {
                 let sum: number = 0;
-                if(currentIndex === 0) {
-                  sum = acc + ingredient.price*2;
+                if (currentIndex === 0) {
+                  sum = acc + ingredient.price * 2;
                 } else {
                   sum = acc + ingredient.price;
                 }
