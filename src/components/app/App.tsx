@@ -45,7 +45,6 @@ function App() {
     dispatch(getUser());
     dispatch({
       type: WS_CONNECTION_START,
-     
     });
   }, []);
 
