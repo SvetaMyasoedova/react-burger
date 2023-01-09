@@ -11,6 +11,30 @@ import thunk from "redux-thunk";
 import { rootReducer } from "./services/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
 import { socketMiddleware } from "./services/middlewares/socketMiddleware";
+import { WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR, WS_CONNECTION_START, WS_CONNECTION_SUCCESS, WS_CURRENT_ORDER, WS_GET_MESSAGE, WS_SEND_MESSAGE } from "./services/actions/wsActionTypes";
+import { WS_PROFILE_CONNECTION_CLOSED, WS_PROFILE_CONNECTION_ERROR, WS_PROFILE_CONNECTION_START, WS_PROFILE_CONNECTION_SUCCESS, WS_PROFILE_CURRENT_ORDER, WS_PROFILE_GET_MESSAGE, WS_PROFILE_SEND_MESSAGE } from "./services/actions/wsProfileActionTypes";
+import { getCookie } from "./utils/cookie";
+
+const wsFeedType = {
+  wsConnectionStart: WS_CONNECTION_START,
+  wsConnectionSuccess: WS_CONNECTION_SUCCESS,
+  wsConnectionError: WS_CONNECTION_ERROR,
+  wsConnectionClosed: WS_CONNECTION_CLOSED,
+  wsGetMessage: WS_GET_MESSAGE,
+  wsSendMessage: WS_SEND_MESSAGE,
+  wsCurrentOrder: WS_CURRENT_ORDER,
+}
+
+const wsProfileType = {
+  wsConnectionStart: WS_PROFILE_CONNECTION_START,
+  wsConnectionSuccess: WS_PROFILE_CONNECTION_SUCCESS,
+  wsConnectionError: WS_PROFILE_CONNECTION_ERROR,
+  wsConnectionClosed: WS_PROFILE_CONNECTION_CLOSED,
+  wsGetMessage: WS_PROFILE_GET_MESSAGE,
+  wsSendMessage: WS_PROFILE_SEND_MESSAGE,
+  wsCurrentOrder: WS_PROFILE_CURRENT_ORDER,
+}
+  
 
 export const store = createStore(
   rootReducer,
@@ -18,8 +42,11 @@ export const store = createStore(
     applyMiddleware(
       thunk,
       socketMiddleware(
-        "wss://norma.nomoreparties.space/orders/all"
-      )
+        "wss://norma.nomoreparties.space/orders/all", wsFeedType
+      ),
+      socketMiddleware(
+        `wss://norma.nomoreparties.space/orders?token=${getCookie('token')}`, wsProfileType
+      ),
     )
   )
 );

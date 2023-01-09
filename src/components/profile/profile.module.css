@@ -30,6 +30,13 @@
 
 .text {
 	max-width: 320px;
-	margin-left: 340px;
 	opacity: 0.4;
+}
+
+.profile {
+  display: flex;
+}
+
+.container {
+  margin-left: 100px;
 }

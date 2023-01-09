@@ -9,10 +9,11 @@ import { TLocationState } from "../../services/types/location";
 
 export interface IOrderCard {
   order: any;
+  pathname: string;
   onClick: (order: any) =>  void;
 }
 
-const OrderCard = ({order, onClick}: IOrderCard) => {
+const OrderCard = ({order,pathname, onClick}: IOrderCard) => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
   const filteredArray = data.filter((value: any) =>
@@ -24,7 +25,7 @@ const OrderCard = ({order, onClick}: IOrderCard) => {
   return (
     <Link<TLocationState>
       to={{
-        pathname: `/feed/${order._id}`,
+        pathname: `/${pathname}/${order._id}`,
         state: { background: location },
       }}
       className={styleOrderCard.link}

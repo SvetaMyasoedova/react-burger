@@ -1,33 +1,42 @@
+import path from "path";
 import { useDispatch, useSelector } from "react-redux";
+import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
 import OrderCard from "../../components/order-card/OrderCard";
 import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
 import styleFeed from "./feed.module.css";
 
-export const FeedPage = () => {
-  const { orders, total, totalToday } = useSelector(
-    (state: any) => state.wsReducer
-  );
+type Torder = {
+  type: string;
+  path: string;
+};
+
+export const FeedPage = ({ type, path }: Torder) => {
+  const { orders, total, totalToday } = useSelector((state: any) => {
+    if (type === "WS_CURRENT_ORDER") {
+      return state.wsReducer;
+    } else {
+      return state.wsProfileReducer;
+    }
+  });
 
   const dispatch = useDispatch();
   const handleOpenModal = (order: any) => {
     dispatch({
-      payload: {currentOrder: order},
-      type: WS_CURRENT_ORDER,
+      payload: { currentOrder: order },
+      type: type,
     });
   };
   return (
     <div className={styleFeed.main}>
-      
-      <div className={styleFeed.rightSide}>
-      <p className="text text_type_main-large mb-5">Лента заказов</p>
-      <div className={styleFeed.scroll}>
-         {orders.map((order: any) => {
-          return <OrderCard onClick={handleOpenModal} order={order} key={order._id} />;
-        })}
-      </div>
-       
-      </div>
-      <div className={styleFeed.leftSide}>
+      <p className="text text_type_main-large mb-15 ">Лента заказов</p>
+
+      <OrderCardContainer
+        orders={orders}
+        onClick={handleOpenModal}
+        pathname={path}
+      />
+
+      <div className="ml-20">
         <div className={`${styleFeed.status} mb-15`}>
           <div>
             <p
