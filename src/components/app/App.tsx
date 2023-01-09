@@ -83,6 +83,10 @@ function App() {
         <Route path="/feed/:orderId" exact={true}>
           <FeedDetailsPage />
         </Route>
+        {/* <Route path="/profile/orders" exact={true}>
+          <FeedPage />
+        </Route> */}
+
 
         <ProtectedRoute path="/">
           <ProfilePage />
