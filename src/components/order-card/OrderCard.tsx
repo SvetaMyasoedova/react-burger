@@ -21,7 +21,6 @@ const OrderCard = ({order,pathname, onClick}: IOrderCard) => {
   );
   const location = useLocation<TLocationState>();
 
-
   return (
     <Link<TLocationState>
       to={{
@@ -32,7 +31,7 @@ const OrderCard = ({order,pathname, onClick}: IOrderCard) => {
     >
       <div
         onClick={() => {
-          onClick(order.order);
+          onClick(order);
         }}
         className={`${styleOrderCard.main} p-4 mb-4 mr-2`}
       >

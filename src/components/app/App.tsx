@@ -87,6 +87,9 @@ function App() {
         <Route path="/feed/:orderId" exact={true}>
           <FeedDetailsPage />
         </Route>
+        <Route path="/profile/orders/:orderId" exact={true}>
+          <FeedDetailsPage />
+        </Route>
 
 
 
@@ -108,6 +111,16 @@ function App() {
       {background && (
         <Route
           path="/feed/:orderId"
+          children={
+            <Modal onClose={handleModalClose}>
+              <FeedDetailsPage />
+            </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route
+          path="/profile/orders/:orderId"
           children={
             <Modal onClose={handleModalClose}>
               <FeedDetailsPage />

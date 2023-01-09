@@ -158,7 +158,7 @@ const Profile: FC = () => {
       {location.pathname === "/profile/orders" && (
         <div className={stylesProfile.container}>
           <OrderCardContainer
-          pathname={"/profile/orders"}
+          pathname={"profile/orders"}
           onClick={handleOpenModal}
           orders={orders}
         />

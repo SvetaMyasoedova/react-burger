@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
+import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";
 import { TLocationState } from "../../services/types/location";
 import IngredientDetails from "./ingredientDetails";
 import styleOrderCardDetails from "./order-card-details.module.css";
@@ -12,13 +13,26 @@ interface IOrderDetailsParams {
 }
 
 const OrderCardDetails = () => {
-  const { orders } = useSelector((state: any) => state.wsReducer);
+  const location = useLocation<TLocationState>();
+  const { orders } = useSelector((state: any) =>{
+    if(location.pathname.includes("/profile/orders")) {
+      return state.wsProfileReducer
+    } else {
+      return state.wsReducer
+    }
+  });
   const { orderId } = useParams<IOrderDetailsParams>();
   const { data } = useSelector((state: any) => state.dataReducer);
   const currentOrder = useSelector(
-    (state: any) => state.wsReducer.currentOrder
+    (state: any) => {
+      if(location.pathname.includes("/profile/orders")) {
+        return state.wsProfileReducer.currentOrder
+      } else {
+        return state.wsReducer.currentOrder
+      }
+    }
   );
-  const location = useLocation<TLocationState>();
+ 
   const background = location.state && location.state.background;
   const dispatch = useDispatch();
 
@@ -31,7 +45,7 @@ const OrderCardDetails = () => {
         payload: {
           currentOrder: orders.find((item: any) => item._id === orderId),
         },
-        type: WS_CURRENT_ORDER,
+        type: location.pathname.includes("/profile/orders") ? WS_PROFILE_CURRENT_ORDER : WS_CURRENT_ORDER,
       });
     }
 
@@ -40,7 +54,7 @@ const OrderCardDetails = () => {
         payload: {
           currentOrder: orders.find((item: any) => item._id === orderId),
         },
-        type: WS_CURRENT_ORDER,
+        type: location.pathname.includes("/profile/orders") ? WS_PROFILE_CURRENT_ORDER : WS_CURRENT_ORDER,
       });
     }
   }, [orders]);
