@@ -4,11 +4,6 @@
 
 
 
-.order {
-  display: flex;
-  margin-left: 320px;
-}
-
 .status {
   display: flex;
   gap: 30px;

@@ -1,6 +1,6 @@
 .сontainer {
 	max-height: 84vh;
-	max-width: 900px;
+	/* max-width: 900px; */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;

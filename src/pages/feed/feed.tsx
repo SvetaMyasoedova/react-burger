@@ -30,11 +30,14 @@ export const FeedPage = ({ type, path }: Torder) => {
     <div className={styleFeed.main}>
       <p className="text text_type_main-large mb-15 ">Лента заказов</p>
 
-      <OrderCardContainer
+      <div className={styleFeed.order}>
+        <OrderCardContainer
         orders={orders}
         onClick={handleOpenModal}
         pathname={path}
       />
+      </div>
+      
 
       <div className="ml-20">
         <div className={`${styleFeed.status} mb-15`}>
