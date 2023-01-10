@@ -14,6 +14,10 @@
 .wrapper {
   width: 280px;
 }
+.statusColumn {
+  display: flex;
+  gap: 15px;
+}
 
 .done {
   color: #00cccc;

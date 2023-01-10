@@ -43,19 +43,38 @@ export const FeedPage = ({ type, path }: Torder) => {
             >
               Готовы:
             </p>
-            {orders
-              .filter((order: TOrder) => order.status === "done")
-              .slice(0, 5)
-              .map((order: TOrder) => {
-                return (
-                  <p
-                    key={order.number}
-                    className={`${styleFeed.done} text text_type_digits-default`}
-                  >
-                    {order.number}
-                  </p>
-                );
-              })}
+            <div className={styleFeed.statusColumn}>
+              <div>
+                {orders
+                  .filter((order: TOrder) => order.status === "done")
+                  .slice(0, 10)
+                  .map((order: TOrder) => {
+                    return (
+                      <p
+                        key={order.number}
+                        className={`${styleFeed.done} text text_type_digits-default`}
+                      >
+                        {order.number}
+                      </p>
+                    );
+                  })}
+              </div>
+              <div>
+                {orders
+                  .filter((order: TOrder) => order.status === "done")
+                  .slice(10, 20)
+                  .map((order: TOrder) => {
+                    return (
+                      <p
+                        key={order.number}
+                        className={`${styleFeed.done} text text_type_digits-default`}
+                      >
+                        {order.number}
+                      </p>
+                    );
+                  })}
+              </div>
+            </div>
           </div>
           <div>
             <p
@@ -65,7 +84,7 @@ export const FeedPage = ({ type, path }: Torder) => {
             </p>
             {orders
               .filter((order: TOrder) => order.status === "pending")
-              .slice(0, 5)
+              .slice(0, 10)
               .map((order: TOrder) => {
                 return (
                   <p
