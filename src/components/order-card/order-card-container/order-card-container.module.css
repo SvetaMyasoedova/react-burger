@@ -1,10 +1,9 @@
 .сontainer {
 	max-height: 84vh;
-	/* max-width: 900px; */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	/* margin-left: 320px; */
+
 	
  }
  .scroll {
