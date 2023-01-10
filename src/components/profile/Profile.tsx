@@ -18,6 +18,7 @@ import { useForm } from "../../hooks/useForm";
 import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 import OrderCardContainer from "../order-card/order-card-container/OrderCardContainer";
 import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";
+import { TOrder } from "../../services/types/order";
 
 const Profile: FC = () => {
   const { orders } = useSelector((state: any) => state.wsProfileReducer);
@@ -26,7 +27,7 @@ const Profile: FC = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const handleOpenModal = (order: any) => {
+  const handleOpenModal = (order: TOrder) => {
     dispatch({
       payload: { currentOrder: order },
       type: WS_PROFILE_CURRENT_ORDER,
