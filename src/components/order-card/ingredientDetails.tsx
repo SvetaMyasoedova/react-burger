@@ -6,7 +6,7 @@ interface IDetails {
   name: string;
   count: number;
   price: number;
-  image: any;
+  image: string;
 }
 const IngredientDetails: FC<IDetails> = ({ name, count, price, image }) => {
   return (
