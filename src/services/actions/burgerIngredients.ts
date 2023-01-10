@@ -1,6 +1,7 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
+import { TIngredient } from "../types/data";
 
 export const CURRENT_INGREDIENT: "CURRENT_INGREDIENT" = "CURRENT_INGREDIENT";
 export const CLEAR_CURRENT_INGREDIENT: "CLEAR_CURRENT_INGREDIENT" =
@@ -16,14 +17,14 @@ interface actionPending {
 
 interface actionSuccess {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  data: any;
+  data: TIngredient[];
 }
 interface actionFail {
   readonly type: typeof GET_INGREDIENTS_FAILED;
 }
 interface IActionCurrentIngredient {
   readonly type: typeof CURRENT_INGREDIENT
-  currentIngredient: any;
+  currentIngredient: TIngredient;
 }
 interface IActionClearCurrentIngredient {
   readonly type: typeof CLEAR_CURRENT_INGREDIENT
