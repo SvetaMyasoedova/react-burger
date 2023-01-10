@@ -48,8 +48,6 @@ export const wsProfileReducer = (state = initialState, action: TWSProfileActions
         ...state,
         error: undefined,
         orders: action.payload.orders,
-        total: action.payload.total,
-        totalToday: action.payload.totalToday,
       };
     case WS_PROFILE_CURRENT_ORDER:
       return {

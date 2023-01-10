@@ -1,3 +1,5 @@
+import { TOrder } from "../types/order";
+
 export const WS_PROFILE_CONNECTION_START: "WS_PROFILE_CONNECTION_START" = "WS_PROFILE_CONNECTION_START";
 export const WS_PROFILE_CONNECTION_SUCCESS: "WS_PROFILE_CONNECTION_SUCCESS" =
   "WS_PROFILE_CONNECTION_SUCCESS";
@@ -25,7 +27,7 @@ interface wsConnectionClosed {
   readonly type: typeof WS_PROFILE_CONNECTION_CLOSED;
 }
 interface wsGetMessage {
-  payload: any;
+  payload: { [key: string]: TOrder };
   readonly type: typeof WS_PROFILE_GET_MESSAGE;
 }
 interface wsSendMessage {
@@ -33,7 +35,7 @@ interface wsSendMessage {
   readonly type: typeof WS_PROFILE_SEND_MESSAGE;
 }
 interface wsCurrentOrder {
-  payload: any;
+  payload: { [key: string]: TOrder };
   readonly type: typeof WS_PROFILE_CURRENT_ORDER;
 }
 
