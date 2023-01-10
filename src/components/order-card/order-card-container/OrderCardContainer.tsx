@@ -1,10 +1,11 @@
 import OrderCard from "../OrderCard";
 import styleContainer from "./order-card-container.module.css";
+import { TOrder } from "../../../services/types/order";
 
 interface IContainer {
   pathname: string;
-  onClick: (order: any) => void;
-  orders: any;
+  onClick: (order: TOrder) => void;
+  orders: TOrder[];
   isProfileOrders?: boolean;
 }
 
@@ -17,7 +18,7 @@ const OrderCardContainer = ({
   return (
     <div className={styleContainer.сontainer}>
       <div className={styleContainer.scroll}>
-        {orders.map((order: any) => {
+        {orders.map((order: TOrder) => {
           return (
             <OrderCard
               onClick={onClick}
