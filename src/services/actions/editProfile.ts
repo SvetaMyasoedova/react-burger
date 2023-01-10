@@ -41,7 +41,6 @@ export function editUser(newName: string, newEmail: string): any {
       body: JSON.stringify({
         name: newName,
         email: newEmail,
-        // password: password,
       }),
     })
       .then((res) => {

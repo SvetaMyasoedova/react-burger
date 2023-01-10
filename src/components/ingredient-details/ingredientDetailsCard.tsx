@@ -1,7 +1,5 @@
 import { FC } from "react";
-// import PropTypes from "prop-types";
 import styleIngredientDetails from "./ingredient-details.module.css";
-// import { ingredientPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 interface IIngredientDetailsCard {
@@ -52,9 +50,6 @@ const IngredientDetailsCard: FC<IIngredientDetailsCard> = ({ ingredient }) => {
   );
 }
 
-// IngredientDetailsCard.propTypes = {
-//   ingredient: ingredientPropTypes.isRequired,
 
-// };
 
 export default IngredientDetailsCard;

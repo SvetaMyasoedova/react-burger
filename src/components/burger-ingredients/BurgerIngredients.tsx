@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
-
-// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 //components
@@ -129,6 +126,5 @@ const BurgerIngredients: FC = () => {
   );
 };
 
-// BurgerIngredients.propTypes = ingredientsPropTypes;
 
 export default BurgerIngredients;

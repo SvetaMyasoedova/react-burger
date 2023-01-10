@@ -85,7 +85,6 @@ const ResetPassword: FC = () => {
         </div>
         <div className={`${stylesResetPassword.button} mb-20`}>
           <Button
-            // onClick={handlePasswordReset}
             htmlType="submit"
             type="primary"
             size="large"

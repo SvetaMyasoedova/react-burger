@@ -2,10 +2,8 @@ import { rootReducer } from './../services/reducers/index';
 import type {} from "redux-thunk/extend-redux";
 import { Action, ActionCreator, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { store } from "../store";
 import { TActions } from "../services/actions";
 
-// export type TAppDispatch = typeof store.dispatch;
 
 export type RootState = ReturnType<typeof rootReducer>;
 

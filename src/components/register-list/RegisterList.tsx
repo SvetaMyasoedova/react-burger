@@ -66,7 +66,6 @@ const RegisterList: FC = () => {
         </div>
         <div className={`${stylesRegister.button} mb-20`}>
           <Button
-            // onClick={handleNewUser}
             htmlType="submit"
             type="primary"
             size="large"

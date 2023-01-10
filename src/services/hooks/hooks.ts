@@ -10,8 +10,5 @@ import {
 import { TAppDispatch, RootState, TAppThunk } from "../../types";
 
 
-
-
 export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
-// export const useDispatch: () => TAppDispatch = dispatchHook;
 export const useDispatch = () => dispatchHook<TAppDispatch | TAppThunk>(); 

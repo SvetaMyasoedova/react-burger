@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useHistory } from "react-router-dom";
-// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 import {
@@ -220,6 +219,5 @@ const BurgerConstructor: FC = () => {
   );
 }
 
-// BurgerConstructor.propTypes = ingredientsPropTypes;
 
 export default BurgerConstructor;

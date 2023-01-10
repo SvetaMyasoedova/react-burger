@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { FC } from "react";
 import { PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -20,9 +19,4 @@ export const Password: FC<IInput> = ({ placeholder, onChange, value, icon, name 
   );
 };
 
-// Password.propTypes = {
-//   placeholder: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-//   value: PropTypes.string.isRequired,
-//   icon: PropTypes.string,
-// };
+

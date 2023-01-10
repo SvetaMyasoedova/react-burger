@@ -1,6 +1,5 @@
 import { useEffect, FC } from "react";
 import ReactDOM from "react-dom";
-// import PropTypes from "prop-types";
 import ModalHeader from "./modal-header/ModalHeader";
 import styleModal from "./modal.module.css";
 import ModalOverlay from "../modal-overlay/ModalOverlay";
@@ -35,10 +34,6 @@ const Modal: FC<IModal> = ({ header, onClose, children }) => {
   );
 }
 
-// Modal.propTypes = {
-//   header: PropTypes.string.isRequired,
-//   onClose: PropTypes.func.isRequired,
-//   children: PropTypes.element.isRequired,
-// };
+
 
 export default Modal;

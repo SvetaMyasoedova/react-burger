@@ -1,6 +1,5 @@
 import { FC } from "react";
 import styleIngredientDetails from "./ingredient-details.module.css";
-// import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -65,15 +64,6 @@ const IngredientDetails: FC = () => {
   );
 }
 
-// IngredientDetails.propTypes = {
-//   currentSelectedElem: PropTypes.shape({
-//     image: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     calories: PropTypes.number.isRequired,
-//     proteins: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     carbohydrates: PropTypes.number.isRequired,
-//   }),
-// };
+
 
 export default IngredientDetails;
