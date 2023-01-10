@@ -24,14 +24,14 @@ export interface IOrderCard {
   order: any;
   pathname: string;
   onClick: (order: any) => void;
-  isProfileorders?: boolean;
+  isProfileOrders?: boolean;
 }
 
 const OrderCard = ({
   order,
   pathname,
   onClick,
-  isProfileorders,
+  isProfileOrders,
 }: IOrderCard) => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
@@ -61,7 +61,7 @@ const OrderCard = ({
           </div>
         </div>
         <p className="text text_type_main-medium mb-2">{order.name}</p>
-        {isProfileorders && (
+        {isProfileOrders && (
           <p
             className={
               order.status === "done"
@@ -76,7 +76,7 @@ const OrderCard = ({
         <div className={styleOrderCard.bottom}>
           <div className={styleOrderCard.ingredientsWrapper}>
             {filteredArray.slice(0, 6).map((ingredient: any, index: number) => {
-              if (index === 5) {
+              if ( filteredArray.length >6 && index === 5) {
                 return (
                   <div key={ingredient._id} className={styleOrderCard.wrapper}>
                     <div className={styleOrderCard.imgWrapper}>

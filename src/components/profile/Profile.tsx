@@ -158,13 +158,12 @@ const Profile: FC = () => {
       {location.pathname === "/profile/orders" && (
         <div className={stylesProfile.container}>
           <OrderCardContainer
-          pathname={"profile/orders"}
-          onClick={handleOpenModal}
-          orders={orders}
-          isProfileorders={true}
-        />
+            pathname={"profile/orders"}
+            onClick={handleOpenModal}
+            orders={orders}
+            isProfileOrders={true}
+          />
         </div>
-        
       )}
     </div>
   );
