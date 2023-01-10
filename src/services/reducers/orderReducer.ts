@@ -7,7 +7,7 @@ import {
 
 import { ActionOrder } from "../actions/burgerConstructor";
 
-interface ICreatedOrder {
+export interface ICreatedOrder {
   number: number;
 }
 

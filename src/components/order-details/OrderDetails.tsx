@@ -7,6 +7,7 @@ import { getOrder } from "../../services/actions/burgerConstructor";
 const OrderDetails: FC = () => {
   const { createdOrder } = useSelector((state: any) => state.orderReducer);
 
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {

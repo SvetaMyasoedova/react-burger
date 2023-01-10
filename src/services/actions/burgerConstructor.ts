@@ -2,6 +2,7 @@ import { ORDER_URL } from "../../utils/urls";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 import { TIngredient } from "../types/data";
+import { ICreatedOrder } from "../reducers/orderReducer";
 
 export const CONSTRUCTOR_BUN: "CONSTRUCTOR_BUN" = "CONSTRUCTOR_BUN";
 export const CONSTRUCTOR_MAIN: "CONSTRUCTOR_MAIN" = "CONSTRUCTOR_MAIN";
@@ -17,19 +18,16 @@ export const CLEAR_CONSTRUCTOR: "CLEAR_CONSTRUCTOR" = "CLEAR_CONSTRUCTOR";
 
 interface actionConstructorBun {
   readonly type: typeof CONSTRUCTOR_BUN;
-  constructorBun: any;
+  constructorBun:  null | TIngredient;
 }
 
-// interface ICount {
-//   _id: number;
-// }
 interface actionConstructorMain {
   readonly type: typeof CONSTRUCTOR_MAIN;
   constructorIngredient: TIngredient;
 }
 interface actionDeleteElement {
-  uuid: any;
-  id: any;
+  uuid: string;
+  id: string;
   readonly type: typeof DELETE_CONSTRUCTOR_INGREDIENT;
 }
 
@@ -48,7 +46,7 @@ interface actionOrderPending {
 }
 interface actionOrderSuccess {
   readonly type: typeof GET_ORDER_SUCCESS;
-  createdOrder: any;
+  createdOrder: null | ICreatedOrder;
 }
 interface actionOrderFail {
   readonly type: typeof GET_ORDER_FAILED;
