@@ -3,7 +3,7 @@ import {
   FormattedDate,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useLocation, useParams } from "react-router-dom";
 import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
 import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";

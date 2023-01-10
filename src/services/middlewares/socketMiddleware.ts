@@ -1,13 +1,12 @@
 import type { Middleware, MiddlewareAPI } from "redux";
-import { store } from "../..";
-
+import { TAppDispatch, RootState } from "../../types";
 import { TWSActions } from "../actions/wsActionTypes";
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-
-export const socketMiddleware = (wsUrl: string, actionTypes: any): Middleware => {
-  return ((store: MiddlewareAPI<AppDispatch, RootState>) => {
+export const socketMiddleware = (
+  wsUrl: string,
+  actionTypes: any
+): Middleware => {
+  return ((store: MiddlewareAPI<TAppDispatch, RootState>) => {
     let socket: WebSocket | null = null;
 
     return (next) => (action: TWSActions) => {
@@ -28,7 +27,7 @@ export const socketMiddleware = (wsUrl: string, actionTypes: any): Middleware =>
 
         socket.onmessage = (event) => {
           const dataObj = JSON.parse(event.data);
-       
+
           if (dataObj.success) {
             dispatch({ type: actionTypes.wsGetMessage, payload: dataObj });
           }

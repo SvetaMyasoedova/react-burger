@@ -1,5 +1,5 @@
 import React, { useEffect, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleOrderDetails from "./order-details.module.css";
 import { getOrder } from "../../services/actions/burgerConstructor";
@@ -7,7 +7,6 @@ import { getOrder } from "../../services/actions/burgerConstructor";
 const OrderDetails: FC = () => {
   const { createdOrder } = useSelector((state: any) => state.orderReducer);
 
- 
   const dispatch = useDispatch();
 
   useEffect(() => {

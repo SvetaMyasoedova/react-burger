@@ -1,7 +1,7 @@
-import { useState, useEffect, FC } from "react";
+import { useEffect, FC } from "react";
 import stylesForgotPassword from "./forgot-password.module.css";
 import { Link, useHistory, Redirect, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import {
   Button,
   EmailInput,

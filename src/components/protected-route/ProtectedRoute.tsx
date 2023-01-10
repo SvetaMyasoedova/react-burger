@@ -1,5 +1,5 @@
 import { Route, Redirect, RouteProps } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../services/hooks/hooks";
 import React, { FC } from "react";
 
 export const ProtectedRoute: FC<

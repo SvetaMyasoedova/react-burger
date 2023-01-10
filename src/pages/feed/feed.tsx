@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
 import { TOrder } from "../../services/types/order";
 import styleFeed from "./feed.module.css";

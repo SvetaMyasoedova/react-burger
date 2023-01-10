@@ -1,7 +1,6 @@
 import { useEffect, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { editUser } from "../../services/actions/editProfile";
-
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import stylesProfile from "./profile.module.css";
 

@@ -5,7 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/hooks/hooks";
 
 import stylesApp from "./app.module.css";
 import AppHeader from "../app-header/AppHeader";

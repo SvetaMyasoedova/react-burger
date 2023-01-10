@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styleIngredientDetails from "./ingredient-details.module.css";
 // import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
