@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
+import { TOrder } from "../../services/types/order";
 import styleFeed from "./feed.module.css";
 
 type Torder = {
@@ -17,7 +18,7 @@ export const FeedPage = ({ type, path }: Torder) => {
   });
 
   const dispatch = useDispatch();
-  const handleOpenModal = (order: any) => {
+  const handleOpenModal = (order: TOrder) => {
     dispatch({
       payload: { currentOrder: order },
       type: type,
@@ -43,9 +44,9 @@ export const FeedPage = ({ type, path }: Torder) => {
               Готовы:
             </p>
             {orders
-              .filter((order: any) => order.status === "done")
+              .filter((order: TOrder) => order.status === "done")
               .slice(0, 5)
-              .map((order: any) => {
+              .map((order: TOrder) => {
                 return (
                   <p
                     key={order.number}
@@ -63,9 +64,9 @@ export const FeedPage = ({ type, path }: Torder) => {
               В работе:
             </p>
             {orders
-              .filter((order: any) => order.status === "pending")
+              .filter((order: TOrder) => order.status === "pending")
               .slice(0, 5)
-              .map((order: any) => {
+              .map((order: TOrder) => {
                 return (
                   <p
                     key={order.number}
