@@ -1,8 +1,5 @@
-import path from "path";
 import { useDispatch, useSelector } from "react-redux";
 import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
-import OrderCard from "../../components/order-card/OrderCard";
-import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
 import styleFeed from "./feed.module.css";
 
 type Torder = {

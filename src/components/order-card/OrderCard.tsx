@@ -4,8 +4,10 @@ import {
   FormattedDate,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { TLocationState } from "../../services/types/location";
+import { TOrder } from "../../services/types/order";
+import { TIngredient } from "../../services/types/data";
 
 export const statusInfo = (status: string) => {
   switch (status) {
@@ -21,9 +23,9 @@ export const statusInfo = (status: string) => {
 };
 
 export interface IOrderCard {
-  order: any;
+  order: TOrder;
   pathname: string;
-  onClick: (order: any) => void;
+  onClick: (order: TOrder) => void;
   isProfileOrders?: boolean;
 }
 
@@ -35,7 +37,7 @@ const OrderCard = ({
 }: IOrderCard) => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
-  const filteredArray = data.filter((value: any) =>
+  const filteredArray = data.filter((value: TIngredient) =>
     order.ingredients.includes(value._id)
   );
   const location = useLocation<TLocationState>();
@@ -75,42 +77,51 @@ const OrderCard = ({
 
         <div className={styleOrderCard.bottom}>
           <div className={styleOrderCard.ingredientsWrapper}>
-            {filteredArray.slice(0, 6).map((ingredient: any, index: number) => {
-              if ( filteredArray.length >6 && index === 5) {
+            {filteredArray
+              .slice(0, 6)
+              .map((ingredient: TIngredient, index: number) => {
+                if (filteredArray.length > 6 && index === 5) {
+                  return (
+                    <div
+                      key={ingredient._id}
+                      className={styleOrderCard.wrapper}
+                    >
+                      <div className={styleOrderCard.imgWrapper}>
+                        <img
+                          className={styleOrderCard.ingredientImgLast}
+                          src={ingredient.image}
+                          alt={ingredient.name}
+                        />
+                        <p
+                          className={`${styleOrderCard.lastLabel} text text_type_digits-default`}
+                        >
+                          +{filteredArray.length - 6}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
                 return (
                   <div key={ingredient._id} className={styleOrderCard.wrapper}>
                     <div className={styleOrderCard.imgWrapper}>
                       <img
-                        className={styleOrderCard.ingredientImgLast}
+                        className={styleOrderCard.ingredientImg}
                         src={ingredient.image}
                         alt={ingredient.name}
                       />
-                      <p
-                        className={`${styleOrderCard.lastLabel} text text_type_digits-default`}
-                      >
-                        +{filteredArray.length - 6}
-                      </p>
                     </div>
                   </div>
                 );
-              }
-              return (
-                <div key={ingredient._id} className={styleOrderCard.wrapper}>
-                  <div className={styleOrderCard.imgWrapper}>
-                    <img
-                      className={styleOrderCard.ingredientImg}
-                      src={ingredient.image}
-                      alt={ingredient.name}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+              })}
           </div>
           <div className={styleOrderCard.price}>
             <p className="text text_type_digits-default">
               {filteredArray.reduce(
-                (acc: number, ingredient: any, currentIndex: number) => {
+                (
+                  acc: number,
+                  ingredient: TIngredient,
+                  currentIndex: number
+                ) => {
                   let sum: number = 0;
                   if (currentIndex === 0) {
                     sum = acc + ingredient.price * 2;
