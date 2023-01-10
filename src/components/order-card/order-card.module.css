@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.done {
+  color: rgba(0, 204, 204, 1);
+  ;
+}
+
 .bottom {
   display: flex;
   justify-content: space-between;

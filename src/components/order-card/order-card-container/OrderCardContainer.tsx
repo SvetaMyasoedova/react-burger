@@ -1,13 +1,18 @@
 import OrderCard from "../OrderCard";
 import styleContainer from "./order-card-container.module.css";
 
+
+
+
 interface IContainer {
 	pathname: string;
 	onClick: (order: any) =>  void;
 	orders: any;
+  isProfileorders?: boolean;
+  
 }
 
-const OrderCardContainer = ({orders, onClick, pathname}: IContainer) => {
+const OrderCardContainer = ({orders, onClick, pathname, isProfileorders}: IContainer) => {
 	return (
 		<div className={styleContainer.сontainer}>
       
@@ -19,6 +24,7 @@ const OrderCardContainer = ({orders, onClick, pathname}: IContainer) => {
                 pathname={pathname}
                 order={order}
                 key={order._id}
+                isProfileorders={isProfileorders}
               />
             );
           })}

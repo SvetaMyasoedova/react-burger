@@ -161,6 +161,7 @@ const Profile: FC = () => {
           pathname={"profile/orders"}
           onClick={handleOpenModal}
           orders={orders}
+          isProfileorders={true}
         />
         </div>
         

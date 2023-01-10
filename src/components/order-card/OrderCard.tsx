@@ -7,13 +7,32 @@ import { useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { TLocationState } from "../../services/types/location";
 
+export const statusInfo = (status: string) => {
+  switch (status) {
+    case "done":
+      return "Выполнен";
+    case "created":
+      return "Создан";
+    case "pending":
+      return "Готовится";
+    default:
+      return status;
+  }
+};
+
 export interface IOrderCard {
   order: any;
   pathname: string;
-  onClick: (order: any) =>  void;
+  onClick: (order: any) => void;
+  isProfileorders?: boolean;
 }
 
-const OrderCard = ({order,pathname, onClick}: IOrderCard) => {
+const OrderCard = ({
+  order,
+  pathname,
+  onClick,
+  isProfileorders,
+}: IOrderCard) => {
   const { data } = useSelector((state: any) => state.dataReducer);
 
   const filteredArray = data.filter((value: any) =>
@@ -41,7 +60,19 @@ const OrderCard = ({order,pathname, onClick}: IOrderCard) => {
             <FormattedDate date={new Date(order.createdAt)} />
           </div>
         </div>
-        <p className="text text_type_main-medium  mb-6">{order.name}</p>
+        <p className="text text_type_main-medium mb-2">{order.name}</p>
+        {isProfileorders && (
+          <p
+            className={
+              order.status === "done"
+                ? `${styleOrderCard.done} text text_type_main-small mb-6`
+                : "text text_type_main-small mb-6"
+            }
+          >
+            {statusInfo(order.status)}
+          </p>
+        )}
+
         <div className={styleOrderCard.bottom}>
           <div className={styleOrderCard.ingredientsWrapper}>
             {filteredArray.slice(0, 6).map((ingredient: any, index: number) => {
