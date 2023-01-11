@@ -16,7 +16,11 @@ import { getCookie, deleteCookie } from "../../utils/cookie";
 import { useForm } from "../../hooks/useForm";
 import { LOGOUT_SUCCESS } from "../../services/actions/profile";
 import OrderCardContainer from "../order-card/order-card-container/OrderCardContainer";
-import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";
+import {
+  WS_PROFILE_CLOSE_CONNECTION,
+  WS_PROFILE_CONNECTION_START,
+  WS_PROFILE_CURRENT_ORDER,
+} from "../../services/actions/wsProfileActionTypes";
 import { TOrder } from "../../services/types/order";
 
 const Profile: FC = () => {
@@ -44,6 +48,31 @@ const Profile: FC = () => {
   useEffect(() => {
     setValues({ newName: name, newEmail: email });
   }, [name, email, setValues]);
+  useEffect(() => {
+    console.log("mount");
+    if (location.pathname === "/profile/orders") {
+      dispatch({
+        type: WS_PROFILE_CONNECTION_START,
+      });
+    }
+
+    if (location.pathname !== "/profile/orders") {
+      console.log("closed")
+      dispatch({
+        type: WS_PROFILE_CLOSE_CONNECTION,
+      });
+    }
+
+  }, [location.pathname]);
+
+  useEffect(() => {
+    return () => {
+      console.log("unmount");
+      dispatch({
+        type: WS_PROFILE_CLOSE_CONNECTION,
+      });
+    };
+  }, []);
 
   const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
