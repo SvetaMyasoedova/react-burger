@@ -12,61 +12,42 @@ import IngredientDetails from "./ingredientDetails";
 import styleOrderCardDetails from "./order-card-details.module.css";
 import { TOrder } from "../../services/types/order";
 import { TIngredient } from "../../services/types/data";
+import { ORDER_URL } from "../../utils/urls";
+import { checkReponse } from "../../utils/refreshToken";
 
 interface IOrderDetailsParams {
-  orderId: string;
+  orderNumber: string;
 }
 
 const OrderCardDetails = () => {
-  const location = useLocation<TLocationState>();
-  const { orders } = useSelector((state: any) => {
-    if (location.pathname.includes("/profile/orders")) {
-      return state.wsProfileReducer;
-    } else {
-      return state.wsReducer;
-    }
-  });
-  const { orderId } = useParams<IOrderDetailsParams>();
-  const { data } = useSelector((state: any) => state.dataReducer);
-  const currentOrder = useSelector((state: any) => {
-    if (location.pathname.includes("/profile/orders")) {
-      return state.wsProfileReducer.currentOrder;
-    } else {
-      return state.wsReducer.currentOrder;
-    }
-  });
+  const [currentOrder, setCurrentOrder] = useState<TOrder | null>(null);
+  const { orderNumber } = useParams<IOrderDetailsParams>();
 
-  const background = location.state && location.state.background;
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resRaw = await fetch(ORDER_URL + "/" + orderNumber);
+        const res = await checkReponse(resRaw);
+        if (res && res.success) {
+          if (res.orders.length === 1) {
+            setCurrentOrder(res.orders[0]);
+          }
+        } else {
+        }
+      } catch (err) {}
+    };
+
+    fetchData();
+  }, []);
+
+  const { data } = useSelector((state: any) => state.dataReducer);
 
   const [counts, setCounts] = useState<{ [key: string]: number }>({});
   const [filteredArray, setFilteredArray] = useState<TIngredient[]>([]);
 
   useEffect(() => {
-    if (orders.length !== 0 && !background) {
-      dispatch({
-        payload: {
-          currentOrder: orders.find((item: TOrder) => item._id === orderId),
-        },
-        type: location.pathname.includes("/profile/orders")
-          ? WS_PROFILE_CURRENT_ORDER
-          : WS_CURRENT_ORDER,
-      });
-    }
+    console.log(currentOrder);
 
-    if (background && (currentOrder === null || currentOrder === undefined)) {
-      dispatch({
-        payload: {
-          currentOrder: orders.find((item: TOrder) => item._id === orderId),
-        },
-        type: location.pathname.includes("/profile/orders")
-          ? WS_PROFILE_CURRENT_ORDER
-          : WS_CURRENT_ORDER,
-      });
-    }
-  }, [orders]);
-
-  useEffect(() => {
     if (currentOrder === null || currentOrder === undefined) {
       return;
     }

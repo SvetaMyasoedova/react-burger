@@ -45,7 +45,7 @@ const OrderCard = ({
   return (
     <Link<TLocationState>
       to={{
-        pathname: `/${pathname}/${order._id}`,
+        pathname: `/${pathname}/${order.number}`,
         state: { background: location },
       }}
       className={styleOrderCard.link}

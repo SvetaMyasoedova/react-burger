@@ -107,7 +107,7 @@ function App() {
       )}
       {background && (
         <Route
-          path="/feed/:orderId"
+          path="/feed/:orderNumber"
           children={
             <Modal onClose={handleModalClose}>
               <FeedDetailsPage />
@@ -117,7 +117,7 @@ function App() {
       )}
       {background && (
         <Route
-          path="/profile/orders/:orderId"
+          path="/profile/orders/:orderNumber"
           children={
             <Modal onClose={handleModalClose}>
               <FeedDetailsPage />
