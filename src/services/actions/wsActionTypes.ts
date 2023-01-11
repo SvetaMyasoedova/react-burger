@@ -9,6 +9,7 @@ export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" =
 export const WS_GET_MESSAGE: "WS_GET_MESSAGE" = "WS_GET_MESSAGE";
 export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
 export const WS_CURRENT_ORDER: "WS_CURRENT_ORDER" = "WS_CURRENT_ORDER";
+export const WS_CLOSE_CONNECTION: "WS_CLOSE_CONNECTION" = "WS_CLOSE_CONNECTION"
 
 interface IGetMessage {
   orders: TOrder[];
@@ -45,6 +46,11 @@ interface wsCurrentOrder {
   readonly type: typeof WS_CURRENT_ORDER;
 }
 
+interface wsCloseConnection {
+  payload: any;
+  readonly type: typeof WS_CLOSE_CONNECTION;
+}
+
 export type TWSActions =
   | wsConnectionStart
   | wsConnectionSuccess
@@ -52,4 +58,5 @@ export type TWSActions =
   | wsConnectionClosed
   | wsGetMessage
   | wsSendMessage
-  | wsCurrentOrder;
+  | wsCurrentOrder
+  | wsCloseConnection;

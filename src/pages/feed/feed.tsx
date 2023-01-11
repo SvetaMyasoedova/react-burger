@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
 import { TOrder } from "../../services/types/order";
 import styleFeed from "./feed.module.css";
+import { WS_CLOSE_CONNECTION, WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
+import { useEffect } from "react";
 
 type Torder = {
   type: string;
@@ -9,6 +11,7 @@ type Torder = {
 };
 
 export const FeedPage = ({ type, path }: Torder) => {
+  const dispatch = useDispatch();
   const { orders, total, totalToday } = useSelector((state: any) => {
     if (type === "WS_CURRENT_ORDER") {
       return state.wsReducer;
@@ -17,7 +20,19 @@ export const FeedPage = ({ type, path }: Torder) => {
     }
   });
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: WS_CONNECTION_START,
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: WS_CLOSE_CONNECTION,
+      });
+    };
+  }, []);
   const handleOpenModal = (order: TOrder) => {
     dispatch({
       payload: { currentOrder: order },

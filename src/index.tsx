@@ -12,6 +12,7 @@ import { rootReducer } from "./services/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
 import { socketMiddleware } from "./services/middlewares/socketMiddleware";
 import {
+  WS_CLOSE_CONNECTION,
   WS_CONNECTION_CLOSED,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_START,
@@ -40,6 +41,7 @@ const wsFeedType = {
   wsGetMessage: WS_GET_MESSAGE,
   wsSendMessage: WS_SEND_MESSAGE,
   wsCurrentOrder: WS_CURRENT_ORDER,
+  wsCloseConnection: WS_CLOSE_CONNECTION
 };
 
 const wsProfileType = {

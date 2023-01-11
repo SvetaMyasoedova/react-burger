@@ -43,9 +43,6 @@ function App() {
     dispatch(getIngredients());
     dispatch(getUser());
     dispatch({
-      type: WS_CONNECTION_START,
-    });
-    dispatch({
       type: WS_PROFILE_CONNECTION_START,
     });
   }, []);
@@ -84,10 +81,10 @@ function App() {
         <Route path="/feed" exact={true}>
           <FeedPage type ={'WS_CURRENT_ORDER'} path={'feed'}/>
         </Route>
-        <Route path="/feed/:orderId" exact={true}>
+        <Route path="/feed/:orderNumber" exact={true}>
           <FeedDetailsPage />
         </Route>
-        <Route path="/profile/orders/:orderId" exact={true}>
+        <Route path="/profile/orders/:orderNumber" exact={true}>
           <FeedDetailsPage />
         </Route>
 

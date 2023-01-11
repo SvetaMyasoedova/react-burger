@@ -16,6 +16,11 @@ export const socketMiddleware = (
       if (type === actionTypes.wsConnectionStart) {
         socket = new WebSocket(wsUrl);
       }
+
+      if (type === actionTypes.wsCloseConnection && socket !== null) {
+        socket.close();
+      }
+
       if (socket) {
         socket.onopen = (event) => {
           dispatch({ type: actionTypes.wsConnectionSuccess, payload: event });
@@ -35,6 +40,7 @@ export const socketMiddleware = (
 
         socket.onclose = (event) => {
           dispatch({ type: actionTypes.wsConnectionClosed, payload: event });
+          socket = null;
         };
 
         if (type === actionTypes.wsSendMessage) {
