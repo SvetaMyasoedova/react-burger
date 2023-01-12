@@ -1,5 +1,5 @@
-import { useState, useEffect, FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, FC } from "react";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import stylesRegister from "./register-list.module.css";
 import getRegister from "../../services/actions/register";
 import { getUser } from "../../services/actions/profile";
@@ -66,7 +66,6 @@ const RegisterList: FC = () => {
         </div>
         <div className={`${stylesRegister.button} mb-20`}>
           <Button
-            // onClick={handleNewUser}
             htmlType="submit"
             type="primary"
             size="large"

@@ -10,11 +10,64 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { rootReducer } from "./services/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
+import { socketMiddleware } from "./services/middlewares/socketMiddleware";
+import {
+  WS_CLOSE_CONNECTION,
+  WS_CONNECTION_CLOSED,
+  WS_CONNECTION_ERROR,
+  WS_CONNECTION_START,
+  WS_CONNECTION_SUCCESS,
+  WS_CURRENT_ORDER,
+  WS_GET_MESSAGE,
+  WS_SEND_MESSAGE,
+} from "./services/actions/wsActionTypes";
+import {
+  WS_PROFILE_CONNECTION_CLOSED,
+  WS_PROFILE_CONNECTION_ERROR,
+  WS_PROFILE_CONNECTION_START,
+  WS_PROFILE_CONNECTION_SUCCESS,
+  WS_PROFILE_CURRENT_ORDER,
+  WS_PROFILE_GET_MESSAGE,
+  WS_PROFILE_SEND_MESSAGE,
+} from "./services/actions/wsProfileActionTypes";
+import { getCookie } from "./utils/cookie";
+import { WS_All_ORDERS_URL, WS_PROFILE_ORDERS_URL } from "./utils/urls";
 
-const store = createStore(
+const wsFeedType = {
+  wsConnectionStart: WS_CONNECTION_START,
+  wsConnectionSuccess: WS_CONNECTION_SUCCESS,
+  wsConnectionError: WS_CONNECTION_ERROR,
+  wsConnectionClosed: WS_CONNECTION_CLOSED,
+  wsGetMessage: WS_GET_MESSAGE,
+  wsSendMessage: WS_SEND_MESSAGE,
+  wsCurrentOrder: WS_CURRENT_ORDER,
+  wsCloseConnection: WS_CLOSE_CONNECTION
+};
+
+const wsProfileType = {
+  wsConnectionStart: WS_PROFILE_CONNECTION_START,
+  wsConnectionSuccess: WS_PROFILE_CONNECTION_SUCCESS,
+  wsConnectionError: WS_PROFILE_CONNECTION_ERROR,
+  wsConnectionClosed: WS_PROFILE_CONNECTION_CLOSED,
+  wsGetMessage: WS_PROFILE_GET_MESSAGE,
+  wsSendMessage: WS_PROFILE_SEND_MESSAGE,
+  wsCurrentOrder: WS_PROFILE_CURRENT_ORDER,
+};
+
+export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(
+    applyMiddleware(
+      thunk,
+      socketMiddleware(WS_All_ORDERS_URL, wsFeedType),
+      socketMiddleware(
+        WS_PROFILE_ORDERS_URL,
+        wsProfileType
+      )
+    )
+  )
 );
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

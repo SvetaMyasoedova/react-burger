@@ -23,7 +23,7 @@ export function setCookie(name: string, value: string | null, props?: any) {
       updatedCookie += "=" + propValue;
     }
   }
-  document.cookie = updatedCookie;
+  document.cookie = updatedCookie + "; path=/"; 
 }
 
 export function getCookie(name: string) {

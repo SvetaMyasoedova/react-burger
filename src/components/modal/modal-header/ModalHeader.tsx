@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { FC } from "react";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleModalHeader from "./modal-header.module.css";
@@ -17,9 +16,6 @@ const ModalHeader: FC<THeader> =({ onClose, header}) => {
   );
 }
 
-// ModalHeader.propTypes = {
-//   header: PropTypes.string,
-//   onClose: PropTypes.func,
-// };
+
 
 export default ModalHeader;

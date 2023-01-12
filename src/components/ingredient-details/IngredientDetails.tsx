@@ -1,14 +1,13 @@
 import { FC } from "react";
 import styleIngredientDetails from "./ingredient-details.module.css";
-// import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import IngredientDetailsCard from "./ingredientDetailsCard";
 
-// import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
-import { ActionCurrentIngredientType } from "../../services/actions/burgerIngredients";
+import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";
 
@@ -27,14 +26,14 @@ const IngredientDetails: FC = () => {
 
   const { data } = useSelector((state: any) => state.dataReducer);
 
-  const location = useLocation<TLocationState>();;
+  const location = useLocation<TLocationState>();
   const background = location.state && location.state.background;
 
   useEffect(() => {
     if (data.length !== 0 && !background) {
       dispatch({
         currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
-        type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
+        type: CURRENT_INGREDIENT,
       });
     }
 
@@ -44,7 +43,7 @@ const IngredientDetails: FC = () => {
     ) {
       dispatch({
         currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
-        type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
+        type: CURRENT_INGREDIENT,
       });
     }
   }, [data]);
@@ -65,15 +64,6 @@ const IngredientDetails: FC = () => {
   );
 }
 
-// IngredientDetails.propTypes = {
-//   currentSelectedElem: PropTypes.shape({
-//     image: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     calories: PropTypes.number.isRequired,
-//     proteins: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     carbohydrates: PropTypes.number.isRequired,
-//   }),
-// };
+
 
 export default IngredientDetails;

@@ -5,7 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/hooks/hooks";
 
 import stylesApp from "./app.module.css";
 import AppHeader from "../app-header/AppHeader";
@@ -18,12 +18,14 @@ import {
   ResetPassworddPage,
   ProfilePage,
 } from "../../pages";
+import { FeedPage } from "../../pages/feed/feed";
 import { ProtectedRoute } from "../protected-route/ProtectedRoute";
 import Modal from "../modal/Modal";
 import IngredientDetails from "../ingredient-details/IngredientDetails";
 import { getIngredients } from "../../services/actions/burgerIngredients";
 import { TLocationState } from "../../services/types/location";
 import { getUser } from "../../services/actions/profile";
+import { FeedDetailsPage } from "../../pages/feed/feedDetails";
 
 
 function App() {
@@ -72,6 +74,17 @@ function App() {
         <Route path="/ingredients/:ingredientId" exact={true}>
           <IngredientDetails />
         </Route>
+        <Route path="/feed" exact={true}>
+          <FeedPage type ={'WS_CURRENT_ORDER'} path={'feed'}/>
+        </Route>
+        <Route path="/feed/:orderNumber" exact={true}>
+          <FeedDetailsPage />
+        </Route>
+        <Route path="/profile/orders/:orderNumber" exact={true}>
+          <FeedDetailsPage />
+        </Route>
+
+
 
         <ProtectedRoute path="/">
           <ProfilePage />
@@ -84,6 +97,26 @@ function App() {
           children={
             <Modal onClose={handleModalClose} header={"Детали ингредиента"}>
               <IngredientDetails />
+            </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route
+          path="/feed/:orderNumber"
+          children={
+            <Modal onClose={handleModalClose}>
+              <FeedDetailsPage />
+            </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route
+          path="/profile/orders/:orderNumber"
+          children={
+            <Modal onClose={handleModalClose}>
+              <FeedDetailsPage />
             </Modal>
           }
         />

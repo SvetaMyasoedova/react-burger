@@ -1,5 +1,5 @@
 import {  useRef, FC } from "react";
-// import PropTypes from "prop-types";
+
 
 import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IInput } from "../../../services/types/input";
@@ -29,9 +29,4 @@ export const NameInput: FC<IInput> = ({placeholder, onChange, value, icon, name}
   );
 };
 
-// NameInput.propTypes = {
-//   placeholder: PropTypes.string,
-//   onChange: PropTypes.func.isRequired,
-//   value: PropTypes.string.isRequired,
-//   icon: PropTypes.string,
-// };
+

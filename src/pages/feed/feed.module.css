@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+}
+
+.leftSide{
+  margin-left: 280px;
+}
+
+.status {
+  display: flex;
+  gap: 30px;
+}
+
+.wrapper {
+  width: 280px;
+}
+.statusColumn {
+  display: flex;
+  gap: 15px;
+}
+
+.done {
+  color: #00cccc;
+  display: flex;
+  gap: 8;
+}
+.pending {
+  display: flex;
+  gap: 8;
+}
+
+.shadow {
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+}

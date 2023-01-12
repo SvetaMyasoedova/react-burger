@@ -1,0 +1,41 @@
+.main {
+  height: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.number {
+  text-align: center;
+}
+
+.status {
+  color: #00cccc;
+}
+
+.details {
+  width: 700px;
+  margin: 0 auto;
+  max-height: 24vh;
+  overflow-y: scroll;
+  margin-bottom: 40px;
+}
+
+.details::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2f2f37;
+}
+
+.details::-webkit-scrollbar-thumb {
+  border: 3px solid #8585ad;
+  background-color: #8585ad;
+}
+
+.priceData {
+  display: flex;
+  justify-content: space-between;
+}
+.price {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
