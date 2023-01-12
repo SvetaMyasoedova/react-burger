@@ -25,7 +25,7 @@ import { TOrder } from "../../services/types/order";
 
 const Profile: FC = () => {
   const { orders } = useSelector((state: any) => state.wsProfileReducer);
-
+ 
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
@@ -49,7 +49,6 @@ const Profile: FC = () => {
     setValues({ newName: name, newEmail: email });
   }, [name, email, setValues]);
   useEffect(() => {
-    console.log("mount");
     if (location.pathname === "/profile/orders") {
       dispatch({
         type: WS_PROFILE_CONNECTION_START,
@@ -57,7 +56,6 @@ const Profile: FC = () => {
     }
 
     if (location.pathname !== "/profile/orders") {
-      console.log("closed")
       dispatch({
         type: WS_PROFILE_CLOSE_CONNECTION,
       });
@@ -67,7 +65,6 @@ const Profile: FC = () => {
 
   useEffect(() => {
     return () => {
-      console.log("unmount");
       dispatch({
         type: WS_PROFILE_CLOSE_CONNECTION,
       });
