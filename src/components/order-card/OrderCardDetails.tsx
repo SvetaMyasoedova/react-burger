@@ -46,7 +46,6 @@ const OrderCardDetails = () => {
   const [filteredArray, setFilteredArray] = useState<TIngredient[]>([]);
 
   useEffect(() => {
-    console.log(currentOrder);
 
     if (currentOrder === null || currentOrder === undefined) {
       return;
