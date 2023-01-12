@@ -46,9 +46,9 @@ const Profile: FC = () => {
   });
 
   useEffect(() => {
-    setValues({ newName: name, newEmail: email });
+    setValues({ newName: name, newEmail: email, newPassword: "" });
   }, [name, email, setValues]);
-  
+
   useEffect(() => {
     if (location.pathname === "/profile/orders") {
       dispatch({
