@@ -14,7 +14,12 @@ export const socketMiddleware = (
       const { type, payload } = action;
 
       if (type === actionTypes.wsConnectionStart) {
-        socket = new WebSocket(wsUrl);
+        if(payload !== undefined) {
+          socket = new WebSocket(wsUrl + payload);
+        } else {
+          socket = new WebSocket(wsUrl);
+        }
+        
       }
 
       if (type === actionTypes.wsCloseConnection && socket !== null) {

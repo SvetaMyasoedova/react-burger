@@ -48,10 +48,12 @@ const Profile: FC = () => {
   useEffect(() => {
     setValues({ newName: name, newEmail: email });
   }, [name, email, setValues]);
+  
   useEffect(() => {
     if (location.pathname === "/profile/orders") {
       dispatch({
         type: WS_PROFILE_CONNECTION_START,
+        payload: `?token=${getCookie("token")}`
       });
     }
 

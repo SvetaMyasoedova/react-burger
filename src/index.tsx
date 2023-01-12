@@ -61,7 +61,7 @@ export const store = createStore(
       thunk,
       socketMiddleware(WS_All_ORDERS_URL, wsFeedType),
       socketMiddleware(
-        `${WS_PROFILE_ORDERS_URL}?token=${getCookie("token")}`,
+        WS_PROFILE_ORDERS_URL,
         wsProfileType
       )
     )
