@@ -1,52 +1,42 @@
 import { INGREDIENTS_URL } from "../../utils/urls";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
+import { TIngredient } from "../types/data";
 
-// export const CURRENT_INGREDIENT= "CURRENT_INGREDIENT";
-// export const CLEAR_CURRENT_INGREDIENT=
-//   "CLEAR_CURRENT_INGREDIENT";
+export const CURRENT_INGREDIENT: "CURRENT_INGREDIENT" = "CURRENT_INGREDIENT";
+export const CLEAR_CURRENT_INGREDIENT: "CLEAR_CURRENT_INGREDIENT" =
+  "CLEAR_CURRENT_INGREDIENT";
 
-export enum ActionCurrentIngredientType {
-  CURRENT_INGREDIENT = "CURRENT_INGREDIENT",
-  CLEAR_CURRENT_INGREDIENT = "CLEAR_CURRENT_INGREDIENT",
-}
-
-export enum ActionType {
-  GET_INGREDIENTS = "GET_INGREDIENTS",
-  GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS",
-  GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED",
-}
+  export const GET_INGREDIENTS: "GET_INGREDIENTS"  = "GET_INGREDIENTS";
+  export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
+  export const GET_INGREDIENTS_FAILED: "GET_INGREDIENTS_FAILED" = "GET_INGREDIENTS_FAILED";
 
 interface actionPending {
-  type: ActionType.GET_INGREDIENTS;
+  readonly type: typeof GET_INGREDIENTS;
 }
 
 interface actionSuccess {
-  type: ActionType.GET_INGREDIENTS_SUCCESS;
-  data: any;
+  readonly type: typeof GET_INGREDIENTS_SUCCESS;
+  data: TIngredient[];
 }
-
 interface actionFail {
-  type: ActionType.GET_INGREDIENTS_FAILED;
+  readonly type: typeof GET_INGREDIENTS_FAILED;
 }
-
 interface IActionCurrentIngredient {
-  type: ActionCurrentIngredientType.CURRENT_INGREDIENT
-  currentIngredient: any;
+  readonly type: typeof CURRENT_INGREDIENT
+  currentIngredient: TIngredient;
 }
 interface IActionClearCurrentIngredient {
-  type: ActionCurrentIngredientType.CLEAR_CURRENT_INGREDIENT
+  readonly type: typeof CLEAR_CURRENT_INGREDIENT
 }
 
 export type ActionCurrentIngredient = IActionCurrentIngredient | IActionClearCurrentIngredient;
-
-
 export type Action = actionPending | actionSuccess | actionFail;
 
 export function getIngredients(): any {
   return function (dispatch: Dispatch<Action>) {
     dispatch({
-      type: ActionType.GET_INGREDIENTS,
+      type: GET_INGREDIENTS,
     });
 
     fetch(INGREDIENTS_URL)
@@ -54,18 +44,18 @@ export function getIngredients(): any {
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: ActionType.GET_INGREDIENTS_SUCCESS,
+            type: GET_INGREDIENTS_SUCCESS,
             data: res.data,
           });
         } else {
           dispatch({
-            type: ActionType.GET_INGREDIENTS_FAILED,
+            type: GET_INGREDIENTS_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: ActionType.GET_INGREDIENTS_FAILED,
+          type: GET_INGREDIENTS_FAILED,
         });
       });
   };

@@ -1,9 +1,8 @@
 import { useState, useMemo, FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDrop } from "react-dnd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useHistory } from "react-router-dom";
-// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 import {
@@ -18,7 +17,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-  ActionOrderType,
+  CLEAR_ORDER
 } from "../../services/actions/burgerConstructor";
 
 import stylesConstructor from "./burger-constructor.module.css";
@@ -115,7 +114,7 @@ const BurgerConstructor: FC = () => {
       type: CLEAR_CONSTRUCTOR,
     });
     dispatch({
-      type: ActionOrderType.CLEAR_ORDER,
+      type: CLEAR_ORDER,
     });
   };
 
@@ -220,6 +219,5 @@ const BurgerConstructor: FC = () => {
   );
 }
 
-// BurgerConstructor.propTypes = ingredientsPropTypes;
 
 export default BurgerConstructor;

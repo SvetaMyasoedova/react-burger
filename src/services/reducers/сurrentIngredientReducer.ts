@@ -1,23 +1,31 @@
-// import {
-//   CURRENT_INGREDIENT,
-//   CLEAR_CURRENT_INGREDIENT,
-// } from "../actions/burgerIngredients";
+import {
+  CURRENT_INGREDIENT,
+  CLEAR_CURRENT_INGREDIENT,
+} from "../actions/burgerIngredients";
 
-import { ActionCurrentIngredientType, ActionCurrentIngredient } from "../actions/burgerIngredients";
+import { ActionCurrentIngredient } from "../actions/burgerIngredients";
+import { TIngredient } from "../types/data";
 
-const initialState = {
+type TCurrentIngredientState = {
+  currentIngredient: null | TIngredient;
+};
+
+const initialState: TCurrentIngredientState = {
   currentIngredient: null,
 };
 
-export const сurrentIngredientReducer = (state = initialState, action: ActionCurrentIngredient) => {
+export const сurrentIngredientReducer = (
+  state = initialState,
+  action: ActionCurrentIngredient
+): TCurrentIngredientState => {
   switch (action.type) {
-    case ActionCurrentIngredientType.CURRENT_INGREDIENT: {
+    case CURRENT_INGREDIENT: {
       return {
         ...state,
         currentIngredient: action.currentIngredient,
       };
     }
-    case ActionCurrentIngredientType.CLEAR_CURRENT_INGREDIENT: {
+    case CLEAR_CURRENT_INGREDIENT: {
       return {
         ...state,
         currentIngredient: null,

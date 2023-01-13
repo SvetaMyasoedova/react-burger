@@ -36,7 +36,7 @@ const AppHeader: FC = () => {
           </Link>
 
           <Link
-            to="#"
+            to="/feed"
             className={isFeed ? stylesHeader.white : "text_color_inactive"}
           >
             <ElementHeader

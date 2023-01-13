@@ -1,16 +1,14 @@
 import { useState, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useInView } from "react-intersection-observer";
 import stylesIngredients from "./burger-ingredients.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ActionCurrentIngredientType } from "../../services/actions/burgerIngredients";
-
-// import { ingredientsPropTypes } from "../../prop-types/ingredientPropTypes";
 import { TIngredient } from "../../services/types/data";
 
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
+import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
 
 const BurgerIngredients: FC = () => {
   const { data } = useSelector((state: any) => state.dataReducer);
@@ -26,7 +24,7 @@ const BurgerIngredients: FC = () => {
   const handleOpenModal = (ingredient: TIngredient) => {
     dispatch({
       currentIngredient: ingredient,
-      type: ActionCurrentIngredientType.CURRENT_INGREDIENT,
+      type: CURRENT_INGREDIENT,
     });
     setIsModalVisible(true);
   };
@@ -128,6 +126,5 @@ const BurgerIngredients: FC = () => {
   );
 };
 
-// BurgerIngredients.propTypes = ingredientsPropTypes;
 
 export default BurgerIngredients;

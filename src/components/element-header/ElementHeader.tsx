@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { FC } from "react";
 import stylesElement from "./element-header.module.css";
 
@@ -16,9 +15,6 @@ const ElementHeader:FC<IHeader> = ({ icon, text }) => {
   );
 }
 
-// ElementHeader.propTypes = {
-//   icon: PropTypes.element.isRequired,
-//   text: PropTypes.string.isRequired,
-// };
+
 
 export default ElementHeader;

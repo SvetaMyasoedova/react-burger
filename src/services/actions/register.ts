@@ -3,28 +3,20 @@ import { setCookie } from "../../utils/cookie";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 
-// export const GET_REGISTER = "GET_REGISTER";
-// export const GET_REGISTER_FAILED = "GET_REGISTER_FAILED";
-// export const GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS";
-
-export enum ActionRegisterType {
-  GET_REGISTER = "GET_REGISTER",
-  GET_REGISTER_FAILED = "GET_REGISTER_FAILED",
-  GET_REGISTER_SUCCESS = "GET_REGISTER_SUCCESS",
-}
+export const GET_REGISTER: "GET_REGISTER" = "GET_REGISTER";
+export const GET_REGISTER_FAILED: "GET_REGISTER_FAILED" = "GET_REGISTER_FAILED";
+export const GET_REGISTER_SUCCESS: "GET_REGISTER_SUCCESS" = "GET_REGISTER_SUCCESS";
 
 interface actionRegisterPending {
-  type: ActionRegisterType.GET_REGISTER;
+  readonly type: typeof GET_REGISTER;
 }
-
 interface actionRegisterSuccess {
-  type: ActionRegisterType.GET_REGISTER_SUCCESS;
+  readonly type: typeof GET_REGISTER_SUCCESS;
   email: string;
   name: string;
 }
-
 interface actionRegisterFail {
-  type: ActionRegisterType.GET_REGISTER_FAILED;
+  readonly type: typeof GET_REGISTER_FAILED;
 }
 
 export type ActionRegister =
@@ -39,7 +31,7 @@ const getRegister = (
 ): any => {
   return function (dispatch: Dispatch<ActionRegister>) {
     dispatch({
-      type: ActionRegisterType.GET_REGISTER,
+      type: GET_REGISTER,
     });
 
     fetch(REGISTER_URL, {
@@ -61,7 +53,7 @@ const getRegister = (
       .then((res) => {
         if (res && res.success) {
           dispatch({
-            type: ActionRegisterType.GET_REGISTER_SUCCESS,
+            type: GET_REGISTER_SUCCESS,
             email: res.user.email,
             name: res.user.name,
           });
@@ -78,13 +70,13 @@ const getRegister = (
           }
         } else {
           dispatch({
-            type: ActionRegisterType.GET_REGISTER_FAILED,
+            type: GET_REGISTER_FAILED,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: ActionRegisterType.GET_REGISTER_FAILED,
+          type: GET_REGISTER_FAILED,
         });
       });
   };

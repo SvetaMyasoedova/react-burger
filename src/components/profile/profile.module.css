@@ -3,7 +3,7 @@
   gap: 120px;
   max-height: 860px;
   margin-left: 340px;
-  margin-right: 720px;
+  /* margin-right: 720px; */
   margin-bottom: 80px;
 }
 .nav {
@@ -30,6 +30,13 @@
 
 .text {
 	max-width: 320px;
-	margin-left: 340px;
 	opacity: 0.4;
+}
+
+.profile {
+  display: flex;
+}
+
+.container {
+  margin-left: 100px;
 }

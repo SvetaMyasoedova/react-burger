@@ -1,6 +1,6 @@
 import { Link, Redirect, useLocation } from "react-router-dom";
-import { useState, FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  FC } from "react";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import stylesLogin from "./login-list.module.css";
 import { Password } from "../register-list/password-input/Password";
 import { TLocationState } from "../../services/types/location";

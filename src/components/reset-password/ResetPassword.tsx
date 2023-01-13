@@ -1,8 +1,7 @@
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
-import { useState, useEffect, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, FC } from "react";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import stylesResetPassword from "./reset-password.module.css";
-
 import { NameInput } from "../register-list/name-input/NameInput";
 import { Password } from "../register-list/password-input/Password";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -16,17 +15,6 @@ const ResetPassword: FC = () => {
   const history = useHistory<{ from: string }>();
   const location = useLocation<TLocationState>();
   const { isLogin } = useSelector((state: any) => state.profileReducer);
-
-  // const [code, setCode] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const onChangeCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCode(e.target.value);
-  // };
-
-  // const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPassword(e.target.value);
-  // };
 
   const { values, handleChange, setValues } = useForm({
     code: "",
@@ -97,7 +85,6 @@ const ResetPassword: FC = () => {
         </div>
         <div className={`${stylesResetPassword.button} mb-20`}>
           <Button
-            // onClick={handlePasswordReset}
             htmlType="submit"
             type="primary"
             size="large"
