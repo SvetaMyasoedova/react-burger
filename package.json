@@ -52,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@cfaester/enzyme-adapter-react-18": "^0.6.0",
+    "@types/enzyme": "^3.10.12",
     "@types/uuid": "^9.0.0",
     "react-test-renderer": "^18.2.0"
   }
