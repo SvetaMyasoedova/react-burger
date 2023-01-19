@@ -9,7 +9,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import thunk from "redux-thunk";
 import { rootReducer } from "./services/reducers";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { socketMiddleware } from "./services/middlewares/socketMiddleware";
 import {
   WS_CLOSE_CONNECTION,
