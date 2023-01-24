@@ -15,7 +15,7 @@ it('should drag & drop', function () {
   cy.get('span').contains('Краторная булка N-200i (верх)');
 });
 
-it('should ingredient modal  & close', function () {
+it('should open ingredient modal & close', function () {
   cy.visit('http://localhost:3000');
   cy.get('[id="60d3b41abdacab0026a733c6"]').click();
   cy.get('[data-test-id="ingredient-name"]').contains('Краторная булка N-200i');
