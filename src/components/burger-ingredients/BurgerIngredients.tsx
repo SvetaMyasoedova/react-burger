@@ -126,5 +126,4 @@ const BurgerIngredients: FC = () => {
   );
 };
 
-
 export default BurgerIngredients;

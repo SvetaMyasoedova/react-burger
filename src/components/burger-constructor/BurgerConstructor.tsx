@@ -17,7 +17,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-  CLEAR_ORDER
+  CLEAR_ORDER,
 } from "../../services/actions/burgerConstructor";
 
 import stylesConstructor from "./burger-constructor.module.css";
@@ -130,19 +130,21 @@ const BurgerConstructor: FC = () => {
 
   return (
     <section className={`${stylesConstructor.burgerConstructor} mt-2`}>
-      <div className="mb-2" ref={dropBunTop}>
+      <div data-test-id="burger-container" className="mb-2" ref={dropBunTop}>
         {constructorBun === null ? (
           noBun
         ) : (
           <div className="pr-5 pl-6">
-            <ConstructorElement
-              key={constructorBun._id + "_ConstructorElementTop"}
-              type="top"
-              isLocked={true}
-              text={`${constructorBun.name} (верх)`}
-              price={constructorBun.price}
-              thumbnail={constructorBun.image}
-            />
+            <div>
+              <ConstructorElement
+                key={constructorBun._id + "_ConstructorElementTop"}
+                type="top"
+                isLocked={true}
+                text={`${constructorBun.name} (верх)`}
+                price={constructorBun.price}
+                thumbnail={constructorBun.image}
+              />
+            </div>
           </div>
         )}
       </div>
@@ -217,7 +219,6 @@ const BurgerConstructor: FC = () => {
       )}
     </section>
   );
-}
-
+};
 
 export default BurgerConstructor;
