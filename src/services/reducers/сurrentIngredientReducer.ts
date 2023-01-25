@@ -1,8 +1,4 @@
-import {
-  CURRENT_INGREDIENT,
-  CLEAR_CURRENT_INGREDIENT,
-} from "../actions/burgerIngredients";
-
+import { CURRENT_INGREDIENT, CLEAR_CURRENT_INGREDIENT } from "../action-types/burger-ingredients-types";
 import { ActionCurrentIngredient } from "../actions/burgerIngredients";
 import { TIngredient } from "../types/data";
 

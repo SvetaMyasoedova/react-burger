@@ -5,7 +5,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-} from "../action-types/burget-constructor-types";
+} from "../action-types/burger-constructor-types";
 import { TIngredient } from "../types/data";
 
 interface IIngredientsCount {
@@ -42,7 +42,7 @@ export const constructorReducer = (
           ? state.ingredientsCount
           : {}),
       };
-      
+
       if (
         newIngredientsCount.hasOwnProperty(action.constructorIngredient._id)
       ) {

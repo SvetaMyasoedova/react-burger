@@ -18,7 +18,7 @@ import {
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
   CLEAR_ORDER,
-} from "../../services/action-types/burget-constructor-types";
+} from "../../services/action-types/burger-constructor-types";
 
 import stylesConstructor from "./burger-constructor.module.css";
 

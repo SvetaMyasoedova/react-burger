@@ -3,7 +3,7 @@ import {
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILED,
   CLEAR_ORDER,
-} from "../action-types/burget-constructor-types";
+} from "../action-types/burger-constructor-types";
 
 import { ActionOrder } from "../actions/burgerConstructor";
 

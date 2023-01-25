@@ -1,5 +1,5 @@
 import { constructorReducer, initialState } from "./constructorReducer";
-import * as actions from "../action-types/burget-constructor-types";
+import * as actions from "../action-types/burger-constructor-types";
 
 const TEST_CONSTRUCTOR_BUN = {
   calories: 420,

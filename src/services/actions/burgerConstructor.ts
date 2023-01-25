@@ -13,7 +13,7 @@ import {
   GET_ORDER_SUCCESS,
   CLEAR_ORDER,
   CLEAR_CONSTRUCTOR,
-} from "../action-types/burget-constructor-types";
+} from "../action-types/burger-constructor-types";
 
 interface actionConstructorBun {
   readonly type: typeof CONSTRUCTOR_BUN;
