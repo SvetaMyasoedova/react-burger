@@ -32,9 +32,16 @@ const TEST_CONSTRUCTOR_MAIN = {
   __v: 0,
   _id: "60d3b41abdacab0026a733cc",
 };
+
 const TEST_CONSTRUCTOR_MAIN_COUNT = {
   "60d3b41abdacab0026a733cc": 1,
 };
+
+const DELETE_CONSTRUCTOR_INGREDIENT_STATE = {
+  constructorBun: null,
+  constructorIngredients: [TEST_CONSTRUCTOR_MAIN],
+  ingredientsCount: TEST_CONSTRUCTOR_MAIN_COUNT,
+} 
 
 describe("constructor reducer", () => {
   it("should return the initial state", () => {
@@ -65,4 +72,22 @@ describe("constructor reducer", () => {
       ingredientsCount: TEST_CONSTRUCTOR_MAIN_COUNT,
     });
   });
+
+  it("should handle DELETE_CONSTRUCTOR_INGREDIENT", () => {
+    expect(
+      constructorReducer(DELETE_CONSTRUCTOR_INGREDIENT_STATE, {
+        type: actions.DELETE_CONSTRUCTOR_INGREDIENT,
+        uuid: TEST_CONSTRUCTOR_MAIN.uuid,
+        id: TEST_CONSTRUCTOR_MAIN._id
+      })
+    ).toEqual({
+      ...DELETE_CONSTRUCTOR_INGREDIENT_STATE,
+      constructorIngredients: [],
+      ingredientsCount: {},
+    });
+  });
+
+  
+
+
 });
