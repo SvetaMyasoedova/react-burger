@@ -23,7 +23,7 @@ it('should open ingredient modal & close', function () {
   cy.get('[data-test-id="ingredient-proteins"]').contains('80');
   cy.get('[data-test-id="ingredient-fat"]').contains('24');
   cy.get('[data-test-id="ingredient-carbohydrates"]').contains('53');
-  cy.wait(4000);
+  cy.wait(3000);
   cy.get('[data-test-id="modal-close-icon"]').click();
   cy.wait(1000);
   cy.get('[data-test-id="modal-close-icon"]').should('not.exist');

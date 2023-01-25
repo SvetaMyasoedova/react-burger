@@ -3,22 +3,21 @@ import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 import { TIngredient } from "../types/data";
 import { ICreatedOrder } from "../reducers/orderReducer";
-
-export const CONSTRUCTOR_BUN: "CONSTRUCTOR_BUN" = "CONSTRUCTOR_BUN";
-export const CONSTRUCTOR_MAIN: "CONSTRUCTOR_MAIN" = "CONSTRUCTOR_MAIN";
-export const DELETE_CONSTRUCTOR_INGREDIENT: "DELETE_CONSTRUCTOR_INGREDIENT" =
-  "DELETE_CONSTRUCTOR_INGREDIENT";
-export const SORTABLE_INGREDIENT: "SORTABLE_INGREDIENT" = "SORTABLE_INGREDIENT";
-
-export const GET_ORDER: "GET_ORDER" = "GET_ORDER";
-export const GET_ORDER_FAILED: "GET_ORDER_FAILED" = "GET_ORDER_FAILED";
-export const GET_ORDER_SUCCESS: "GET_ORDER_SUCCESS" = "GET_ORDER_SUCCESS";
-export const CLEAR_ORDER: "CLEAR_ORDER" = "CLEAR_ORDER";
-export const CLEAR_CONSTRUCTOR: "CLEAR_CONSTRUCTOR" = "CLEAR_CONSTRUCTOR";
+import {
+  CONSTRUCTOR_BUN,
+  CONSTRUCTOR_MAIN,
+  DELETE_CONSTRUCTOR_INGREDIENT,
+  SORTABLE_INGREDIENT,
+  GET_ORDER,
+  GET_ORDER_FAILED,
+  GET_ORDER_SUCCESS,
+  CLEAR_ORDER,
+  CLEAR_CONSTRUCTOR,
+} from "../action-types/burget-constructor-types";
 
 interface actionConstructorBun {
   readonly type: typeof CONSTRUCTOR_BUN;
-  constructorBun:  null | TIngredient;
+  constructorBun: null | TIngredient;
 }
 
 interface actionConstructorMain {
