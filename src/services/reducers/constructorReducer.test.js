@@ -117,4 +117,14 @@ describe("constructor reducer", () => {
       constructorIngredients: TEST_SORTABLE_INGREDIENTS_EQUAL,
     });
   });
+
+  it("should handle CLEAR_CONSTRUCTOR", () => {
+    expect(
+      constructorReducer(TEST_SORTABLE_INGREDIENT_STATE, {
+        type: actions.CLEAR_CONSTRUCTOR,
+      })
+    ).toEqual({
+      ...initialState,
+    });
+  });
 });
