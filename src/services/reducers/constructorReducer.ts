@@ -42,7 +42,7 @@ export const constructorReducer = (
           ? state.ingredientsCount
           : {}),
       };
-
+      
       if (
         newIngredientsCount.hasOwnProperty(action.constructorIngredient._id)
       ) {
