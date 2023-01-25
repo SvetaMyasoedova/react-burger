@@ -41,7 +41,26 @@ const DELETE_CONSTRUCTOR_INGREDIENT_STATE = {
   constructorBun: null,
   constructorIngredients: [TEST_CONSTRUCTOR_MAIN],
   ingredientsCount: TEST_CONSTRUCTOR_MAIN_COUNT,
-} 
+};
+
+const TEST_SORTABLE_INGREDIENT_STATE = {
+  constructorBun: null,
+  constructorIngredients: [
+    { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aea" },
+    { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aeb" },
+    { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aec" },
+  ],
+  ingredientsCount: {
+    "60d3b41abdacab0026a733cc": 3,
+  },
+};
+
+const TEST_SORTABLE_INGREDIENTS_EQUAL = [
+  { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aeb" },
+  { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aea" },
+
+  { ...TEST_CONSTRUCTOR_MAIN, uuid: "1f4b8aad-a6a2-41f6-a89a-6f0c50ad5aec" },
+];
 
 describe("constructor reducer", () => {
   it("should return the initial state", () => {
@@ -78,7 +97,7 @@ describe("constructor reducer", () => {
       constructorReducer(DELETE_CONSTRUCTOR_INGREDIENT_STATE, {
         type: actions.DELETE_CONSTRUCTOR_INGREDIENT,
         uuid: TEST_CONSTRUCTOR_MAIN.uuid,
-        id: TEST_CONSTRUCTOR_MAIN._id
+        id: TEST_CONSTRUCTOR_MAIN._id,
       })
     ).toEqual({
       ...DELETE_CONSTRUCTOR_INGREDIENT_STATE,
@@ -86,8 +105,16 @@ describe("constructor reducer", () => {
       ingredientsCount: {},
     });
   });
-
-  
-
-
+  it("should handle SORTABLE_INGREDIENT", () => {
+    expect(
+      constructorReducer(TEST_SORTABLE_INGREDIENT_STATE, {
+        type: actions.SORTABLE_INGREDIENT,
+        hoverIndex: 1,
+        dragIndex: 0,
+      })
+    ).toEqual({
+      ...TEST_SORTABLE_INGREDIENT_STATE,
+      constructorIngredients: TEST_SORTABLE_INGREDIENTS_EQUAL,
+    });
+  });
 });
