@@ -1,5 +1,5 @@
 import { dataReducer, initialState } from "./dataReducer";
-import * as types from "../action-types/burger-ingredients-types";
+import * as actions from "../action-types/burger-ingredients-types";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
@@ -55,8 +55,8 @@ describe("async actions getIngredients", () => {
     });
 
     const expectedActions = [
-      { type: types.GET_INGREDIENTS },
-      { type: types.GET_INGREDIENTS_SUCCESS, data: TEST_BODY.data },
+      { type: actions.GET_INGREDIENTS },
+      { type: actions.GET_INGREDIENTS_SUCCESS, data: TEST_BODY.data },
     ];
     const store = mockStore({
       dataRequest: false,
@@ -73,5 +73,17 @@ describe("async actions getIngredients", () => {
 describe("data reducer", () => {
   it("should return the initial state", () => {
     expect(dataReducer(undefined, {})).toEqual(initialState);
+  });
+
+  it("should handle GET_INGREDIENTS_FAILED", () => {
+    expect(
+      dataReducer(initialState, {
+        type: actions.GET_INGREDIENTS_FAILED,
+      })
+    ).toEqual({
+      ...initialState,
+      dataFailed: true,
+      dataRequest: false,
+    });
   });
 });
