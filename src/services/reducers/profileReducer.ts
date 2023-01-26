@@ -1,9 +1,5 @@
-import {
-  GET_USER,
-  GET_USER_FAILED,
-  GET_USER_SUCCESS,
-  LOGOUT_SUCCESS,
-} from "../actions/profile";
+
+import { GET_USER, GET_USER_FAILED,  GET_USER_SUCCESS, LOGOUT_SUCCESS} from "../action-types/profile-types";
 
 import {
   EDIT_USER,
@@ -44,7 +40,7 @@ type TProfileState = {
   dataFailed: boolean;
 };
 
-const initialState: TProfileState = {
+export const initialState: TProfileState = {
   registerRequest: false,
   registerFailed: false,
   userRequest: false,

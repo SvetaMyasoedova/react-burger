@@ -3,11 +3,12 @@ import { getCookie } from "../../utils/cookie";
 
 import { fetchWithRefresh } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
-
-export const GET_USER: "GET_USER" = "GET_USER";
-export const GET_USER_FAILED: "GET_USER_FAILED" = "GET_USER_FAILED";
-export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
-export const LOGOUT_SUCCESS: "LOGOUT_SUCCESS" = "LOGOUT_SUCCESS";
+import {
+  GET_USER,
+  GET_USER_FAILED,
+  GET_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../action-types/profile-types";
 
 interface actionUserPending {
   readonly type: typeof GET_USER;
@@ -34,7 +35,7 @@ export function getUser(): any {
       type: GET_USER,
     });
 
-    fetchWithRefresh(USER_URL, {
+    return fetchWithRefresh(USER_URL, {
       method: "GET",
       mode: "cors",
       cache: "no-cache",
