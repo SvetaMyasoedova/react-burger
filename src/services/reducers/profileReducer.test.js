@@ -1,11 +1,13 @@
 import { profileReducer, initialState } from "./profileReducer";
 import * as actions from "../action-types/profile-types";
+import * as types from "../action-types/edit-profile-types";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
 import { USER_URL } from "../../utils/urls";
 import { getUser } from "../actions/profile";
 import { getCookie } from "../../utils/cookie";
+import { editUser } from "../actions/editProfile";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -82,5 +84,56 @@ describe("profile reducer", () => {
       isUserLoaded: false,
       isLogin: false,
     });
+  });
+});
+
+export const TEST_EDIT_PROFILE_BODY = {
+  success: true,
+  user: { email: "so.myasoedova@gmail.com", name: "Svet" },
+};
+
+describe("async actions editUser", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it("creates EDIT_USER_SUCCESS", () => {
+    fetchMock.patchOnce(USER_URL, {
+      body: TEST_EDIT_PROFILE_BODY,
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + getCookie("token"),
+      },
+    });
+
+    const expectedActions = [
+      { type: types.EDIT_USER },
+      {
+        type: types.EDIT_USER_SUCCESS,
+      },
+    ];
+    const store = mockStore({
+      userRequest: false,
+      userFailed: false,
+      email: "",
+      name: "",
+      dataRequest: false,
+    });
+
+    return store.dispatch(editUser()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+});
+
+it("should handle EDIT_USER_FAILED", () => {
+  expect(
+    profileReducer(initialState, {
+      type: types.EDIT_USER_FAILED,
+    })
+  ).toEqual({
+    ...initialState,
+    dataFailed: true,
+    dataRequest: false,
   });
 });

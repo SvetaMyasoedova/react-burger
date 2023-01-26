@@ -1,11 +1,9 @@
 
 import { GET_USER, GET_USER_FAILED,  GET_USER_SUCCESS, LOGOUT_SUCCESS} from "../action-types/profile-types";
 
-import {
-  EDIT_USER,
-  EDIT_USER_FAILED,
-  EDIT_USER_SUCCESS,
-} from "../actions/editProfile";
+
+import { EDIT_USER,  EDIT_USER_FAILED, EDIT_USER_SUCCESS} from "../action-types/edit-profile-types";
+
 
 import {
   GET_LOGIN,
