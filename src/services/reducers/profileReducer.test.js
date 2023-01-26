@@ -51,3 +51,22 @@ describe("async actions getUser", () => {
     });
   });
 });
+
+describe("profile reducer", () => {
+  it("should return the initial state", () => {
+    expect(profileReducer(undefined, {})).toEqual(initialState);
+  });
+
+  it("should handle GET_USER_FAILED", () => {
+    expect(
+      profileReducer(initialState, {
+        type: actions.GET_USER_FAILED,
+      })
+    ).toEqual({
+      ...initialState,
+      userFailed: true,
+      userRequest: false,
+      isUserLoaded: true,
+    });
+  });
+});
