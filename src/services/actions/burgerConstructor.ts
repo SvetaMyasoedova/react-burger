@@ -78,7 +78,7 @@ export function getOrder(): any {
     orderIds.unshift(getState().constructorReducer.constructorBun._id);
     orderIds.push(getState().constructorReducer.constructorBun._id);
 
-    fetch(ORDER_URL, {
+   return fetch(ORDER_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",

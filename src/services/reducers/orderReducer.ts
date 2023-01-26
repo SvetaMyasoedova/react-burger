@@ -17,7 +17,7 @@ type TOrderState = {
   createdOrder: null | ICreatedOrder;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   orderRequest: false,
   orderFailed: false,
   createdOrder: null,
