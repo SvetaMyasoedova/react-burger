@@ -15,16 +15,19 @@ import {
   GET_LOGIN,
   GET_LOGIN_SUCCESS,
   GET_LOGIN_FAILED,
-} from "../actions/login";
+} from "../action-types/login-types";
 
-import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
+import {
+  GET_REGISTER,
+  GET_REGISTER_FAILED,
+  GET_REGISTER_SUCCESS,
+} from "../actions/register";
 
 import { ActionUser } from "../actions/profile";
-import { ActionRegister} from "./../actions/register";
+import { ActionRegister } from "./../actions/register";
 import { ActionLogin } from "../actions/login";
 import { ActionEdit } from "./../actions/editProfile";
-import { ActionLogout} from "./../actions/profile";
-
+import { ActionLogout } from "./../actions/profile";
 
 type TProfileState = {
   registerRequest: boolean;
@@ -63,7 +66,10 @@ type Action =
   | ActionEdit
   | ActionLogout;
 
-export const profileReducer = (state = initialState, action: Action): TProfileState => {
+export const profileReducer = (
+  state = initialState,
+  action: Action
+): TProfileState => {
   switch (action.type) {
     case GET_REGISTER: {
       return {
