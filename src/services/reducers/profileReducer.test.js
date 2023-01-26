@@ -69,4 +69,18 @@ describe("profile reducer", () => {
       isUserLoaded: true,
     });
   });
+
+  it("should handle LOGOUT_SUCCESS", () => {
+    expect(
+      profileReducer(initialState, {
+        type: actions.LOGOUT_SUCCESS,
+      })
+    ).toEqual({
+      ...initialState,
+      email: "",
+      name: "",
+      isUserLoaded: false,
+      isLogin: false,
+    });
+  });
 });
