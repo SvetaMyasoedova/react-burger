@@ -3,12 +3,12 @@ import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 import { TIngredient } from "../types/data";
 import {
-  CURRENT_INGREDIENT,
-  CLEAR_CURRENT_INGREDIENT,
   GET_INGREDIENTS,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED,
 } from "../action-types/burger-ingredients-types";
+import { CURRENT_INGREDIENT, CLEAR_CURRENT_INGREDIENT } from "../action-types/сurrent-ingredient-types";
+
 
 interface actionPending {
   readonly type: typeof GET_INGREDIENTS;

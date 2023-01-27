@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import IngredientDetailsCard from "./ingredientDetailsCard";
-import { CURRENT_INGREDIENT } from "../../services/action-types/burger-ingredients-types";
+import { CURRENT_INGREDIENT } from "../../services/action-types/сurrent-ingredient-types";
 
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";

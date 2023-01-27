@@ -8,7 +8,7 @@ import { TIngredient } from "../../services/types/data";
 //components
 import Tabs from "../tab-ingredients/Tabs";
 import IngredientList from "../ingredients-list/IngredientList";
-import { CURRENT_INGREDIENT } from "../../services/action-types/burger-ingredients-types";
+import { CURRENT_INGREDIENT } from "../../services/action-types/сurrent-ingredient-types";
 
 const BurgerIngredients: FC = () => {
   const { data } = useSelector((state: any) => state.dataReducer);
