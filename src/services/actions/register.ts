@@ -3,9 +3,7 @@ import { setCookie } from "../../utils/cookie";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 
-export const GET_REGISTER: "GET_REGISTER" = "GET_REGISTER";
-export const GET_REGISTER_FAILED: "GET_REGISTER_FAILED" = "GET_REGISTER_FAILED";
-export const GET_REGISTER_SUCCESS: "GET_REGISTER_SUCCESS" = "GET_REGISTER_SUCCESS";
+import { GET_REGISTER,  GET_REGISTER_FAILED, GET_REGISTER_SUCCESS} from "../action-types/register-types";
 
 interface actionRegisterPending {
   readonly type: typeof GET_REGISTER;
@@ -34,7 +32,7 @@ const getRegister = (
       type: GET_REGISTER,
     });
 
-    fetch(REGISTER_URL, {
+    return fetch(REGISTER_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",

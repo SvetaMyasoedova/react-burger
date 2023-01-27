@@ -1,8 +1,4 @@
-import {
-  GET_REGISTER,
-  GET_REGISTER_FAILED,
-  GET_REGISTER_SUCCESS,
-} from "../actions/register";
+import { GET_REGISTER,  GET_REGISTER_FAILED, GET_REGISTER_SUCCESS} from "../action-types/register-types";
 
 import { ActionRegister } from "../actions/register";
 
@@ -12,7 +8,7 @@ type TRegisterState = {
   email: string;
   name: string;
 };
-const initialState: TRegisterState = {
+export const initialState: TRegisterState = {
   registerRequest: false,
   registerFailed: false,
   email: "",

@@ -1,9 +1,15 @@
+import {
+  GET_USER,
+  GET_USER_FAILED,
+  GET_USER_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "../action-types/profile-types";
 
-import { GET_USER, GET_USER_FAILED,  GET_USER_SUCCESS, LOGOUT_SUCCESS} from "../action-types/profile-types";
-
-
-import { EDIT_USER,  EDIT_USER_FAILED, EDIT_USER_SUCCESS} from "../action-types/edit-profile-types";
-
+import {
+  EDIT_USER,
+  EDIT_USER_FAILED,
+  EDIT_USER_SUCCESS,
+} from "../action-types/edit-profile-types";
 
 import {
   GET_LOGIN,
@@ -15,7 +21,7 @@ import {
   GET_REGISTER,
   GET_REGISTER_FAILED,
   GET_REGISTER_SUCCESS,
-} from "../actions/register";
+} from "../action-types/register-types";
 
 import { ActionUser } from "../actions/profile";
 import { ActionRegister } from "./../actions/register";
