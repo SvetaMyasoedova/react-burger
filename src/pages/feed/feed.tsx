@@ -2,7 +2,10 @@ import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import OrderCardContainer from "../../components/order-card/order-card-container/OrderCardContainer";
 import { TOrder } from "../../services/types/order";
 import styleFeed from "./feed.module.css";
-import { WS_CLOSE_CONNECTION, WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
+import {
+  WS_CLOSE_CONNECTION,
+  WS_CONNECTION_START,
+} from "../../services/action-types/ws-types";
 import { useEffect } from "react";
 
 type Torder = {
@@ -19,6 +22,7 @@ export const FeedPage = ({ type, path }: Torder) => {
       return state.wsProfileReducer;
     }
   });
+
 
   useEffect(() => {
     dispatch({

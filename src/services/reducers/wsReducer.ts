@@ -4,7 +4,7 @@ import {
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
   WS_CURRENT_ORDER,
-} from "../actions/wsActionTypes";
+} from "../action-types/ws-types";
 import { TWSActions } from "../actions/wsActionTypes";
 
 type TWSState = {
@@ -16,7 +16,7 @@ type TWSState = {
   error?: Event;
 };
 
-const initialState: TWSState = {
+export const initialState: TWSState = {
   wsConnected: false,
   orders: [],
   currentOrder: null,

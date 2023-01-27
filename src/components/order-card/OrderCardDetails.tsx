@@ -5,7 +5,7 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useLocation, useParams } from "react-router-dom";
-import { WS_CURRENT_ORDER } from "../../services/actions/wsActionTypes";
+import { WS_CURRENT_ORDER } from "../../services/action-types/ws-types";
 import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";
 import { TLocationState } from "../../services/types/location";
 import IngredientDetails from "./ingredientDetails";
