@@ -22,6 +22,7 @@ import {
   WS_GET_MESSAGE,
   WS_SEND_MESSAGE,
 } from "./services/action-types/ws-types";
+
 import {
   WS_PROFILE_CONNECTION_CLOSED,
   WS_PROFILE_CONNECTION_ERROR,
@@ -30,7 +31,7 @@ import {
   WS_PROFILE_CURRENT_ORDER,
   WS_PROFILE_GET_MESSAGE,
   WS_PROFILE_SEND_MESSAGE,
-} from "./services/actions/wsProfileActionTypes";
+} from "./services/action-types/ws-profile-types";
 import { getCookie } from "./utils/cookie";
 import { WS_All_ORDERS_URL, WS_PROFILE_ORDERS_URL } from "./utils/urls";
 

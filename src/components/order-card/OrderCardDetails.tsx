@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import { useLocation, useParams } from "react-router-dom";
 import { WS_CURRENT_ORDER } from "../../services/action-types/ws-types";
-import { WS_PROFILE_CURRENT_ORDER } from "../../services/actions/wsProfileActionTypes";
+import { WS_PROFILE_CURRENT_ORDER } from "../../services/action-types/ws-profile-types";
 import { TLocationState } from "../../services/types/location";
 import IngredientDetails from "./ingredientDetails";
 import styleOrderCardDetails from "./order-card-details.module.css";
@@ -46,7 +46,6 @@ const OrderCardDetails = () => {
   const [filteredArray, setFilteredArray] = useState<TIngredient[]>([]);
 
   useEffect(() => {
-
     if (currentOrder === null || currentOrder === undefined) {
       return;
     }

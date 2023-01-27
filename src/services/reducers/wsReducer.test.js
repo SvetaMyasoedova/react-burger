@@ -1,7 +1,7 @@
 import { wsReducer, initialState } from "./wsReducer";
 import * as actions from "../action-types/ws-types";
 
-const TEST_WS = {
+export const TEST_WS = {
   success: true,
   orders: [
     {
