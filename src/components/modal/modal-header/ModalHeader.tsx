@@ -11,7 +11,7 @@ const ModalHeader: FC<THeader> =({ onClose, header}) => {
   return (
     <div className={`${styleModalHeader.header} pl-10 pr-10 pt-10`}>
       <div className="text text_type_main-large">{header}</div>
-      <CloseIcon type="primary" onClick={onClose} />
+      <div data-test-id='modal-close-icon'><CloseIcon type="primary" onClick={onClose} /> </div>
     </div>
   );
 }

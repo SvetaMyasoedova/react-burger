@@ -14,18 +14,19 @@ import { fetchWithRefresh } from "../../utils/refreshToken";
 import { LOGOUT_URL } from "../../utils/urls";
 import { getCookie, deleteCookie } from "../../utils/cookie";
 import { useForm } from "../../hooks/useForm";
-import { LOGOUT_SUCCESS } from "../../services/actions/profile";
+import { LOGOUT_SUCCESS } from "../../services/action-types/profile-types";
 import OrderCardContainer from "../order-card/order-card-container/OrderCardContainer";
+
 import {
   WS_PROFILE_CLOSE_CONNECTION,
   WS_PROFILE_CONNECTION_START,
   WS_PROFILE_CURRENT_ORDER,
-} from "../../services/actions/wsProfileActionTypes";
+} from "../../services/action-types/ws-profile-types";
 import { TOrder } from "../../services/types/order";
 
 const Profile: FC = () => {
   const { orders } = useSelector((state: any) => state.wsProfileReducer);
- 
+
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
@@ -53,7 +54,7 @@ const Profile: FC = () => {
     if (location.pathname === "/profile/orders") {
       dispatch({
         type: WS_PROFILE_CONNECTION_START,
-        payload: `?token=${getCookie("token")}`
+        payload: `?token=${getCookie("token")}`,
       });
     }
 
@@ -62,7 +63,6 @@ const Profile: FC = () => {
         type: WS_PROFILE_CLOSE_CONNECTION,
       });
     }
-
   }, [location.pathname]);
 
   useEffect(() => {

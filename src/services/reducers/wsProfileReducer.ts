@@ -1,11 +1,12 @@
+import { TWSProfileActions } from "./../actions/wsProfileActionTypes";
+
 import {
-  TWSProfileActions,
   WS_PROFILE_CONNECTION_SUCCESS,
   WS_PROFILE_CONNECTION_ERROR,
   WS_PROFILE_CONNECTION_CLOSED,
   WS_PROFILE_GET_MESSAGE,
   WS_PROFILE_CURRENT_ORDER,
-} from "./../actions/wsProfileActionTypes";
+} from "../action-types/ws-profile-types";
 
 type TWSProfileState = {
   wsConnected: boolean;
@@ -14,13 +15,16 @@ type TWSProfileState = {
   error?: Event;
 };
 
-const initialState: TWSProfileState = {
+export const initialState: TWSProfileState = {
   wsConnected: false,
   orders: [],
   currentOrder: null,
 };
 
-export const wsProfileReducer = (state = initialState, action: TWSProfileActions) => {
+export const wsProfileReducer = (
+  state = initialState,
+  action: TWSProfileActions
+) => {
   switch (action.type) {
     case WS_PROFILE_CONNECTION_SUCCESS:
       return {

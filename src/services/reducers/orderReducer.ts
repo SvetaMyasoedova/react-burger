@@ -3,7 +3,7 @@ import {
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILED,
   CLEAR_ORDER,
-} from "../actions/burgerConstructor";
+} from "../action-types/burger-constructor-types";
 
 import { ActionOrder } from "../actions/burgerConstructor";
 
@@ -17,7 +17,7 @@ type TOrderState = {
   createdOrder: null | ICreatedOrder;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   orderRequest: false,
   orderFailed: false,
   createdOrder: null,

@@ -5,7 +5,7 @@ import {
   DELETE_CONSTRUCTOR_INGREDIENT,
   SORTABLE_INGREDIENT,
   CLEAR_CONSTRUCTOR,
-} from "../actions/burgerConstructor";
+} from "../action-types/burger-constructor-types";
 import { TIngredient } from "../types/data";
 
 interface IIngredientsCount {
@@ -18,7 +18,7 @@ type TConstructorState = {
   ingredientsCount: null | IIngredientsCount;
 };
 
-const initialState: TConstructorState = {
+export const initialState: TConstructorState = {
   constructorBun: null,
   constructorIngredients: [],
   ingredientsCount: null,

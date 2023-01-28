@@ -2,7 +2,7 @@ import {
   GET_LOGIN,
   GET_LOGIN_FAILED,
   GET_LOGIN_SUCCESS,
-} from "../actions/login";
+} from "../action-types/login-types";
 import { ActionLogin } from "../actions/login";
 
 type TLoginState = {
@@ -11,9 +11,9 @@ type TLoginState = {
   email: string;
   name: string;
   isLogin: boolean;
-} 
+};
 
-const initialState: TLoginState = {
+export const initialState: TLoginState = {
   loginRequest: false,
   loginFailed: false,
   email: "",
@@ -21,7 +21,10 @@ const initialState: TLoginState = {
   isLogin: false,
 };
 
-export const loginReducer = (state = initialState, action: ActionLogin): TLoginState => {
+export const loginReducer = (
+  state = initialState,
+  action: ActionLogin
+): TLoginState => {
   switch (action.type) {
     case GET_LOGIN: {
       return {

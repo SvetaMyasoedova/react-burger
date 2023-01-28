@@ -9,13 +9,20 @@ import { TLocationState } from "../../services/types/location";
 interface IList {
   ingredient: TIngredient;
   icon: JSX.Element;
-  onClick: (ingredient: TIngredient) =>  void;
+  onClick: (ingredient: TIngredient) => void;
   id: string;
   type: string;
   count: number;
 }
 
-const IngredientList: FC<IList> = ({ ingredient, icon, onClick, id, type, count }) => {
+const IngredientList: FC<IList> = ({
+  ingredient,
+  icon,
+  onClick,
+  id,
+  type,
+  count,
+}) => {
   const [, dragRef] = useDrag(() => ({
     type: type,
     item: ingredient,
@@ -56,8 +63,6 @@ const IngredientList: FC<IList> = ({ ingredient, icon, onClick, id, type, count 
       </div>
     </Link>
   );
-}
-
-
+};
 
 export default IngredientList;

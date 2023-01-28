@@ -1,8 +1,4 @@
-import {
-  CURRENT_INGREDIENT,
-  CLEAR_CURRENT_INGREDIENT,
-} from "../actions/burgerIngredients";
-
+import { CURRENT_INGREDIENT,  CLEAR_CURRENT_INGREDIENT} from "../action-types/сurrent-ingredient-types";
 import { ActionCurrentIngredient } from "../actions/burgerIngredients";
 import { TIngredient } from "../types/data";
 
@@ -10,7 +6,7 @@ type TCurrentIngredientState = {
   currentIngredient: null | TIngredient;
 };
 
-const initialState: TCurrentIngredientState = {
+export const initialState: TCurrentIngredientState = {
   currentIngredient: null,
 };
 

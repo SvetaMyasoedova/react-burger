@@ -3,9 +3,11 @@ import { setCookie } from "../../utils/cookie";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 
-export const GET_LOGIN: "GET_LOGIN" = "GET_LOGIN";
-export const GET_LOGIN_FAILED: "GET_LOGIN_FAILED" = "GET_LOGIN_FAILED";
-export const GET_LOGIN_SUCCESS: "GET_LOGIN_SUCCESS" = "GET_LOGIN_SUCCESS";
+import {
+  GET_LOGIN,
+  GET_LOGIN_FAILED,
+  GET_LOGIN_SUCCESS,
+} from "../action-types/login-types";
 
 interface actionLoginPending {
   readonly type: typeof GET_LOGIN;
@@ -32,7 +34,7 @@ const getLogin = (email: string, password: string): any => {
       type: GET_LOGIN,
     });
 
-    fetch(LOGIN_URL, {
+    return fetch(LOGIN_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",

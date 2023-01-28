@@ -3,9 +3,7 @@ import { USER_URL } from "../../utils/urls";
 import { getCookie } from "../../utils/cookie";
 import { fetchWithRefresh } from "../../utils/refreshToken";
 
-export const EDIT_USER: "EDIT_USER" = "EDIT_USER";
-export const EDIT_USER_FAILED: "EDIT_USER_FAILED" = "EDIT_USER_FAILED";
-export const EDIT_USER_SUCCESS: "GET_EDIT_SUCCESS" = "GET_EDIT_SUCCESS";
+import { EDIT_USER,  EDIT_USER_FAILED, EDIT_USER_SUCCESS} from "../action-types/edit-profile-types";
 
 interface actionEditPending {
   readonly type: typeof EDIT_USER;
@@ -27,7 +25,7 @@ export function editUser(newName: string, newEmail: string): any {
       type: EDIT_USER,
     });
 
-    fetchWithRefresh(USER_URL, {
+    return fetchWithRefresh(USER_URL, {
       method: "PATCH",
       mode: "cors",
       cache: "no-cache",

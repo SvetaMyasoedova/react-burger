@@ -3,28 +3,31 @@ import {
   GET_USER_FAILED,
   GET_USER_SUCCESS,
   LOGOUT_SUCCESS,
-} from "../actions/profile";
+} from "../action-types/profile-types";
 
 import {
   EDIT_USER,
   EDIT_USER_FAILED,
   EDIT_USER_SUCCESS,
-} from "../actions/editProfile";
+} from "../action-types/edit-profile-types";
 
 import {
   GET_LOGIN,
   GET_LOGIN_SUCCESS,
   GET_LOGIN_FAILED,
-} from "../actions/login";
+} from "../action-types/login-types";
 
-import { GET_REGISTER, GET_REGISTER_FAILED, GET_REGISTER_SUCCESS } from "../actions/register";
+import {
+  GET_REGISTER,
+  GET_REGISTER_FAILED,
+  GET_REGISTER_SUCCESS,
+} from "../action-types/register-types";
 
 import { ActionUser } from "../actions/profile";
-import { ActionRegister} from "./../actions/register";
+import { ActionRegister } from "./../actions/register";
 import { ActionLogin } from "../actions/login";
 import { ActionEdit } from "./../actions/editProfile";
-import { ActionLogout} from "./../actions/profile";
-
+import { ActionLogout } from "./../actions/profile";
 
 type TProfileState = {
   registerRequest: boolean;
@@ -41,7 +44,7 @@ type TProfileState = {
   dataFailed: boolean;
 };
 
-const initialState: TProfileState = {
+export const initialState: TProfileState = {
   registerRequest: false,
   registerFailed: false,
   userRequest: false,
@@ -63,7 +66,10 @@ type Action =
   | ActionEdit
   | ActionLogout;
 
-export const profileReducer = (state = initialState, action: Action): TProfileState => {
+export const profileReducer = (
+  state = initialState,
+  action: Action
+): TProfileState => {
   switch (action.type) {
     case GET_REGISTER: {
       return {

@@ -1,8 +1,4 @@
-import {
-  GET_INGREDIENTS,
-  GET_INGREDIENTS_FAILED,
-  GET_INGREDIENTS_SUCCESS,
-} from "../actions/burgerIngredients";
+import { GET_INGREDIENTS_SUCCESS,  GET_INGREDIENTS_FAILED, GET_INGREDIENTS} from "../action-types/burger-ingredients-types";
 import { Action} from "../actions/burgerIngredients";
 import { TIngredient } from "../types/data";
 
@@ -13,7 +9,7 @@ type TDataState = {
   data: Array<TIngredient>;
 } 
 
-const initialState: TDataState = {
+export const initialState: TDataState = {
   dataRequest: false,
   dataFailed: false,
   data: [],

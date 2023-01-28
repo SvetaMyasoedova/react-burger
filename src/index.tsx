@@ -9,8 +9,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import thunk from "redux-thunk";
 import { rootReducer } from "./services/reducers";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { socketMiddleware } from "./services/middlewares/socketMiddleware";
+
 import {
   WS_CLOSE_CONNECTION,
   WS_CONNECTION_CLOSED,
@@ -20,7 +21,8 @@ import {
   WS_CURRENT_ORDER,
   WS_GET_MESSAGE,
   WS_SEND_MESSAGE,
-} from "./services/actions/wsActionTypes";
+} from "./services/action-types/ws-types";
+
 import {
   WS_PROFILE_CONNECTION_CLOSED,
   WS_PROFILE_CONNECTION_ERROR,
@@ -29,7 +31,7 @@ import {
   WS_PROFILE_CURRENT_ORDER,
   WS_PROFILE_GET_MESSAGE,
   WS_PROFILE_SEND_MESSAGE,
-} from "./services/actions/wsProfileActionTypes";
+} from "./services/action-types/ws-profile-types";
 import { getCookie } from "./utils/cookie";
 import { WS_All_ORDERS_URL, WS_PROFILE_ORDERS_URL } from "./utils/urls";
 
@@ -41,7 +43,7 @@ const wsFeedType = {
   wsGetMessage: WS_GET_MESSAGE,
   wsSendMessage: WS_SEND_MESSAGE,
   wsCurrentOrder: WS_CURRENT_ORDER,
-  wsCloseConnection: WS_CLOSE_CONNECTION
+  wsCloseConnection: WS_CLOSE_CONNECTION,
 };
 
 const wsProfileType = {
@@ -60,14 +62,10 @@ export const store = createStore(
     applyMiddleware(
       thunk,
       socketMiddleware(WS_All_ORDERS_URL, wsFeedType),
-      socketMiddleware(
-        WS_PROFILE_ORDERS_URL,
-        wsProfileType
-      )
+      socketMiddleware(WS_PROFILE_ORDERS_URL, wsProfileType)
     )
   )
 );
-
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

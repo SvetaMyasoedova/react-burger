@@ -2,14 +2,13 @@ import { INGREDIENTS_URL } from "../../utils/urls";
 import { checkReponse } from "../../utils/refreshToken";
 import { Dispatch } from "redux";
 import { TIngredient } from "../types/data";
+import {
+  GET_INGREDIENTS,
+  GET_INGREDIENTS_SUCCESS,
+  GET_INGREDIENTS_FAILED,
+} from "../action-types/burger-ingredients-types";
+import { CURRENT_INGREDIENT, CLEAR_CURRENT_INGREDIENT } from "../action-types/сurrent-ingredient-types";
 
-export const CURRENT_INGREDIENT: "CURRENT_INGREDIENT" = "CURRENT_INGREDIENT";
-export const CLEAR_CURRENT_INGREDIENT: "CLEAR_CURRENT_INGREDIENT" =
-  "CLEAR_CURRENT_INGREDIENT";
-
-  export const GET_INGREDIENTS: "GET_INGREDIENTS"  = "GET_INGREDIENTS";
-  export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
-  export const GET_INGREDIENTS_FAILED: "GET_INGREDIENTS_FAILED" = "GET_INGREDIENTS_FAILED";
 
 interface actionPending {
   readonly type: typeof GET_INGREDIENTS;
@@ -23,14 +22,16 @@ interface actionFail {
   readonly type: typeof GET_INGREDIENTS_FAILED;
 }
 interface IActionCurrentIngredient {
-  readonly type: typeof CURRENT_INGREDIENT
+  readonly type: typeof CURRENT_INGREDIENT;
   currentIngredient: TIngredient;
 }
 interface IActionClearCurrentIngredient {
-  readonly type: typeof CLEAR_CURRENT_INGREDIENT
+  readonly type: typeof CLEAR_CURRENT_INGREDIENT;
 }
 
-export type ActionCurrentIngredient = IActionCurrentIngredient | IActionClearCurrentIngredient;
+export type ActionCurrentIngredient =
+  | IActionCurrentIngredient
+  | IActionClearCurrentIngredient;
 export type Action = actionPending | actionSuccess | actionFail;
 
 export function getIngredients(): any {
@@ -39,7 +40,7 @@ export function getIngredients(): any {
       type: GET_INGREDIENTS,
     });
 
-    fetch(INGREDIENTS_URL)
+    return fetch(INGREDIENTS_URL)
       .then(checkReponse)
       .then((res) => {
         if (res && res.success) {

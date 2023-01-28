@@ -5,12 +5,10 @@ import { useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 import IngredientDetailsCard from "./ingredientDetailsCard";
-
-import { CURRENT_INGREDIENT } from "../../services/actions/burgerIngredients";
+import { CURRENT_INGREDIENT } from "../../services/action-types/сurrent-ingredient-types";
 
 import { TIngredient } from "../../services/types/data";
 import { TLocationState } from "../../services/types/location";
-
 
 interface IIngredientDetailsParams {
   ingredientId: string;
@@ -21,7 +19,8 @@ const IngredientDetails: FC = () => {
   const dispatch = useDispatch();
 
   const currentIngredient = useSelector(
-    (state: any) : TIngredient => state.сurrentIngredientReducer.currentIngredient
+    (state: any): TIngredient =>
+      state.сurrentIngredientReducer.currentIngredient
   );
 
   const { data } = useSelector((state: any) => state.dataReducer);
@@ -32,7 +31,9 @@ const IngredientDetails: FC = () => {
   useEffect(() => {
     if (data.length !== 0 && !background) {
       dispatch({
-        currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
+        currentIngredient: data.find(
+          (item: TIngredient) => item._id === ingredientId
+        ),
         type: CURRENT_INGREDIENT,
       });
     }
@@ -42,7 +43,9 @@ const IngredientDetails: FC = () => {
       (currentIngredient === null || currentIngredient === undefined)
     ) {
       dispatch({
-        currentIngredient: data.find((item: TIngredient) => item._id === ingredientId),
+        currentIngredient: data.find(
+          (item: TIngredient) => item._id === ingredientId
+        ),
         type: CURRENT_INGREDIENT,
       });
     }
@@ -62,8 +65,6 @@ const IngredientDetails: FC = () => {
       <IngredientDetailsCard ingredient={currentIngredient} />
     </>
   );
-}
-
-
+};
 
 export default IngredientDetails;
